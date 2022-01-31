@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_7" orientation="landscape" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Bold.ttf">
+            <string>Lato-Bold</string>
+        </array>
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Fairytales" customModuleProvider="target">
+            <connections>
+                <outlet property="continueButton" destination="eWP-5c-fVD" id="eY6-1Q-EJA"/>
+                <outlet property="descriptionLabel" destination="yu1-c5-dEC" id="ZIM-v0-NWM"/>
+                <outlet property="headingLabel" destination="3Ut-Pb-o5E" id="HxO-Y9-Xhn"/>
+                <outlet property="image" destination="6R6-N7-BDs" id="hCG-zY-zkR"/>
+                <outlet property="pageControl" destination="IiQ-DG-5L1" id="Nh2-WF-T8t"/>
+                <outlet property="skipButton" destination="Z0f-Yj-RCM" id="Axe-tG-bvQ"/>
+                <outlet property="view" destination="iN0-l3-epB" id="mn2-jz-Ytf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="865" height="375"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8V-hB-kS0">
+                    <rect key="frame" x="0.0" y="0.0" width="865" height="375"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding1" translatesAutoresizingMaskIntoConstraints="NO" id="6R6-N7-BDs">
+                            <rect key="frame" x="0.0" y="0.0" width="865" height="375"/>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nGI-sc-Cq2">
+                            <rect key="frame" x="307.66666666666669" y="257.33333333333331" width="250.00000000000006" height="48"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" text="Ваш ребенок в главной роли" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ut-Pb-o5E">
+                                    <rect key="frame" x="8" y="4" width="234" height="36"/>
+                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="30"/>
+                                    <color key="textColor" red="0.13725490196078433" green="0.14901960784313725" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yu1-c5-dEC">
+                                    <rect key="frame" x="8" y="0.0" width="234" height="0.0"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
+                                    <color key="textColor" red="0.13725490200000001" green="0.14901960780000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="250" id="WzR-JK-Qlc"/>
+                            </constraints>
+                            <edgeInsets key="layoutMargins" top="4" left="8" bottom="8" right="8"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                    <real key="value" value="18"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </stackView>
+                        <pageControl opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="14" translatesAutoresizingMaskIntoConstraints="NO" id="IiQ-DG-5L1">
+                            <rect key="frame" x="342.66666666666669" y="313.33333333333331" width="180.00000000000006" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="180" id="idf-v0-Sot"/>
+                            </constraints>
+                            <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
+                            <color key="pageIndicatorTintColor" red="0.45519328120000002" green="0.41392958159999999" blue="0.49020493030000001" alpha="0.54805712131638606" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="currentPageIndicatorTintColor" red="0.99719864130000002" green="0.59852820630000003" blue="0.48231929540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </pageControl>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWP-5c-fVD">
+                            <rect key="frame" x="645.66666666666663" y="266.33333333333331" width="93" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="8fQ-6F-3hI"/>
+                                <constraint firstAttribute="width" constant="93" id="law-w5-RO6"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Далее" backgroundImage="button-filled-1">
+                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0f-Yj-RCM">
+                            <rect key="frame" x="117" y="266.33333333333331" width="112" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="112" id="adS-tV-XSR"/>
+                                <constraint firstAttribute="height" constant="30" id="f0j-C3-1jD"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title=" Пропустить" backgroundImage="button-stroke-1">
+                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="nGI-sc-Cq2" firstAttribute="centerX" secondItem="x8V-hB-kS0" secondAttribute="centerX" id="3Pf-GR-JXk"/>
+                        <constraint firstItem="6R6-N7-BDs" firstAttribute="leading" secondItem="x8V-hB-kS0" secondAttribute="leading" id="8Ee-No-k5L"/>
+                        <constraint firstItem="IiQ-DG-5L1" firstAttribute="centerX" secondItem="nGI-sc-Cq2" secondAttribute="centerX" id="BZb-Yd-FLI"/>
+                        <constraint firstItem="nGI-sc-Cq2" firstAttribute="centerY" secondItem="x8V-hB-kS0" secondAttribute="centerY" multiplier="1.5" id="GGf-eN-Ehh"/>
+                        <constraint firstItem="6R6-N7-BDs" firstAttribute="top" secondItem="x8V-hB-kS0" secondAttribute="top" id="Gz0-CI-8kK"/>
+                        <constraint firstItem="Z0f-Yj-RCM" firstAttribute="centerY" secondItem="nGI-sc-Cq2" secondAttribute="centerY" id="PaD-FC-fMB"/>
+                        <constraint firstItem="Z0f-Yj-RCM" firstAttribute="centerX" secondItem="x8V-hB-kS0" secondAttribute="centerX" multiplier="0.4" id="QDu-MP-xKe"/>
+                        <constraint firstItem="eWP-5c-fVD" firstAttribute="centerY" secondItem="nGI-sc-Cq2" secondAttribute="centerY" id="W1W-i4-k7Q"/>
+                        <constraint firstItem="eWP-5c-fVD" firstAttribute="centerX" secondItem="x8V-hB-kS0" secondAttribute="centerX" multiplier="1.6" id="cQ6-zL-n2A"/>
+                        <constraint firstItem="IiQ-DG-5L1" firstAttribute="top" secondItem="nGI-sc-Cq2" secondAttribute="bottom" constant="8" id="dGt-1r-sSQ"/>
+                        <constraint firstAttribute="bottom" secondItem="6R6-N7-BDs" secondAttribute="bottom" id="kwv-99-BjX"/>
+                        <constraint firstAttribute="trailing" secondItem="6R6-N7-BDs" secondAttribute="trailing" id="xe6-ow-hSC"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="x8V-hB-kS0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OPV-MU-xw5"/>
+                <constraint firstItem="x8V-hB-kS0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ag5-Gn-fA9"/>
+                <constraint firstAttribute="trailing" secondItem="x8V-hB-kS0" secondAttribute="trailing" id="bTi-lB-vve"/>
+                <constraint firstAttribute="bottom" secondItem="x8V-hB-kS0" secondAttribute="bottom" id="xtn-um-INP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="140.28077753779698" y="145.79439252336448"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="button-filled-1" width="93" height="30"/>
+        <image name="button-stroke-1" width="112" height="30"/>
+        <image name="onboarding1" width="812" height="375"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
