@@ -103,8 +103,8 @@ final class OnboardingViewController: BaseViewController {
                 UIView.transition(with: self.view, duration: 0.7, options: [.transitionCrossDissolve], animations: {
                     self.image.image = state.currentImage
                 }, completion: nil)
-                self.headingLabel.text = state.currentImage.size.debugDescription
-                self.descriptionLabel.text = state.currentImage.imageRendererFormat.debugDescription
+                self.headingLabel.text = state.currentHeading
+                self.descriptionLabel.text = state.currentDescription
         }).store(in: &bag)
     }
 }
