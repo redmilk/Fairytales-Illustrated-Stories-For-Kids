@@ -39,18 +39,18 @@
                             <rect key="frame" x="0.0" y="0.0" width="865" height="375"/>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nGI-sc-Cq2">
-                            <rect key="frame" x="307.66666666666669" y="257.33333333333331" width="250.00000000000006" height="48"/>
+                            <rect key="frame" x="307.66666666666669" y="256.66666666666669" width="250.00000000000006" height="49.333333333333314"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" text="Ваш ребенок в главной роли" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ut-Pb-o5E">
-                                    <rect key="frame" x="8" y="4" width="234" height="36"/>
-                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="30"/>
+                                    <rect key="frame" x="8" y="3.9999999999999991" width="234" height="14.666666666666664"/>
+                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                     <color key="textColor" red="0.13725490196078433" green="0.14901960784313725" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yu1-c5-dEC">
-                                    <rect key="frame" x="8" y="0.0" width="234" height="0.0"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yu1-c5-dEC">
+                                    <rect key="frame" x="8" y="26.666666666666632" width="234" height="14.666666666666668"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
+                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                     <color key="textColor" red="0.13725490200000001" green="0.14901960780000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -67,7 +67,7 @@
                             </userDefinedRuntimeAttributes>
                         </stackView>
                         <pageControl opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="14" translatesAutoresizingMaskIntoConstraints="NO" id="IiQ-DG-5L1">
-                            <rect key="frame" x="342.66666666666669" y="313.33333333333331" width="180.00000000000006" height="25"/>
+                            <rect key="frame" x="342.66666666666669" y="314" width="180.00000000000006" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="180" id="idf-v0-Sot"/>
                             </constraints>

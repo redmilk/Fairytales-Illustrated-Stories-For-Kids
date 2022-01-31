@@ -13,53 +13,23 @@ import CombineCocoa
 
 extension OnboardingViewController {
     class State: BaseState {
-        override init() { }
+        override init() { } 
         
         var imageList: [UIImage] = [UIImage(named: "onboarding1")!,
                                     UIImage(named: "onboarding2")!,
                                     UIImage(named: "onboarding3")!,
                                     UIImage(named: "onboarding4")!,
-                                    UIImage(named: "onboarding5")!,
-                                    UIImage(named: "ausdfhgaskdfgk1")!,
-                                    UIImage(named: "ausdfhgaskdfgk2")!,
-                                    UIImage(named: "ausdfhgaskdfgk3")!,
-                                    UIImage(named: "ausdfhgaskdfgk4")!,
-                                    UIImage(named: "ausdfhgaskdfgk5")!,
-                                    UIImage(named: "ausdfhgaskdfgk6")!,
-                                    UIImage(named: "ausdfhgaskdfgk7")!,
-                                    UIImage(named: "ausdfhgaskdfgk8")!,
-                                    UIImage(named: "ausdfhgaskdfgk9")!,
-                                    UIImage(named: "ausdfhgaskdfgk10")!]
+                                    UIImage(named: "onboarding5")!]
         
         var headingList: [String] = ["Ваш ребенок в главной роли",
                                      "Возможность чтения оффлайн",
                                      "Картинки на каждой странице",
                                      "Обучайтесь и развивайтесь вместе с ребенком",
-                                     "Возможность чтения в темноте",
-                                     "Обучайтесь и развивайтесь вместе с ребенком",
-                                     "Возможность чтения оффлайн",
-                                     "Возможность чтения в темноте",
-                                     "Картинки на каждой странице",
-                                     "Возможность чтения оффлайн",
-                                     "Картинки на каждой странице",
-                                     "Возможность чтения в темноте",
-                                     "Возможность чтения оффлайн",
-                                     "Возможность чтения оффлайн",
-                                     "Возможность чтения в темноте"]
+                                     "Возможность чтения онлайн"]
         
         var descriptionList: [String] = ["1Lorem ipsum dolor sit amet, consectetur adipiscing elit1",
                                      "2Lorem ipsum dolor sit amet, consectetur adipiscing elit2",
                                      "3Lorem ipsum dolor sit amet, consectetur adipiscing elit3",
-                                         "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
-                                         "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
-                                         "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
-                                         "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
-                                         "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
-                                         "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
-                                         "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
-                                         "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
-                                         "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
-                                         "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
                                      "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
                                      "5Lorem ipsum dolor sit amet, consectetur adipiscing elit5"]
 
