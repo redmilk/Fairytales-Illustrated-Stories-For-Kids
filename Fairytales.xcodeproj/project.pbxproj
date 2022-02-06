@@ -15,8 +15,6 @@
 		793CA39827AFEFCB005D0B77 /* LaunchAnimationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 793CA39427AFEFCB005D0B77 /* LaunchAnimationViewController.xib */; };
 		795EA56927A80A5F0016C417 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795EA56727A80A5F0016C417 /* KeyChain.swift */; };
 		795EA56A27A80A5F0016C417 /* Obfuscator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795EA56827A80A5F0016C417 /* Obfuscator.swift */; };
-		795EA56C27A80C460016C417 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795EA56B27A80C460016C417 /* Authenticator.swift */; };
-		795EA56E27A80C620016C417 /* AuthTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795EA56D27A80C620016C417 /* AuthTokens.swift */; };
 		797D388D27A743CE0047C31B /* ApphudSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 797D388C27A743CE0047C31B /* ApphudSDK */; };
 		797D389027A74C980047C31B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 797D388F27A74C980047C31B /* FirebaseAnalytics */; };
 		797D389227A74C980047C31B /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 797D389127A74C980047C31B /* FirebaseCrashlytics */; };
@@ -119,14 +117,6 @@
 		79958D5B27A7C31200A32E5A /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D5A27A7C31200A32E5A /* UIButton+Extensions.swift */; };
 		79958D5D27A7C35900A32E5A /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D5C27A7C35900A32E5A /* UILabel+Extensions.swift */; };
 		79958D6027A7C40A00A32E5A /* LocalizedStringID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D5F27A7C40A00A32E5A /* LocalizedStringID.swift */; };
-		79958D7127A8025E00A32E5A /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D6427A8025D00A32E5A /* ImageLoader.swift */; };
-		79958D7227A8025E00A32E5A /* ImageCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D6527A8025D00A32E5A /* ImageCacher.swift */; };
-		79958D7427A8025E00A32E5A /* RequestParametersAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D6727A8025D00A32E5A /* RequestParametersAdapter.swift */; };
-		79958D7527A8025E00A32E5A /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D6827A8025D00A32E5A /* RequestBuilder.swift */; };
-		79958D7927A8025E00A32E5A /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D6C27A8025D00A32E5A /* HTTPClient.swift */; };
-		79958D7A27A8025E00A32E5A /* RequestHeaderAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D6D27A8025E00A32E5A /* RequestHeaderAdapter.swift */; };
-		79958D7B27A8025E00A32E5A /* ItemOrArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D6F27A8025E00A32E5A /* ItemOrArray.swift */; };
-		79958D7C27A8025E00A32E5A /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79958D7027A8025E00A32E5A /* RequestError.swift */; };
 		799E809727AC272B00ABE0C8 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 799E809527AC272A00ABE0C8 /* iCarousel.m */; };
 		799E809B27AC38F600ABE0C8 /* CarouselItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799E809A27AC38F600ABE0C8 /* CarouselItemView.xib */; };
 		799E809D27AC391400ABE0C8 /* CarouselItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E809C27AC391400ABE0C8 /* CarouselItemView.swift */; };
@@ -831,11 +821,9 @@
 				7985DC87279EC6F8005459E0 /* BaseButton.swift in Sources */,
 				79958D5B27A7C31200A32E5A /* UIButton+Extensions.swift in Sources */,
 				795EA56A27A80A5F0016C417 /* Obfuscator.swift in Sources */,
-				79958D7227A8025E00A32E5A /* ImageCacher.swift in Sources */,
 				79958CFF27A75B2200A32E5A /* StorySelectCoordinator.swift in Sources */,
 				7985DC6E279EC6F8005459E0 /* SubscriptionViewController.swift in Sources */,
 				79958D2327A76B3B00A32E5A /* EventRepresentable.swift in Sources */,
-				79958D7B27A8025E00A32E5A /* ItemOrArray.swift in Sources */,
 				79958D1B27A766E400A32E5A /* EventsAcceptable.swift in Sources */,
 				7985DC21279EC6F8005459E0 /* AppDelegate.swift in Sources */,
 				7985DC76279EC6F8005459E0 /* ApplicationGlobalConfig.swift in Sources */,
@@ -843,9 +831,7 @@
 				79958D2527A76BE400A32E5A /* BaseState.swift in Sources */,
 				7985DCB2279EC6F8005459E0 /* String+Extensions.swift in Sources */,
 				7985DC65279EC6F8005459E0 /* StoryCoordinator.swift in Sources */,
-				79958D7527A8025E00A32E5A /* RequestBuilder.swift in Sources */,
 				79958D2127A76B0300A32E5A /* EventTransmittable.swift in Sources */,
-				79958D7927A8025E00A32E5A /* HTTPClient.swift in Sources */,
 				7985DCDB279EC6F8005459E0 /* Coordinatable.swift in Sources */,
 				799E809727AC272B00ABE0C8 /* iCarousel.m in Sources */,
 				793A920427AFC22C000F3B0C /* UIFont+Extensions.swift in Sources */,
@@ -859,7 +845,6 @@
 				7985DCD3279EC6F8005459E0 /* AnalyticsService.swift in Sources */,
 				7985DC23279EC6F8005459E0 /* SceneDelegate.swift in Sources */,
 				7985DC77279EC6F8005459E0 /* ApplicationCoordinator.swift in Sources */,
-				79958D7A27A8025E00A32E5A /* RequestHeaderAdapter.swift in Sources */,
 				7985DCB0279EC6F8005459E0 /* UIViewController+Extensions.swift in Sources */,
 				795EA56927A80A5F0016C417 /* KeyChain.swift in Sources */,
 				793A920227AF804A000F3B0C /* Set+Extensions.swift in Sources */,
@@ -868,10 +853,8 @@
 				7985DCD2279EC6F8005459E0 /* ServicesContainer.swift in Sources */,
 				79958D2B27A7770500A32E5A /* CoordinatorPreservable.swift in Sources */,
 				793CA39527AFEFCB005D0B77 /* LaunchAnimationCoordinator.swift in Sources */,
-				79958D7127A8025E00A32E5A /* ImageLoader.swift in Sources */,
 				7985DC85279EC6F8005459E0 /* CirclesActivityIndicator.swift in Sources */,
 				7985DC2B279EC6F8005459E0 /* Fairytales.xcdatamodeld in Sources */,
-				795EA56C27A80C460016C417 /* Authenticator.swift in Sources */,
 				7985DCCB279EC6F8005459E0 /* UserSession.swift in Sources */,
 				7985DC7C279EC6F8005459E0 /* CustomAlert.swift in Sources */,
 				7985DCAF279EC6F8005459E0 /* KeyedDecodingContainer+Extensions.swift in Sources */,
@@ -885,13 +868,10 @@
 				7985DCFA27A151A9005459E0 /* WebscreenViewController.swift in Sources */,
 				7985DCB1279EC6F8005459E0 /* UIView+Extensions.swift in Sources */,
 				7985DCB9279EC6F8005459E0 /* UIBarButtonItem+Extensions.swift in Sources */,
-				795EA56E27A80C620016C417 /* AuthTokens.swift in Sources */,
 				7985DCB6279EC6F8005459E0 /* UIDevice+Extensions.swift in Sources */,
 				7985DCD7279EC6F8005459E0 /* Logger.swift in Sources */,
 				7985DCD0279EC6F8005459E0 /* PurchaseService.swift in Sources */,
-				79958D7427A8025E00A32E5A /* RequestParametersAdapter.swift in Sources */,
 				7985DC83279EC6F8005459E0 /* SubscriptionPlanPopup.swift in Sources */,
-				79958D7C27A8025E00A32E5A /* RequestError.swift in Sources */,
 				799E809D27AC391400ABE0C8 /* CarouselItemView.swift in Sources */,
 				7985DC6D279EC6F8005459E0 /* SubscriptionCoordinator.swift in Sources */,
 				7985DCCE279EC6F8005459E0 /* OnboardingManager.swift in Sources */,
