@@ -18,20 +18,19 @@ protocol SettingsCoordinatorProtocol {
 final class SettingsCoordinator: Coordinatable, SettingsCoordinatorProtocol {
     var navigationController: UINavigationController?
     
-    init() {
-
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
     }
     deinit {
         Logger.log(String(describing: self), type: .deinited)
     }
     
     func start() {
-        let viewModel = SettingsViewModel(coordinator: self)
-        let controller = SettingsViewController(viewModel: viewModel)
-
+        let controller = SettingsViewController(coordinator: self)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func end() {
-
+        navigationController?.popViewController(animated: true)
     }
 }

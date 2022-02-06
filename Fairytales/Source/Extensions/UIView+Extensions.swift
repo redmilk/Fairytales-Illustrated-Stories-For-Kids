@@ -9,6 +9,21 @@ import UIKit.UIView
 import QuartzCore
 import Combine
 
+extension UIView {
+    @IBInspectable var _cornerRadius: CGFloat {
+        get { layer.cornerRadius }
+        set { layer.cornerRadius = newValue; layer.masksToBounds = newValue > 0 }
+    }
+    @IBInspectable var _borderWidth: CGFloat {
+        get { layer.borderWidth }
+        set { layer.borderWidth = newValue }
+    }
+    @IBInspectable var _borderColor: UIColor? {
+        get { UIColor(cgColor: layer.borderColor!) }
+        set { layer.borderColor = newValue?.cgColor }
+    }
+}
+
 protocol XibDesignable: AnyObject { }
 extension UIView: XibDesignable { }
 extension XibDesignable where Self: UIView {
@@ -216,37 +231,6 @@ class ShimmerView: UIView {
         group.duration = 2
         group.repeatCount = HUGE
         gradient.add(group, forKey: "shimmer")
-    }
-}
-
-extension UIView {
-    
-    @IBInspectable var _cornerRadius: CGFloat {
-        get {
-            return layer.cornerRadius
-        }
-        set {
-            layer.cornerRadius = newValue
-            layer.masksToBounds = newValue > 0
-        }
-    }
-    
-    @IBInspectable var _borderWidth: CGFloat {
-        get {
-            return layer.borderWidth
-        }
-        set {
-            layer.borderWidth = newValue
-        }
-    }
-    
-    @IBInspectable var _borderColor: UIColor? {
-        get {
-            return UIColor(cgColor: layer.borderColor!)
-        }
-        set {
-            layer.borderColor = newValue?.cgColor
-        }
     }
 }
 

@@ -10,4 +10,5 @@ import UIKit.UINavigationController
 protocol Coordinatable: AnyObject {
     var navigationController: UINavigationController? { get set }    
     func start()
+    func end()
 }

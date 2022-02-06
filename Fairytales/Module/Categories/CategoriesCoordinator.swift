@@ -17,18 +17,36 @@ protocol CategoriesCoordinatorProtocol {
 
 final class CategoriesCoordinator: Coordinatable, CategoriesCoordinatorProtocol {
     var navigationController: UINavigationController?
+    unowned let window: UIWindow
     
-    init(navigationController: UINavigationController?) {
-        self.navigationController = navigationController
+    init(window: UIWindow) {
+        self.window = window
     }
     deinit {
         Logger.log(String(describing: self), type: .deinited)
     }
     
     func start() {
-        let viewModel = CategoriesViewModel(coordinator: self)
-        let controller = CategoriesViewController(viewModel: viewModel)
-        navigationController?.pushViewController(controller, animated: true)
+        let controller = CategoriesViewController(coordinator: self)
+        navigationController = UINavigationController(rootViewController: controller)
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        UIView.transition(with: window, duration: 1.5, options: [.transitionCrossDissolve], animations: { }, completion: nil)
+    }
+    
+    func displaySettings() {
+        let coordinator = SettingsCoordinator(navigationController: navigationController)
+        coordinator.start()
+    }
+    
+    func displayFavorites() {
+        let coordinator = StorySelectCoordinator(navigationController: navigationController)
+        coordinator.start()
+    }
+    
+    func displayCategoryItems() {
+        let coordinator = StorySelectCoordinator(navigationController: navigationController)
+        coordinator.start()
     }
     
     func end() {

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -75,7 +73,7 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="f90-Vf-LeP">
-                            <rect key="frame" x="20" y="129.66666666666666" width="374" height="336.33333333333337"/>
+                            <rect key="frame" x="20" y="129.5" width="374" height="336.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="left" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yw9-bb-8B9">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="25"/>
@@ -97,7 +95,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="left" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FDn-7U-ghR">
-                                    <rect key="frame" x="0.0" y="77.666666666666686" width="374" height="25"/>
+                                    <rect key="frame" x="0.0" y="78" width="374" height="25"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="255" verticalHuggingPriority="251" image="icon-checkmark-subscription" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-6K-clD">
                                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -116,7 +114,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="left" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tr4-6s-COK">
-                                    <rect key="frame" x="0.0" y="155.66666666666666" width="374" height="25"/>
+                                    <rect key="frame" x="0.0" y="156" width="374" height="25"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="255" verticalHuggingPriority="251" image="icon-checkmark-subscription" translatesAutoresizingMaskIntoConstraints="NO" id="MtJ-u2-vFQ">
                                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -135,7 +133,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="left" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3TZ-BO-Wq5">
-                                    <rect key="frame" x="0.0" y="233.33333333333334" width="374" height="25.000000000000028"/>
+                                    <rect key="frame" x="0.0" y="233.5" width="374" height="25"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="255" verticalHuggingPriority="251" image="icon-checkmark-subscription" translatesAutoresizingMaskIntoConstraints="NO" id="A7N-5H-LJ6">
                                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -154,7 +152,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="left" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Lb3-5e-DvZ">
-                                    <rect key="frame" x="0.0" y="311.33333333333337" width="374" height="25"/>
+                                    <rect key="frame" x="0.0" y="311.5" width="374" height="25"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="255" verticalHuggingPriority="251" image="icon-checkmark-subscription" translatesAutoresizingMaskIntoConstraints="NO" id="J4T-DX-zUE">
                                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -175,7 +173,7 @@
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our advantages" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jyp-jo-ODw">
-                            <rect key="frame" x="20.000000000000014" y="69.666666666666671" width="232.33333333333337" height="40"/>
+                            <rect key="frame" x="20" y="69.5" width="199.5" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="4ea-fA-Bp7"/>
                             </constraints>
@@ -196,16 +194,16 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6D0-T9-emM" userLabel="HowItWorksContainer">
-                                    <rect key="frame" x="0.0" y="-401.33333333333331" width="414" height="386.33333333333331"/>
+                                    <rect key="frame" x="0.0" y="-401.5" width="414" height="386.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How your free trial works" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxt-KL-j8P">
-                                            <rect key="frame" x="20" y="-37" width="299.66666666666669" height="33.666666666666664"/>
+                                            <rect key="frame" x="20" y="-34" width="267.5" height="28"/>
                                             <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="24"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="how-it-works" translatesAutoresizingMaskIntoConstraints="NO" id="trt-1y-ZE6">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="386.33333333333331"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="386.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
                                     </subviews>
@@ -219,7 +217,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue and setup Air" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYL-Qp-Kjq">
-                                    <rect key="frame" x="66.666666666666657" y="20" width="280.66666666666674" height="35"/>
+                                    <rect key="frame" x="84" y="20" width="246.5" height="35"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="35" id="mKE-b4-VPF"/>
                                     </constraints>
@@ -228,7 +226,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Printer app" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arN-UI-NoB">
-                                    <rect key="frame" x="139.33333333333331" y="55" width="135.33333333333331" height="35"/>
+                                    <rect key="frame" x="147.5" y="55" width="119" height="35"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="35" id="fsi-Aj-mRs"/>
                                     </constraints>
@@ -237,16 +235,16 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView verifyAmbiguity="ignoreSizes" opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="w3T-w8-vS9">
-                                    <rect key="frame" x="111.33333333333333" y="110" width="191.33333333333337" height="20"/>
+                                    <rect key="frame" x="124" y="110" width="166" height="20"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-renews at" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aze-gf-cBt">
-                                            <rect key="frame" x="0.0" y="0.0" width="94.666666666666671" height="20"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="82" height="20"/>
                                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label verifyAmbiguity="ignoreSizes" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="$4.99 / week" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NS2-cd-tyJ">
-                                            <rect key="frame" x="96.666666666666657" y="0.0" width="94.666666666666657" height="20"/>
+                                            <rect key="frame" x="84" y="0.0" width="82" height="20"/>
                                             <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -257,7 +255,7 @@
                                     </constraints>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="After a 3-day free trial. Manage anytime." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ID5-ag-wHe">
-                                    <rect key="frame" x="85.666666666666686" y="140" width="243" height="20"/>
+                                    <rect key="frame" x="99.5" y="140" width="215" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="GLh-fY-fyS"/>
                                     </constraints>
@@ -265,8 +263,8 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5V-uG-AtW" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
-                                    <rect key="frame" x="39.666666666666657" y="190" width="335" height="60"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5V-uG-AtW" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
+                                    <rect key="frame" x="39.5" y="190" width="335" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="335" id="0CP-4r-oq6"/>
                                         <constraint firstAttribute="height" constant="60" id="58E-vE-06B"/>
@@ -275,7 +273,7 @@
                                     <state key="normal" backgroundImage="button-continue-long"/>
                                 </button>
                                 <stackView verifyAmbiguity="ignoreSizes" opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Amh-F7-p1q">
-                                    <rect key="frame" x="125.66666666666669" y="270" width="163" height="30"/>
+                                    <rect key="frame" x="125.5" y="270" width="163" height="30"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="subscription-shield-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ZhT-q3-o7c">
                                             <rect key="frame" x="0.0" y="6" width="18" height="18"/>
@@ -285,7 +283,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secured with App Store" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M77-Pf-X7h">
-                                            <rect key="frame" x="22.999999999999986" y="6.6666666666666288" width="140" height="17"/>
+                                            <rect key="frame" x="23" y="6.5" width="140" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="140" id="jPZ-NR-0rh"/>
                                                 <constraint firstAttribute="height" constant="17" id="jwF-l4-Wjf"/>
@@ -300,17 +298,17 @@
                                     </constraints>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="8bi-zP-UmM">
-                                    <rect key="frame" x="126" y="310" width="162" height="35"/>
+                                    <rect key="frame" x="131.5" y="310" width="151" height="35"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DvA-mY-F3e" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="0.0" width="122" height="35"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DvA-mY-F3e" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="0.0" width="111" height="35"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="Restore subscription">
                                                 <color key="titleColor" red="0.33623573179999999" green="0.67496186489999999" blue="0.94124519819999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
                                         </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qo5-1h-1HL" userLabel="Other plans" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qo5-1h-1HL" userLabel="Other plans" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="35"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -318,7 +316,7 @@
                                                 <color key="titleColor" red="0.33623573179999999" green="0.67496186489999999" blue="0.94124519819999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
                                         </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uoe-Ft-phV" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uoe-Ft-phV" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="35"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -358,8 +356,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qml-Cw-J6W" userLabel="PlanSelectionMenuContainer">
                             <rect key="frame" x="0.0" y="496" width="414" height="450"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLZ-mC-0xP" userLabel="FirstButton" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
-                                    <rect key="frame" x="40.666666666666657" y="30" width="332.66666666666674" height="68"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLZ-mC-0xP" userLabel="FirstButton" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
+                                    <rect key="frame" x="41" y="30" width="332.5" height="68"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="68" id="Vs8-y4-vNP"/>
                                     </constraints>
@@ -371,19 +369,19 @@
                                     <state key="selected" image="onboarding-selector-checked" backgroundImage="button-stroke-selected"/>
                                 </button>
                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlJ-2j-m7N" userLabel="FirstButtonContent">
-                                    <rect key="frame" x="40.666666666666657" y="24" width="332.66666666666674" height="80"/>
+                                    <rect key="frame" x="41" y="24" width="332.5" height="80"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="e9b-1W-JKC">
-                                            <rect key="frame" x="48.000000000000007" y="19.666666666666629" width="85.666666666666686" height="41"/>
+                                            <rect key="frame" x="48" y="23" width="80.5" height="34"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ut-Pn-2Bv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="85.666666666666671" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="80.5" height="20"/>
                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editor's choice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aqz-xx-SPc">
-                                                    <rect key="frame" x="0.0" y="24" width="85.666666666666671" height="17"/>
+                                                    <rect key="frame" x="0.0" y="20" width="80.5" height="14"/>
                                                     <color key="tintColor" red="0.33623573179999999" green="0.67496186489999999" blue="0.94124519819999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                     <color key="textColor" red="0.33623573179999999" green="0.67496186489999999" blue="0.94124519819999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -392,16 +390,16 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWg-r6-sIJ">
-                                            <rect key="frame" x="227.00000000000003" y="31.666666666666629" width="85.666666666666657" height="17"/>
+                                            <rect key="frame" x="237" y="33" width="75.5" height="14"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$9.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyB-Oh-xTV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="33.666666666666664" height="17"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="30.5" height="14"/>
                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" / month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMN-8I-oKG">
-                                                    <rect key="frame" x="33.666666666666629" y="0.0" width="52" height="17"/>
+                                                    <rect key="frame" x="30.5" y="0.0" width="45" height="14"/>
                                                     <color key="tintColor" red="0.33623573179999999" green="0.67496186489999999" blue="0.94124519819999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -418,8 +416,8 @@
                                         <constraint firstItem="e9b-1W-JKC" firstAttribute="leading" secondItem="nlJ-2j-m7N" secondAttribute="leading" constant="48" id="vOq-Tq-xNF"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xyF-dN-sdq" userLabel="SecondButton" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
-                                    <rect key="frame" x="40.666666666666657" y="118" width="332.66666666666674" height="72"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xyF-dN-sdq" userLabel="SecondButton" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
+                                    <rect key="frame" x="41" y="118" width="332.5" height="72"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="72" id="7Jk-vq-CkP"/>
                                     </constraints>
@@ -431,26 +429,26 @@
                                     <state key="selected" image="onboarding-selector-checked" backgroundImage="button-stroke-selected"/>
                                 </button>
                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JrR-l2-JBp" userLabel="SecondButtonContent">
-                                    <rect key="frame" x="40.666666666666657" y="118" width="332.66666666666674" height="72"/>
+                                    <rect key="frame" x="41" y="118" width="332.5" height="72"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-like" translatesAutoresizingMaskIntoConstraints="NO" id="z7Q-pE-QqL">
-                                            <rect key="frame" x="310.66666666666663" y="-10" width="32" height="32"/>
+                                            <rect key="frame" x="310.5" y="-10" width="32" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="32" id="4Vo-TI-gsq"/>
                                                 <constraint firstAttribute="width" secondItem="z7Q-pE-QqL" secondAttribute="height" multiplier="1:1" id="Tzf-6g-W4x"/>
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="abf-7R-O88">
-                                            <rect key="frame" x="48.000000000000007" y="15.666666666666629" width="107.66666666666669" height="41"/>
+                                            <rect key="frame" x="48" y="19" width="95.5" height="34"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Limited offer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UED-Ai-UOk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="95.5" height="20"/>
                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yearly. Save 50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea5-nM-Jam">
-                                                    <rect key="frame" x="0.0" y="24" width="107.66666666666667" height="17"/>
+                                                    <rect key="frame" x="0.0" y="20" width="95.5" height="14"/>
                                                     <color key="tintColor" red="0.33623573179999999" green="0.67496186489999999" blue="0.94124519819999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                     <color key="textColor" red="0.33623573179999999" green="0.67496186489999999" blue="0.94124519819999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -459,16 +457,16 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyZ-b4-SIk">
-                                            <rect key="frame" x="188" y="27" width="129.66666666666663" height="18.333333333333329"/>
+                                            <rect key="frame" x="200.5" y="28.5" width="117" height="15.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$39.99 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6Z-3G-FhY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="43.666666666666664" height="18.333333333333332"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="40.5" height="15.5"/>
                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ year $89.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDD-Tv-8DJ">
-                                                    <rect key="frame" x="43.666666666666657" y="0.0" width="86" height="18.333333333333332"/>
+                                                    <rect key="frame" x="40.5" y="0.0" width="76.5" height="15.5"/>
                                                     <color key="tintColor" red="0.33623573179999999" green="0.67496186489999999" blue="0.94124519819999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -487,7 +485,7 @@
                                         <constraint firstAttribute="trailing" secondItem="z7Q-pE-QqL" secondAttribute="trailing" constant="-10" id="zI2-Tw-Wok"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNX-mu-GvV" userLabel="Continue" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNX-mu-GvV" userLabel="Continue" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
                                     <rect key="frame" x="32" y="220" width="350" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="350" id="bqM-h3-xyF"/>
@@ -497,7 +495,7 @@
                                     <state key="normal" backgroundImage="button-continue-long"/>
                                 </button>
                                 <stackView verifyAmbiguity="ignoreSizes" opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XjJ-yK-hw1">
-                                    <rect key="frame" x="125.66666666666669" y="300" width="163" height="20"/>
+                                    <rect key="frame" x="125.5" y="300" width="163" height="20"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="subscription-shield-icon" translatesAutoresizingMaskIntoConstraints="NO" id="f1d-qp-piA">
                                             <rect key="frame" x="0.0" y="1" width="18" height="18"/>
@@ -507,7 +505,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secured with App Store" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzn-1g-tcx">
-                                            <rect key="frame" x="22.999999999999986" y="1.6666666666666288" width="140" height="17"/>
+                                            <rect key="frame" x="23" y="1.5" width="140" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="140" id="7N5-qc-d8F"/>
                                                 <constraint firstAttribute="height" constant="17" id="D1y-De-mbY"/>
@@ -522,17 +520,17 @@
                                     </constraints>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="cMc-Rt-NIP">
-                                    <rect key="frame" x="126" y="335" width="162" height="35"/>
+                                    <rect key="frame" x="131.5" y="335" width="151" height="35"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjU-LA-xiB" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="0.0" width="122" height="35"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjU-LA-xiB" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="0.0" width="111" height="35"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="Restore subscription">
                                                 <color key="titleColor" red="0.33623573179999999" green="0.67496186489999999" blue="0.94124519819999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
                                         </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7d-xJ-L7R" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7d-xJ-L7R" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="35"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -575,7 +573,7 @@
                         <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HX6-Bl-Ofp">
                             <rect key="frame" x="0.0" y="461" width="414" height="35"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-xP-Nv3" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
+                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYu-xP-Nv3" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
                                     <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -591,8 +589,8 @@
                                 <constraint firstAttribute="trailing" secondItem="fYu-xP-Nv3" secondAttribute="trailing" id="tKo-Xq-uNS"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" alpha="0.55000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4d-dK-nEi" userLabel="Close" customClass="TapAnimatedButton" customModule="AirPrint" customModuleProvider="target">
-                            <rect key="frame" x="364" y="69.666666666666671" width="40" height="40"/>
+                        <button opaque="NO" alpha="0.55000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4d-dK-nEi" userLabel="Close" customClass="BaseButton" customModule="AirPrint" customModuleProvider="target">
+                            <rect key="frame" x="364" y="69.5" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="HXU-To-IAr"/>
                                 <constraint firstAttribute="width" secondItem="p4d-dK-nEi" secondAttribute="height" multiplier="1:1" id="vIB-2F-mUV"/>

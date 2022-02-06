@@ -12,22 +12,21 @@ import Combine
 
 // MARK: - CategoriesViewController
 
-final class CategoriesViewController: UIViewController {
-    enum State {
-        case dummyState
+final class CategoriesViewController: BaseViewController, UserSessionServiceProvidable {
+    enum Button {
+        case settings, favorites, gift
     }
-        
-    private let viewModel: CategoriesViewModel
-    private var bag = Set<AnyCancellable>()
     
-    init(viewModel: CategoriesViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: String(describing: CategoriesViewController.self), bundle: nil)
-        /**
-         CONNECT FILE'S OWNER TO SUPERVIEW IN XIB FILE
-         CONNECT FILE'S OWNER TO SUPERVIEW IN XIB FILE
-         CONNECT FILE'S OWNER TO SUPERVIEW IN XIB FILE
-         */
+    @IBOutlet weak var giftButton: BaseButton!
+    @IBOutlet weak var favoritesButton: BaseButton!
+    @IBOutlet weak var settingsButton: BaseButton!
+    @IBOutlet weak var carousel: iCarousel!
+    @IBOutlet weak var pageControl: UIPageControl!
+    
+    private var categories: [CategorySection] { userSession.categories.toSortedArray }
+    
+    init(coordinator: Coordinatable) {
+        super.init(coordinator: coordinator, type: Self.self, initialState: BaseState())
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -36,22 +35,100 @@ final class CategoriesViewController: UIViewController {
         Logger.log(String(describing: self), type: .deinited)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        handleStates()
+    override func configure() {
+        carousel.type = .linear
+        carousel.delegate = self
+        carousel.centerItemWhenSelected = true
+        carousel.dataSource = self
+        carousel.isPagingEnabled = true
+        carousel.isScrollEnabled = false
+        carousel.currentItemIndex = 1
+        pageControl.numberOfPages = categories.count
+        pageControl.currentPage = 1
+        pageControl.preferredIndicatorImage = UIImage(named: "page-control-indicator")!
+    }
+    override func applyStyling() {
+        let emitter = ParticleEmitterView()
+        emitter.tag = 1
+        emitter.alpha = 1
+        emitter.isUserInteractionEnabled = false
+        view.insertSubview(emitter, at: 1)
+        emitter.constraintToSides(inside: view)
+    }
+    override func handleEvents() {
+        // buttons
+        Publishers.MergeMany(
+            giftButton.tapPublisher.map { _ in Button.gift },
+            favoritesButton.tapPublisher.map { _ in Button.favorites },
+            settingsButton.tapPublisher.map { _ in Button.settings })
+            .sink(receiveValue: { [weak self] button in
+                guard let self = self else { return }
+                switch button {
+                case .settings: (self.coordinator as? CategoriesCoordinator)?.displaySettings()
+                case .favorites: (self.coordinator as? CategoriesCoordinator)?.displayFavorites()
+                case .gift: break
+                }
+            }).store(in: &bag)
+        // lifecycle
+        lifecycle.sink(receiveValue: { [weak self] lifecycle in
+            switch lifecycle {
+            case .viewWillAppear: self?.navigationController?.setNavigationBarHidden(true, animated: false)
+            case _: break
+            }
+        }).store(in: &bag)
     }
 }
 
-// MARK: - Internal
+// MARK: - CarouselDelegate and CarouselDatasource
 
-private extension CategoriesViewController {
-    
-    /// Handle ViewModel's states
-    func handleStates() {
-        viewModel.output.sink(receiveValue: { [weak self] state in
-            
-        })
-        .store(in: &bag)
+extension CategoriesViewController: iCarouselDelegate, iCarouselDataSource {
+    func numberOfItems(in carousel: iCarousel) -> Int {
+        return categories.count
+    }
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        var recycled: CarouselItemView
+
+        if let node = view as? CarouselItemView {
+            recycled = node
+        } else {
+            let node = CarouselItemView(frame: .init(origin: .zero, size: CGSize(width: Constants.menuItemWidth, height: Constants.menuItemWidth)))
+            recycled = node
+        }
+        
+        let category = categories[index]
+        recycled.configure(with: category)
+        recycled.openButtonCallback = { [weak self] in
+            let coordinator = StorySelectCoordinator(navigationController: self?.navigationController)
+            coordinator.start()
+        }
+        return recycled
+    }
+    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+        if (option == .spacing) {
+            return value * 1.15
+        }
+        if (option == .visibleItems) {
+            return 3
+        }
+        return value
+    }
+    func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
+        if let node = carousel.currentItemView as? CarouselItemView {
+            node.layoutState = .selected
+            userSession.selectedCategory = userSession.categories.toSortedArray[carousel.currentItemIndex]
+            self.view.layer.removeAllAnimations()
+            UIView.animate(withDuration: 1, delay: 0, options: [.allowUserInteraction], animations: {
+                self.view.backgroundColor = self.userSession.selectedCategory.color
+            }, completion: nil)
+            pageControl.currentPage = carousel.currentItemIndex
+        }
+    }
+        
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        //userSession.selectedCategory = userSession.categories.toSortedArray[carousel.currentItemIndex]
+        guard index != carousel.currentItemIndex else { return }
+        if let node = carousel.currentItemView as? CarouselItemView {
+            node.layoutState = .idle
+        }
     }
 }

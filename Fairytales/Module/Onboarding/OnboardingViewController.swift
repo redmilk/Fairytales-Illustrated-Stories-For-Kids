@@ -29,9 +29,9 @@ extension OnboardingViewController {
         
         var descriptionList: [String] = ["1Lorem ipsum dolor sit amet, consectetur adipiscing elit1",
                                      "2Lorem ipsum dolor sit amet, consectetur adipiscing elit2",
-                                     "3Lorem ipsum dolor sit amet, consectetur adipiscing elit3",
+                                     "3Lorem ipsum dolor sit amet, 2Lorem ipsum dolor sit amet, consectetur adipiscing elit2 2Lorem ipsum dolor sit amet, consectetur adipiscing elit2 2Lorem ipsum dolor sit amet, consectetur adipiscing elit2consectetur adipiscing elit3",
                                      "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
-                                     "5Lorem ipsum dolor sit amet, consectetur adipiscing elit5"]
+                                     "5Lorem ipsum dolor sit amet"]
 
         lazy var currentImage: UIImage = self.imageList[currentImageIndex]
         lazy var currentHeading: String = self.headingList[currentImageIndex]
@@ -51,6 +51,8 @@ extension OnboardingViewController {
     }
 }
 
+// MARK: - OnboardingViewController
+
 final class OnboardingViewController: BaseViewController {
     
     @IBOutlet weak var pageControl: UIPageControl!
@@ -60,46 +62,45 @@ final class OnboardingViewController: BaseViewController {
     @IBOutlet weak var headingLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var state = CurrentValueSubject<OnboardingViewController.State, Never>(State())
-
-    init(coordinator: Coordinatable) {
-        super.init(coordinator: coordinator, type: Self.self)
+    var stateValue: OnboardingViewController.State { state.value as! OnboardingViewController.State }
+    
+    init(coordinator: OnboardingCoordinator) {
+        super.init(coordinator: coordinator, type: Self.self, initialState: State())
     }
     required init?(coder: NSCoder) {
-        //super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        handleState()
+  
+    override func configure() {
+        pageControl.preferredIndicatorImage = UIImage(named: "page-control-indicator")!
+        pageControl.numberOfPages = 5
+        pageControl.currentPage = 0
+    }
+    override func handleEvents() {
         continueButton.tapPublisher.map { _ in }
         .sink(receiveValue: { [weak self] in
-            guard let state = self?.state.value else { return }
+            guard let state = self?.stateValue else { return }
             state.currentImageIndex += 1
             self?.pageControl.currentPage += 1
             self?.state.value = state
         }).store(in: &bag)
         skipButton.tapPublisher.map { _ in }
         .sink(receiveValue: { [weak self] in
-            guard let state = self?.state.value else { return }
+            guard let state = self?.stateValue else { return }
             state.currentImageIndex -= 1
             self?.pageControl.currentPage -= 1
             self?.state.value = state
         }).store(in: &bag)
     }
-    override func configure() {
-        
-    }
-    override func handleEvents() {
-        
-    }
     override func handleState() {
-        state.compactMap { $0 }
-            .sink(receiveValue: { [weak self] state in
+        state.compactMap { $0 as? OnboardingViewController.State }
+        .sink(receiveValue: { [weak self] state in
                 guard let self = self else { return }
-//                guard !state.shouldEndOnboarding else {
-//                    return state.currentImageIndex = 0
-//                }
+                guard !state.shouldEndOnboarding else {
+                    OnboardingManager.shared?.onboardingFinishAction()
+                    OnboardingManager.shared = nil
+                    return
+                }
                 UIView.transition(with: self.view, duration: 0.7, options: [.transitionCrossDissolve], animations: {
                     self.image.image = state.currentImage
                 }, completion: nil)

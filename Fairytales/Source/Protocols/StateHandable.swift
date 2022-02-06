@@ -7,6 +7,6 @@
 
 import Combine
 
-//protocol StateHandable {
-//    var state: CurrentValueSubject<BaseState?, Never> { get set }
-//}
+protocol StateHandable {
+    var state: CurrentValueSubject<BaseState, Never> { get set }
+}

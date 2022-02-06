@@ -9,5 +9,7 @@ import Foundation
 import UIKit
 
 struct ColorPalette {
-    static let colorSample: UIColor = #colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 0.7594228161)
+    static let categoryDarkGreen: UIColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+    static let categoryDarkBlue: UIColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+    static let categoryDarkRed: UIColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
 }

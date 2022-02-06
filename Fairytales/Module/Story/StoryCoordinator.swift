@@ -15,23 +15,22 @@ protocol StoryCoordinatorProtocol {
    
 }
 
-final class StoryCoordinator: Coordinatable, StoryCoordinatorProtocol {
+final class StoryCoordinator: Coordinatable, StoryCoordinatorProtocol, UserSessionServiceProvidable {
     var navigationController: UINavigationController?
     
-    init() {
-
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
     }
     deinit {
         Logger.log(String(describing: self), type: .deinited)
     }
     
     func start() {
-        let viewModel = StoryViewModel(coordinator: self)
-        let controller = StoryViewController(viewModel: viewModel)
-
+        let controller = StoryViewController(coordinator: self, selectedStory: userSession.selectedStory)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func end() {
-
+        navigationController?.popViewController(animated: true)
     }
 }

@@ -10,25 +10,29 @@
 import UIKit
 import Combine
 
-
-// MARK: - StoryViewController
-
-final class StoryViewController: UIViewController {
-    enum State {
-        case dummyState
+extension StoryViewController {
+    class State: BaseState {
+      
     }
-        
-    private let viewModel: StoryViewModel
-    private var bag = Set<AnyCancellable>()
+}
+
+// MARK: - StorySelectViewController
+
+final class StoryViewController: BaseViewController, UserSessionServiceProvidable {
+    enum Buttons {
+        case heart, home, prevPage, nextPage
+    }
+            
+    @IBOutlet weak var homeButton: BaseButton!
+    @IBOutlet weak var favoritesButton: BaseButton!
+    @IBOutlet weak var previousPageButton: BaseButton!
+    @IBOutlet weak var nextPageButton: BaseButton!
     
-    init(viewModel: StoryViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: String(describing: StoryViewController.self), bundle: nil)
-        /**
-         CONNECT FILE'S OWNER TO SUPERVIEW IN XIB FILE
-         CONNECT FILE'S OWNER TO SUPERVIEW IN XIB FILE
-         CONNECT FILE'S OWNER TO SUPERVIEW IN XIB FILE
-         */
+    private var stateValue: State { state.value as! State }
+
+    init(coordinator: Coordinatable, selectedStory: StoryModel) {
+        let initialState = State()
+        super.init(coordinator: coordinator, type: Self.self, initialState: initialState)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -36,26 +40,36 @@ final class StoryViewController: UIViewController {
     deinit {
         Logger.log(String(describing: self), type: .deinited)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func configure() {
 
-        handleStates()
     }
-}
-
-// MARK: - Internal
-
-private extension StoryViewController {
-    
-    /// Handle ViewModel's states
-    func handleStates() {
-        viewModel.output.sink(receiveValue: { [weak self] state in
-            switch state {
-            case .dummyState:
-                break
+    override func handleEvents() {
+        // lifecycle
+        lifecycle.sink(receiveValue: { [weak self] lifecycle in
+            switch lifecycle {
+            case .viewWillAppear:
+                self?.navigationController?.setNavigationBarHidden(true, animated: false)
+            case .viewDidDisappear:
+                self?.navigationController?.setNavigationBarHidden(false, animated: false)
+            case _: break
             }
-        })
-        .store(in: &bag)
+        }).store(in: &bag)
+        // buttons
+        Publishers.MergeMany(
+            homeButton.tapPublisher.map { _ in Buttons.home },
+            favoritesButton.tapPublisher.map { _ in Buttons.heart },
+            previousPageButton.tapPublisher.map { _ in Buttons.prevPage },
+            nextPageButton.tapPublisher.map { _ in Buttons.nextPage })
+            .sink(receiveValue: { [weak self] button in
+                guard let self = self else { return }
+                switch button {
+                case .home: self.coordinator.end()
+                case .heart:
+                    break
+                case .prevPage:
+                    break
+                case .nextPage: break
+                }
+            }).store(in: &bag)
     }
 }

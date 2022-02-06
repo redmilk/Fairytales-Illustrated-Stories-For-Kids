@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LaunchAnimationViewController" customModule="Fairytales" customModuleProvider="target">
+            <connections>
+                <outlet property="animatableView" destination="WVK-l3-ggf" id="h2t-or-iiU"/>
+                <outlet property="imageView" destination="k6C-aW-O7m" id="MIS-OF-VWy"/>
+                <outlet property="view" destination="iN0-l3-epB" id="eVp-8g-XjG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="870" height="376"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpe-iy-DGc">
+                    <rect key="frame" x="0.0" y="0.0" width="870" height="376"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVK-l3-ggf">
+                            <rect key="frame" x="383" y="136" width="104" height="104"/>
+                            <color key="backgroundColor" red="0.036068675472060663" green="0.023301572048209138" blue="0.18790302579365081" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear-splash-2" translatesAutoresizingMaskIntoConstraints="NO" id="k6C-aW-O7m">
+                            <rect key="frame" x="383" y="136" width="104" height="104"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="k6C-aW-O7m" secondAttribute="height" multiplier="1:1" id="IDM-3o-hgr"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1215686351" green="0.098039209840000002" blue="0.39215683940000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="WVK-l3-ggf" firstAttribute="centerX" secondItem="jpe-iy-DGc" secondAttribute="centerX" id="Kjz-0E-NKn"/>
+                        <constraint firstItem="WVK-l3-ggf" firstAttribute="height" secondItem="k6C-aW-O7m" secondAttribute="height" id="hGc-gQ-Clo"/>
+                        <constraint firstItem="WVK-l3-ggf" firstAttribute="width" secondItem="k6C-aW-O7m" secondAttribute="width" id="j0F-G9-M6q"/>
+                        <constraint firstItem="WVK-l3-ggf" firstAttribute="centerY" secondItem="jpe-iy-DGc" secondAttribute="centerY" id="sRe-oL-Y7c"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.1215686351" green="0.098039209840000002" blue="0.39215683940000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="k6C-aW-O7m" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5l1-Yd-wta"/>
+                <constraint firstItem="jpe-iy-DGc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="AwC-Iu-HYX"/>
+                <constraint firstAttribute="bottom" secondItem="jpe-iy-DGc" secondAttribute="bottom" id="NJa-Nb-dLr"/>
+                <constraint firstItem="jpe-iy-DGc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OHN-rh-y49"/>
+                <constraint firstAttribute="trailing" secondItem="jpe-iy-DGc" secondAttribute="trailing" id="Qum-qn-kIR"/>
+                <constraint firstItem="k6C-aW-O7m" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="aLn-vu-Hyw"/>
+                <constraint firstItem="k6C-aW-O7m" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.12" id="nSv-EU-3A4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139" y="153"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bear-splash-2" width="81" height="97"/>
+    </resources>
+</document>

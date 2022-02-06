@@ -20,11 +20,16 @@ final class ApplicationCoordinator: Coordinatable, UserSessionServiceProvidable 
     }
     
     func start() {
-        /// we fetch from somewhere if it's user's first app launch
-        let shouldShowOnboarding: Bool = OnboardingManager.shared?.shouldShowOnboarding ?? true
-        shouldShowOnboarding ? showOnboarding() : showContent()
+        let coordinator = LaunchAnimationCoordinator(window: window, appCoordinator: self)
+        coordinator.start()
     }
     func end() { }
+    
+    func startFlow() {
+        let shouldShowOnboarding: Bool = OnboardingManager.shared?.shouldShowOnboarding ?? true
+        shouldShowOnboarding ? showOnboarding() : showContent()
+        showContent()
+    }
         
     private func showOnboarding() {
         OnboardingManager.shared?.onboardingFinishAction = { [weak self] in
@@ -40,10 +45,7 @@ final class ApplicationCoordinator: Coordinatable, UserSessionServiceProvidable 
     }
     
     private func showContent() {
-        navigationController = UINavigationController()
-        window.rootViewController = navigationController
-        window.makeKeyAndVisible()
-        let coordinator = CategoriesCoordinator(navigationController: navigationController!)
+        let coordinator = CategoriesCoordinator(window: window)
         coordinator.start()
     }
 }

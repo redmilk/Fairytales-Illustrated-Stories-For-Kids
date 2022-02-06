@@ -12,20 +12,19 @@ import UIKit
 
 /// events in/out, state management, disposable
 extension BaseViewController: SubscriptionsDisposable, EventsAcceptable,
-                                EventTransmittable, LifecycleTransmittable { }
+                                EventTransmittable, LifecycleTransmittable, StateHandable { }
 
 /// alerts presentation, loading activity, navigation
 extension BaseViewController: AlertPresentable, ActivityIndicatorPresentable, CoordinatorPreservable { }
 
 class BaseViewController: UIViewController {
     // API
+    var bag = Set<AnyCancellable>()
     var input = PassthroughSubject<EventRepresentable, Never>()
     var output: AnyPublisher<EventRepresentable, Never> { _output.eraseToAnyPublisher() }
     var lifecycle: AnyPublisher<Lifecycle, Never> { _lifecycle.eraseToAnyPublisher() }
-    var bag = Set<AnyCancellable>()
-    
+    var state: CurrentValueSubject<BaseState, Never>
     var coordinator: Coordinatable
-    
     // Overrides
     func configure() { }
     func applyStyling() { }
@@ -36,8 +35,9 @@ class BaseViewController: UIViewController {
     private var _lifecycle = PassthroughSubject<Lifecycle, Never>()
     deinit { Logger.log(String(describing: self), type: .deinited) }
     
-    init(coordinator: Coordinatable, type: BaseViewController.Type) {
+    init(coordinator: Coordinatable, type: BaseViewController.Type, initialState: BaseState) {
         self.coordinator = coordinator
+        self.state = CurrentValueSubject<BaseState, Never>(initialState)
         super.init(nibName: String(describing: type), bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -47,6 +47,10 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         _lifecycle.send(.viewDidLoad)
+        configure()
+        handleEvents()
+        handleState()
+        applyStyling()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

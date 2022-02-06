@@ -10,25 +10,44 @@
 import UIKit
 import Combine
 
+extension StorySelectViewController {
+    class State: BaseState, UserSessionServiceProvidable {
+        enum Layout {
+            case line
+            case grid
+        }
+        override init() { }
+        var selectedCategory: CategorySection!
+        var items: [StoryModel] { Array(userSession.stories).sorted() }
+        var layout: Layout = .line
+        var previousItem: CarouselItemView?
+        var carouselCurrentItemIndex: Int = 1
+    }
+}
 
 // MARK: - StorySelectViewController
 
-final class StorySelectViewController: UIViewController {
-    enum State {
-        case dummyState
+final class StorySelectViewController: BaseViewController, UserSessionServiceProvidable {
+    enum Buttons {
+        case back, heart, gift, layout
     }
-        
-    private let viewModel: StorySelectViewModel
-    private var bag = Set<AnyCancellable>()
+            
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var carousel: iCarousel!
+    @IBOutlet weak var backButton: BaseButton!
+    @IBOutlet weak var favoritesButton: BaseButton!
+    @IBOutlet weak var giftButton: BaseButton!
+    @IBOutlet weak var layoutButton: BaseButton!
+    @IBOutlet weak var pageControl: UIPageControl!
     
-    init(viewModel: StorySelectViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: String(describing: StorySelectViewController.self), bundle: nil)
-        /**
-         CONNECT FILE'S OWNER TO SUPERVIEW IN XIB FILE
-         CONNECT FILE'S OWNER TO SUPERVIEW IN XIB FILE
-         CONNECT FILE'S OWNER TO SUPERVIEW IN XIB FILE
-         */
+    private lazy var displayDataManager = StorySelectDisplayManager(collectionView: self.collectionView)
+    private var stateValue: State { state.value as! State }
+
+    init(coordinator: Coordinatable, selectedCategory: CategorySection) {
+        let initialState = State()
+        initialState.layout = .line
+        initialState.selectedCategory = selectedCategory
+        super.init(coordinator: coordinator, type: Self.self, initialState: initialState)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -36,26 +55,126 @@ final class StorySelectViewController: UIViewController {
     deinit {
         Logger.log(String(describing: self), type: .deinited)
     }
+    override func configure() {
+        carousel.type = .linear
+        carousel.delegate = self
+        carousel.centerItemWhenSelected = true
+        carousel.dataSource = self
+        carousel.isPagingEnabled = true
+        carousel.isScrollEnabled = true
+        pageControl.preferredIndicatorImage = UIImage(named: "page-control-indicator")!
+        displayDataManager.input.send(.configure(with: userSession.selectedCategory))
+    }
+    override func applyStyling() {
+        let emitter = ParticleEmitterView()
+        emitter.tag = 1
+        emitter.alpha = 1
+        emitter.isUserInteractionEnabled = false
+        view.insertSubview(emitter, at: 1)
+        emitter.constraintToSides(inside: view)
+    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        handleStates()
+    override func handleState() {
+        state.compactMap { $0 as? StorySelectViewController.State }
+            .sink(receiveValue: { [weak self] state in
+                guard let self = self else { return }
+                switch state.layout {
+                case .grid:
+                    self.displayDataManager.input.send(.populate(with: state.items))
+                case .line:
+                    self.carousel.currentItemIndex = state.carouselCurrentItemIndex
+                }
+                self.view.backgroundColor = state.selectedCategory.color
+                self.collectionView.isHidden = state.layout == .line
+                self.carousel.isHidden = state.layout == .grid
+                self.layoutButton.isSelected = state.layout == .grid
+                self.pageControl.isHidden = state.layout == .grid
+                self.pageControl.numberOfPages = state.items.count
+                self.pageControl.currentPage = state.carouselCurrentItemIndex
+            }).store(in: &bag)
+    }
+    
+    override func handleEvents() {
+        // lifecycle
+        lifecycle.sink(receiveValue: { [weak self] lifecycle in
+            switch lifecycle {
+            case .viewWillAppear:
+                self?.navigationController?.setNavigationBarHidden(true, animated: false)
+//            case .viewDidDisappear:
+//                self?.navigationController?.setNavigationBarHidden(false, animated: false)
+            case _: break
+            }
+        }).store(in: &bag)
+        // buttons
+        Publishers.MergeMany(
+            backButton.tapPublisher.map { _ in Buttons.back },
+            favoritesButton.tapPublisher.map { _ in Buttons.heart },
+            giftButton.tapPublisher.map { _ in Buttons.gift },
+            layoutButton.tapPublisher.map { _ in Buttons.layout })
+            .sink(receiveValue: { [weak self] button in
+                guard let self = self else { return }
+                switch button {
+                case .back: self.coordinator.end()
+                case .heart:
+                    break
+                case .gift:
+                    break
+                case .layout:
+                    let currentState = self.stateValue
+                    currentState.layout = currentState.layout == .line ? .grid : .line
+                    self.state.send(currentState)
+                }
+            }).store(in: &bag)
     }
 }
 
-// MARK: - Internal
+// MARK: - CarouselDelegate and CarouselDatasource
 
-private extension StorySelectViewController {
-    
-    /// Handle ViewModel's states
-    func handleStates() {
-        viewModel.output.sink(receiveValue: { [weak self] state in
-            switch state {
-            case .dummyState:
-                break
-            }
-        })
-        .store(in: &bag)
+extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
+    func numberOfItems(in carousel: iCarousel) -> Int {
+        return stateValue.items.count
+    }
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        var recycled: CarouselItemView
+        if let node = view as? CarouselItemView {
+            recycled = node
+        } else {
+            let node = CarouselItemView(frame: .init(origin: .zero, size: CGSize(width: Constants.menuItemWidth, height: Constants.menuItemWidth)))
+            recycled = node
+        }
+        let item = stateValue.items[index]
+        recycled.configure(with: item)
+        recycled.openButtonCallback = { [weak self] in
+            (self?.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
+        }
+        recycled.heartButtonCallback = {
+            item.isFavorite.toggle()
+            recycled.isFavorite = item.isFavorite
+        }
+        return recycled
+    }
+    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+        if (option == .spacing) {
+            return value * 1.15
+        }
+        if (option == .visibleItems) {
+            return 5
+        }
+        return value
+    }
+    func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
+        pageControl.currentPage = carousel.currentItemIndex
+        if let node = carousel.currentItemView as? CarouselItemView {
+            node.layoutState = .selected
+            stateValue.previousItem?.layoutState = .idle
+            stateValue.previousItem = node
+        }
+    }
+        
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        guard index != carousel.currentItemIndex else { return }
+        if let node = carousel.currentItemView as? CarouselItemView {
+            node.layoutState = .idle
+        }
     }
 }

@@ -15,10 +15,11 @@ protocol StorySelectCoordinatorProtocol {
    
 }
 
-final class StorySelectCoordinator: Coordinatable, StorySelectCoordinatorProtocol {
+final class StorySelectCoordinator: Coordinatable, StorySelectCoordinatorProtocol, UserSessionServiceProvidable {
     var navigationController: UINavigationController?
     
-    init() {
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
 
     }
     deinit {
@@ -26,12 +27,16 @@ final class StorySelectCoordinator: Coordinatable, StorySelectCoordinatorProtoco
     }
     
     func start() {
-        let viewModel = StorySelectViewModel(coordinator: self)
-        let controller = StorySelectViewController(viewModel: viewModel)
-
+        let controller = StorySelectViewController(coordinator: self, selectedCategory: userSession.selectedCategory)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func displaySelectedStory() {
+        let coordinator = StoryCoordinator(navigationController: navigationController)
+        coordinator.start()
     }
     
     func end() {
-
+        navigationController?.popViewController(animated: true)
     }
 }
