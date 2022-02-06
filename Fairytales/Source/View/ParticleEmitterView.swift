@@ -24,7 +24,7 @@ class CartoonStarsEmitter: UIView {
         cell.emissionLongitude = .pi
         cell.emissionRange = .pi
         cell.scale = 0.1
-        cell.scaleRange = 0.6
+        cell.scaleRange = 0.4
         cell.contents = particleImage.cgImage
         return cell
     }

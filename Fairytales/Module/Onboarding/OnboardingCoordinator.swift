@@ -32,7 +32,7 @@ final class OnboardingCoordinator: Coordinatable, OnboardingCoordinatorProtocol 
         navigationController = UINavigationController(rootViewController: controller)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
-        UIView.transition(with: window, duration: 1.5, options: [.transitionCrossDissolve], animations: { }, completion: nil)
+        UIView.transition(with: window, duration: 1, options: [.transitionCrossDissolve], animations: { }, completion: nil)
     }
     
     func end() {
