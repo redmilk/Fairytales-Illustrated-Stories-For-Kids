@@ -1021,8 +1021,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = GU282P75T9;
+				CURRENT_PROJECT_VERSION = 7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Fairytale;
@@ -1060,8 +1060,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = GU282P75T9;
+				CURRENT_PROJECT_VERSION = 7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Fairytale;
