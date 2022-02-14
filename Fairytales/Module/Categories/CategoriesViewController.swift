@@ -23,7 +23,7 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
     @IBOutlet weak var carousel: iCarousel!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    private var categories: [CategorySection] { userSession.categories.toSortedArray }
+    private var categories: [CategorySection] = []
     
     init(coordinator: Coordinatable) {
         super.init(coordinator: coordinator, type: Self.self, initialState: BaseState())
@@ -36,6 +36,8 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
     }
     
     override func configure() {
+        loadData()
+        
         carousel.type = .linear
         carousel.delegate = self
         carousel.centerItemWhenSelected = true
@@ -76,6 +78,59 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
             case _: break
             }
         }).store(in: &bag)
+    }
+    
+    private func loadData() {
+        startActivityAnimation()
+        FirebaseClient.shared.signInAnonim()
+        FirebaseClient.shared.userSubject
+            .compactMap { $0 }
+            .sink(receiveValue: { user in
+//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-1")
+//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-1")
+//                FirebaseClient.shared.addFairytaleToCategory(.silent, name: "silent-story-sample-1")
+//
+//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-2")
+//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-2")
+//                FirebaseClient.shared.addFairytaleToCategory(.silent, name: "silent-story-sample-2")
+//
+//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-3")
+//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-4")
+//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-5")
+//
+//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-6")
+//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-3")
+//                FirebaseClient.shared.addFairytaleToCategory(.silent, name: "silent-story-sample-3")
+//
+//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-4")
+//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-5")
+//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-6")
+//
+//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-7")
+//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-8")
+//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-9")
+
+                FirebaseClient.shared.requestAllFairytalesAndMakeCategories()
+            }).store(in: &bag)
+        
+        FirebaseClient.shared.categoriesInternalType
+            .compactMap { $0 }
+            .sink(receiveCompletion: { [weak self] completion in
+                self?.stopActivityAnimation()
+                switch completion {
+                case .finished: break
+                case .failure(let error): Logger.logError(error)
+                }
+            }, receiveValue: { [weak self] cats in
+                self?.userSession.categories.removeAll()
+                self?.userSession.categories = cats
+                self?.categories = cats.toSortedArray
+                self?.stopActivityAnimation()
+                self?.carousel.reloadData()
+                Logger.log(cats.toArray[safe: 0]?.items.count.description, type: .token)
+                Logger.log(cats.toArray[safe: 1]?.items.count.description, type: .token)
+                Logger.log(cats.toArray[safe: 2]?.items.count.description, type: .token)
+            }).store(in: &bag)
     }
 }
 

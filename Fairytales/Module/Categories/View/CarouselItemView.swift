@@ -33,11 +33,9 @@ final class CarouselItemView: UIView {
             case .idle:
                 primaryButton.isHidden = true
                 containerBottomConstraint.constant = 40
-                titleLabel.font = UIFont.getCustomFont(with: "Lato", of: 16)
             case .selected:
                 primaryButton.isHidden = false
                 containerBottomConstraint.constant = 15
-                titleLabel.font = UIFont.getCustomFont(with: "Lato", of: 20)
                 primaryButton.transform = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
                 contentView.layer.removeAllAnimations()
                 UIView.animate(withDuration: 0.35, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: {
@@ -57,7 +55,7 @@ final class CarouselItemView: UIView {
     func configure(with model: StoryModel) {
         heartButton.isSelected = model.isFavorite
         heartButton.isHidden = model.isHeartHidden
-        thumbnail.image = UIImage(named: model.thumbnail)!
+        thumbnail.image = model.imageThumbnail ?? UIImage(named: model.assetThumbnail)
         titleLabel.text = model.title
     }
     

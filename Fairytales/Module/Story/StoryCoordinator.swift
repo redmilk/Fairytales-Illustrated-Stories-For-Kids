@@ -26,7 +26,7 @@ final class StoryCoordinator: Coordinatable, StoryCoordinatorProtocol, UserSessi
     }
     
     func start() {
-        let controller = StoryViewController(coordinator: self, selectedStory: userSession.selectedStory)
+        let controller = StoryViewController(coordinator: self)
         navigationController?.pushViewController(controller, animated: true)
     }
     

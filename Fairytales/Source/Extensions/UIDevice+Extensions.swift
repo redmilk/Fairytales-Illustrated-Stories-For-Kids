@@ -51,6 +51,8 @@ public extension UIDevice {
         }
     }
     
+    var isIPad: Bool { UIDevice.current.modelName.contains("iPad") }
+    
     var modelName: String {
         var systemInfo = utsname()
         uname(&systemInfo)

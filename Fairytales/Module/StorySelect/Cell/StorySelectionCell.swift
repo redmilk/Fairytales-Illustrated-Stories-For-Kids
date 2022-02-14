@@ -37,7 +37,7 @@ final class StorySelectionCell: UICollectionViewCell {
 
     func configure(with model: StoryModel) {
         self.model = model
-        thumbnail.image = UIImage(named: model.thumbnail)!
+        thumbnail.image = model.imageThumbnail ?? UIImage(named: model.assetThumbnail)
         titleLabel.text = model.title
         heartButton.isSelected = model.isFavorite
     }

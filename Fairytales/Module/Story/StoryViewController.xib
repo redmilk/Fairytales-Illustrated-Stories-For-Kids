@@ -18,6 +18,8 @@
                 <outlet property="favoritesButton" destination="GzO-46-wmw" id="l4U-Sb-Gn7"/>
                 <outlet property="homeButton" destination="QNi-bs-XBO" id="Jde-gY-l0O"/>
                 <outlet property="nextPageButton" destination="vze-W9-dec" id="sPK-VC-fDk"/>
+                <outlet property="pageImage" destination="MXF-kW-nkS" id="ZzX-hF-zpm"/>
+                <outlet property="pageTextLabel" destination="4Cl-eR-Z6N" id="7Gv-L3-tEs"/>
                 <outlet property="previousPageButton" destination="5LD-1P-BLe" id="caN-wi-Jig"/>
                 <outlet property="view" destination="iN0-l3-epB" id="jaP-ce-kq6"/>
             </connections>

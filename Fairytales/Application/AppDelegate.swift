@@ -11,10 +11,15 @@ import ApphudSDK
 import FBSDKCoreKit
 import Firebase
 
+
+import Combine
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var analytics: AnalyticsService!
+    
+    var bag = Set<AnyCancellable>()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         ApplicationGlobalConfig().configure()
@@ -24,7 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Settings.shared.isAdvertiserIDCollectionEnabled = true
         //FBSDKCoreKit.AppEvents.shared.activateApp()
         // Firebase
-        analytics = AnalyticsService(application, launchOptions)
+        //analytics = AnalyticsService(application, launchOptions)
+        
+        FirebaseApp.configure()
+        
+        
         return true
     }
 

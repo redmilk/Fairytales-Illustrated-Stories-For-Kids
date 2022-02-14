@@ -28,7 +28,7 @@ final class ApplicationCoordinator: Coordinatable, UserSessionServiceProvidable 
     func startFlow() {
         let shouldShowOnboarding: Bool = OnboardingManager.shared?.shouldShowOnboarding ?? true
         shouldShowOnboarding ? showOnboarding() : showContent()
-        showContent()
+        //showContent()
     }
         
     private func showOnboarding() {

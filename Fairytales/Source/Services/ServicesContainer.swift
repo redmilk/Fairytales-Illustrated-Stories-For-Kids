@@ -11,6 +11,7 @@ fileprivate let services = ServicesContainer()
 
 final class ServicesContainer {
     lazy var userSession: UserSession = UserSession()
+    var imageDownloader: ImageLoader = ImageLoader(cache: ImageCacher())
     var purchases: PurchesService = PurchesService()
 }
 
@@ -36,6 +37,12 @@ extension PurchesServiceProvidable {
 protocol UserSessionServiceProvidable { }
 extension UserSessionServiceProvidable {
     var userSession: UserSession { services.userSession }
+}
+
+/// Image downloader
+protocol ImageDownloaderProvidable { }
+extension ImageDownloaderProvidable {
+    var imageDownloader: ImageLoader { services.imageDownloader }
 }
 
 // MARK: - if you want to include all services to object

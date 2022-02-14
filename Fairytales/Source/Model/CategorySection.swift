@@ -11,19 +11,22 @@ final class CategorySection: Hashable, Comparable {
     let title: String
     let color: UIColor
     let thumbnail: UIImage
+    let category: CategoryPath
     let items: [StoryModel]
     
-    init(title: String, color: UIColor, thumbnail: UIImage, items: [StoryModel] = []) {
+    init(title: String, color: UIColor, thumbnail: UIImage, items: [StoryModel], category: CategoryPath) {
         self.items = items
         self.title = title
         self.color = color
         self.thumbnail = thumbnail
+        self.category = category
     }
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(items)
         hasher.combine(title)
         hasher.combine(color)
+        hasher.combine(category)
     }
     
     static func < (lhs: CategorySection, rhs: CategorySection) -> Bool {

@@ -23,9 +23,13 @@ extension ActivityIndicatorPresentable {
         dimmView.backgroundColor = .black.withAlphaComponent(0.7)
         view.isUserInteractionEnabled = false
         let indicator = CirclesActivityIndicator().makeActivityIndicator()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
         dimmView.addSubview(indicator)
-        indicator.center = view.center
-        indicator.center.y -= 40.0
+        //indicator.center = view.center
+        indicator.centerXAnchor.constraint(equalTo: dimmView.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: dimmView.centerYAnchor).isActive = true
+        indicator.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        indicator.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     func stopActivityAnimation() {
         DispatchQueue.main.async {

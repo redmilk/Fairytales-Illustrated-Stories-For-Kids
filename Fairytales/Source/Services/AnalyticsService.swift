@@ -8,7 +8,6 @@
 import FBSDKCoreKit
 import UIKit
 import ApphudSDK
-import Firebase
 
 
 final class AnalyticsService: NSObject {
@@ -20,12 +19,11 @@ final class AnalyticsService: NSObject {
     
     private func initFrameworks(_ application: UIApplication, _ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        FirebaseApp.configure()
     }
     
     private func trackCommonEvent(_ event: String, params: [String : Any]? = nil) {
         //params == nil ? AppEvents.logEvent(AppEvents.Name(event)) : AppEvents.logEvent(AppEvents.Name(event), parameters: params!)
-        Analytics.logEvent(event, parameters: params)
+        //Analytics.logEvent(event, parameters: params)
     }
 }
 
@@ -85,7 +83,7 @@ extension AnalyticsService: AnalyticsEventsProtocol {
     
     func eventSetUserId() {
         let id = Apphud.userID()
-        Analytics.setUserID(id)
+        //Analytics.setUserID(id)
     }
     
     func eventVisitApp() {

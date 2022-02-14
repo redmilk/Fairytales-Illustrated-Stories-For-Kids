@@ -18,7 +18,6 @@ extension StorySelectViewController {
         }
         override init() { }
         var selectedCategory: CategorySection!
-        var items: [StoryModel] { Array(userSession.stories).sorted() }
         var layout: Layout = .line
         var previousItem: CarouselItemView?
         var carouselCurrentItemIndex: Int = 1
@@ -41,6 +40,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
     @IBOutlet weak var pageControl: UIPageControl!
     
     private lazy var displayDataManager = StorySelectDisplayManager(collectionView: self.collectionView)
+    
     private var stateValue: State { state.value as! State }
 
     init(coordinator: Coordinatable, selectedCategory: CategorySection) {
@@ -80,7 +80,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 guard let self = self else { return }
                 switch state.layout {
                 case .grid:
-                    self.displayDataManager.input.send(.populate(with: state.items))
+                    self.displayDataManager.input.send(.populate(with: state.selectedCategory.items))
                 case .line:
                     self.carousel.currentItemIndex = state.carouselCurrentItemIndex
                 }
@@ -89,7 +89,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 self.carousel.isHidden = state.layout == .grid
                 self.layoutButton.isSelected = state.layout == .grid
                 self.pageControl.isHidden = state.layout == .grid
-                self.pageControl.numberOfPages = state.items.count
+                self.pageControl.numberOfPages = state.selectedCategory.items.count
                 self.pageControl.currentPage = state.carouselCurrentItemIndex
             }).store(in: &bag)
     }
@@ -132,7 +132,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
 
 extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
     func numberOfItems(in carousel: iCarousel) -> Int {
-        return stateValue.items.count
+        return stateValue.selectedCategory.items.count
     }
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         var recycled: CarouselItemView
@@ -142,7 +142,7 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
             let node = CarouselItemView(frame: .init(origin: .zero, size: CGSize(width: Constants.menuItemWidth, height: Constants.menuItemWidth)))
             recycled = node
         }
-        let item = stateValue.items[index]
+        let item = stateValue.selectedCategory.items[index]
         recycled.configure(with: item)
         recycled.openButtonCallback = { [weak self] in
             (self?.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
@@ -168,6 +168,7 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
             node.layoutState = .selected
             stateValue.previousItem?.layoutState = .idle
             stateValue.previousItem = node
+            userSession.selectedStory = stateValue.selectedCategory.items[safe: carousel.currentItemIndex]
         }
     }
         
