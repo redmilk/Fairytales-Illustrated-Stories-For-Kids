@@ -20,7 +20,7 @@ extension StorySelectViewController {
         var selectedCategory: CategorySection!
         var layout: Layout = .line
         var previousItem: CarouselItemView?
-        var carouselCurrentItemIndex: Int = 1
+        var carouselCurrentItemIndex: Int = 0
     }
 }
 
@@ -64,6 +64,22 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         carousel.isScrollEnabled = true
         pageControl.preferredIndicatorImage = UIImage(named: "page-control-indicator")!
         displayDataManager.input.send(.configure(with: userSession.selectedCategory))
+        if let node = self.carousel.currentItemView as? CarouselItemView,
+            let model = self.stateValue.selectedCategory.items[safe: self.carousel.currentItemIndex] {
+            node.layoutState = .selected
+            model.state = .selected
+            carousel.reloadItem(at: self.carousel.currentItemIndex, animated: true)
+        }
+        
+        if let state  = userSession.selectedCategory.items.first?.state {
+            if state == .idle {
+                debugPrint(state)
+                userSession.selectedCategory.items.first?.state = .selected
+                userSession.selectedCategory.items.first
+                carousel.reloadData()
+            }
+        }
+
     }
     override func applyStyling() {
         let emitter = ParticleEmitterView()

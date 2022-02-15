@@ -32,7 +32,7 @@ final class StoryModel: Hashable, Comparable {
     init(dto: FairytaleDTO) {
         let isIpad = UIDevice.current.isIPad
         let thumbnailPath = isIpad ? dto.image_ipad : dto.image_iphone
-        title = dto.titles["ru"] ?? dto.default_title
+        title = dto.titles["ru"] ?? dto.default_title ?? "---"
         FirebaseClient.shared.storage.reference(withPath: dto.storage_path + thumbnailPath).downloadURL() { url, error in
             
         }

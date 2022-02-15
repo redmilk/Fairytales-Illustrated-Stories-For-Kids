@@ -11,6 +11,9 @@
 		7907A47D27B98A260024FBEC /* PageImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7907A47C27B98A260024FBEC /* PageImages.swift */; };
 		7907A47F27B98A370024FBEC /* PageText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7907A47E27B98A370024FBEC /* PageText.swift */; };
 		7907A48127B98A4A0024FBEC /* FairytaleDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7907A48027B98A4A0024FBEC /* FairytaleDTO.swift */; };
+		792CDFAA27BAF16B00EF21D6 /* video-iphone.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 792CDFA827BAF16B00EF21D6 /* video-iphone.mp4 */; };
+		792CDFAB27BAF16B00EF21D6 /* video-ipad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 792CDFA927BAF16B00EF21D6 /* video-ipad.mp4 */; };
+		792CDFAD27BAF1C800EF21D6 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDFAC27BAF1C800EF21D6 /* PlayerView.swift */; };
 		793A920027AF5946000F3B0C /* StoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A91FF27AF5946000F3B0C /* StoryModel.swift */; };
 		793A920227AF804A000F3B0C /* Set+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A920127AF804A000F3B0C /* Set+Extensions.swift */; };
 		793A920427AFC22C000F3B0C /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A920327AFC22C000F3B0C /* UIFont+Extensions.swift */; };
@@ -134,6 +137,9 @@
 		7907A47C27B98A260024FBEC /* PageImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageImages.swift; sourceTree = "<group>"; };
 		7907A47E27B98A370024FBEC /* PageText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageText.swift; sourceTree = "<group>"; };
 		7907A48027B98A4A0024FBEC /* FairytaleDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FairytaleDTO.swift; sourceTree = "<group>"; };
+		792CDFA827BAF16B00EF21D6 /* video-iphone.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "video-iphone.mp4"; sourceTree = "<group>"; };
+		792CDFA927BAF16B00EF21D6 /* video-ipad.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "video-ipad.mp4"; sourceTree = "<group>"; };
+		792CDFAC27BAF1C800EF21D6 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		793A91FF27AF5946000F3B0C /* StoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryModel.swift; sourceTree = "<group>"; };
 		793A920127AF804A000F3B0C /* Set+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Set+Extensions.swift"; sourceTree = "<group>"; };
 		793A920327AFC22C000F3B0C /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
@@ -274,6 +280,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		792CDFA727BAF14D00EF21D6 /* LaunchVideo */ = {
+			isa = PBXGroup;
+			children = (
+				792CDFA827BAF16B00EF21D6 /* video-iphone.mp4 */,
+				792CDFA927BAF16B00EF21D6 /* video-ipad.mp4 */,
+			);
+			path = LaunchVideo;
+			sourceTree = "<group>";
+		};
 		793A91FE27AF58B9000F3B0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +360,7 @@
 		7985DC38279EC6F8005459E0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				792CDFA727BAF14D00EF21D6 /* LaunchVideo */,
 				79958D2E27A7A73300A32E5A /* Fonts */,
 				7985DC2C279EC6F8005459E0 /* Assets.xcassets */,
 			);
@@ -574,6 +590,7 @@
 				79958D1727A764F300A32E5A /* BaseViewController.swift */,
 				79958D2427A76BE400A32E5A /* BaseState.swift */,
 				79B2A6C827B9F41D00188BC1 /* Scheduler.swift */,
+				792CDFAC27BAF1C800EF21D6 /* PlayerView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -768,7 +785,9 @@
 				79958D5627A7AAC000A32E5A /* Lato-Medium.ttf in Resources */,
 				7985DC7B279EC6F8005459E0 /* CustomAlert.xib in Resources */,
 				7985DC70279EC6F8005459E0 /* SubscriptionViewController.xib in Resources */,
+				792CDFAA27BAF16B00EF21D6 /* video-iphone.mp4 in Resources */,
 				79958D4927A7AAC000A32E5A /* Lato-Bold.ttf in Resources */,
+				792CDFAB27BAF16B00EF21D6 /* video-ipad.mp4 in Resources */,
 				7985DCFC27A151A9005459E0 /* WebscreenViewController.xib in Resources */,
 				79958D4E27A7AAC000A32E5A /* Lato-Regular.ttf in Resources */,
 				7985DC2D279EC6F8005459E0 /* Assets.xcassets in Resources */,
@@ -805,6 +824,7 @@
 				79958D5D27A7C35900A32E5A /* UILabel+Extensions.swift in Sources */,
 				7985DC3F279EC6F8005459E0 /* CategoriesCoordinator.swift in Sources */,
 				7985DC54279EC6F8005459E0 /* SettingsViewController.swift in Sources */,
+				792CDFAD27BAF1C800EF21D6 /* PlayerView.swift in Sources */,
 				7985DC8C279EC6F8005459E0 /* Constants.swift in Sources */,
 				79B2A6B827B99BA700188BC1 /* CategoryDTO.swift in Sources */,
 				7985DC5B279EC6F8005459E0 /* OnboardingCoordinator.swift in Sources */,
@@ -1023,7 +1043,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
@@ -1062,7 +1082,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;

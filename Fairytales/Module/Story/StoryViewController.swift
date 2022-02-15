@@ -112,13 +112,13 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
         
         var loadPagesCancellable: AnyCancellable?
         startActivityAnimation()
-        loadPagesCancellable = educationalCategory.flatMap({ pageModel -> AnyPublisher<(UIImage?, String), Never> in
-            Future<(UIImage?, String), Never> ({ [weak self] promise in
+        loadPagesCancellable = educationalCategory.flatMap({ pageModel -> AnyPublisher<(UIImage, String), Never> in
+            Future<(UIImage, String), Never> ({ [weak self] promise in
                 let path = pageModel.images.getImagePath(boy: isGirl, ipad: isIpad)
                 let pictureLastPat: String = pageModel.images.girl_ipad
                 FirebaseClient.shared.storage.reference(withPath: path).downloadURL(completion: { url, error in
                     if let error = error { Logger.logError(error) }
-                    guard let url = url else { return promise(.success((nil, pictureLastPat))) }
+                    guard let url = url else { return promise(.success((Constants.storyThumbnailPlaceholder, pictureLastPat))) }
                     var cancellable: AnyCancellable?
                     cancellable = self?.imageDownloader.loadImage(withURL: url)
                         .subscribe(on: Scheduler.backgroundWorkScheduler)
@@ -127,36 +127,37 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
                             case .finished: break
                             case .failure(let error):
                                 Logger.logError(error)
-                                promise(.success((nil, pictureLastPat)))
+                                promise(.success((Constants.storyThumbnailPlaceholder, pictureLastPat)))
                             }
                             cancellable?.cancel()
                             cancellable = nil
                         }, receiveValue: { image in
-                            //let fairytale = StoryModel(dto: fairytaleDTO)
-                            guard let image = image else { return promise(.success((nil, pictureLastPat))) }
                             promise(.success((image, pictureLastPat)))
                         })
                 })
             })
-            .receive(on: Scheduler.main, options: nil)
             .eraseToAnyPublisher()
-        }).collect()
-          .sink(receiveCompletion: { [weak self] completion in
-            switch completion {
-            case .finished:
-                let pages = self!.selectedStory.pagePictures
-                self?.setupNextPage()
-            case .failure(let error): Logger.logError(error)
-            }
-            loadPagesCancellable?.cancel()
-            loadPagesCancellable = nil
-            self?.stopActivityAnimation()
-        }, receiveValue: { [weak self] pagesImageList in
-            self?.userSession.selectedStory.pagePictures = pagesImageList.sorted(by: { tupleL, tupleR in
-                tupleL.1 < tupleR.1
-            }).compactMap { $0.0 }
-            self?.stopActivityAnimation()
         })
+            .print("BEFOR COLLECT")
+            .collect()
+            .print("AFTER COLLET")
+            .receive(on: Scheduler.main, options: nil)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished:
+                    let pages = self!.selectedStory.pagePictures
+                    self?.setupNextPage()
+                case .failure(let error): Logger.logError(error)
+                }
+                loadPagesCancellable?.cancel()
+                loadPagesCancellable = nil
+                self?.stopActivityAnimation()
+            }, receiveValue: { [weak self] pagesImageList in
+                self?.userSession.selectedStory.pagePictures = pagesImageList.sorted(by: { tupleL, tupleR in
+                    tupleL.1 < tupleR.1
+                }).compactMap { $0.0 }
+                self?.stopActivityAnimation()
+            })
     }
     
 }

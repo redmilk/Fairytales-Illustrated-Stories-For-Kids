@@ -86,18 +86,15 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
         FirebaseClient.shared.userSubject
             .compactMap { $0 }
             .sink(receiveValue: { user in
-//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-1")
-//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-1")
+//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "lovlyu-bag-s-nim-pokachto-nuzhni-minimum-dve-skazki-v-kategorii")
 //                FirebaseClient.shared.addFairytaleToCategory(.silent, name: "silent-story-sample-1")
 //
 //                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-2")
-//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-2")
 //                FirebaseClient.shared.addFairytaleToCategory(.silent, name: "silent-story-sample-2")
 //
 //                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-3")
-//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-4")
-//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-5")
-//
+//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "silent-story-sample-5")
+
 //                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-6")
 //                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-3")
 //                FirebaseClient.shared.addFairytaleToCategory(.silent, name: "silent-story-sample-3")

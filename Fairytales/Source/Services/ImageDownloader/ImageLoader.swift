@@ -3,8 +3,8 @@ import Combine
 import UIKit.UIImage
 
 protocol ImageLoaderType {
-    func loadImage(withURL url: URL) -> AnyPublisher<UIImage?, Never>
-    func loadImage(withURLString urlString: String?) -> AnyPublisher<UIImage?, Never>
+    func loadImage(withURL url: URL) -> AnyPublisher<UIImage, Never>
+    func loadImage(withURLString urlString: String?) -> AnyPublisher<UIImage, Never>
 }
 
 final class ImageLoader: ImageLoaderType {
@@ -17,15 +17,15 @@ final class ImageLoader: ImageLoaderType {
     
     // MARK: - API
     
-    func loadImage(withURL url: URL) -> AnyPublisher<UIImage?, Never> {
+    func loadImage(withURL url: URL) -> AnyPublisher<UIImage, Never> {
         if let image = cache[url] {
             return .just(output: image)
         }
         return URLSession.shared.dataTaskPublisher(for: url)
-            .map { data, response in UIImage(data: data) }
-            .catch({ error -> AnyPublisher<UIImage?, Never> in
+            .compactMap { data, response in UIImage(data: data) }
+            .catch({ error -> AnyPublisher<UIImage, Never> in
                 Logger.logError(error)
-                return Just(nil).eraseToAnyPublisher()
+                return Just(Constants.storyThumbnailPlaceholder).eraseToAnyPublisher()
             })
             .handleEvents(receiveOutput: { [weak self] image in
                 self?.cache[url] = image
@@ -33,10 +33,10 @@ final class ImageLoader: ImageLoaderType {
             .eraseToAnyPublisher()
     }
     
-    func loadImage(withURLString urlString: String?) -> AnyPublisher<UIImage?, Never> {
+    func loadImage(withURLString urlString: String?) -> AnyPublisher<UIImage, Never> {
         guard let urlString = urlString,
               let url = URL(string: urlString) else {
-                  return .just(output: nil)
+                  return .just(output: Constants.storyThumbnailPlaceholder)
         }
         return loadImage(withURL: url)
     }
