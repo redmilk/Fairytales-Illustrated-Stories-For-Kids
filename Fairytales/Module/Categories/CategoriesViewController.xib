@@ -16,6 +16,7 @@
             <connections>
                 <outlet property="carousel" destination="BCu-tn-ESa" id="cJf-5L-mUK"/>
                 <outlet property="favoritesButton" destination="Q3V-Nx-hQh" id="aK1-Qd-g73"/>
+                <outlet property="favoritesCounterLabel" destination="Rjl-k3-JSa" id="ofc-Hk-tMe"/>
                 <outlet property="giftButton" destination="bg0-KF-jGK" id="oXW-r8-T1A"/>
                 <outlet property="pageControl" destination="CM9-RL-aZa" id="170-fj-Bls"/>
                 <outlet property="settingsButton" destination="NE7-cv-Fxg" id="Sbp-z2-LGn"/>

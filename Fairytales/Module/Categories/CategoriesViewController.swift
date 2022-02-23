@@ -22,6 +22,7 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
     @IBOutlet weak var settingsButton: BaseButton!
     @IBOutlet weak var carousel: iCarousel!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var favoritesCounterLabel: UILabel!
     
     private var categories: [CategorySection] = []
     
@@ -60,9 +61,9 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
     override func handleEvents() {
         // buttons
         Publishers.MergeMany(
-            giftButton.tapPublisher.map { _ in Button.gift },
-            favoritesButton.tapPublisher.map { _ in Button.favorites },
-            settingsButton.tapPublisher.map { _ in Button.settings })
+            giftButton.publisher().map { _ in Button.gift },
+            favoritesButton.publisher().map { _ in Button.favorites },
+            settingsButton.publisher().map { _ in Button.settings })
             .sink(receiveValue: { [weak self] button in
                 guard let self = self else { return }
                 switch button {
@@ -73,8 +74,12 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
             }).store(in: &bag)
         // lifecycle
         lifecycle.sink(receiveValue: { [weak self] lifecycle in
+            guard let self = self else { return }
             switch lifecycle {
-            case .viewWillAppear: self?.navigationController?.setNavigationBarHidden(true, animated: false)
+            case .viewWillAppear:
+                self.navigationController?.setNavigationBarHidden(true, animated: false)
+                self.favoritesCounterLabel.text = self.userSession.favoritesCounter.description
+                self.favoritesCounterLabel.isHidden = (self.favoritesCounterLabel.text ?? "0") == "0"
             case _: break
             }
         }).store(in: &bag)
@@ -86,27 +91,6 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
         FirebaseClient.shared.userSubject
             .compactMap { $0 }
             .sink(receiveValue: { user in
-//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "lovlyu-bag-s-nim-pokachto-nuzhni-minimum-dve-skazki-v-kategorii")
-//                FirebaseClient.shared.addFairytaleToCategory(.silent, name: "silent-story-sample-1")
-//
-//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-2")
-//                FirebaseClient.shared.addFairytaleToCategory(.silent, name: "silent-story-sample-2")
-//
-//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-3")
-//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "silent-story-sample-5")
-
-//                FirebaseClient.shared.addFairytaleToCategory(.healing, name: "healing-story-sample-6")
-//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-3")
-//                FirebaseClient.shared.addFairytaleToCategory(.silent, name: "silent-story-sample-3")
-//
-//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-4")
-//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-5")
-//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-6")
-//
-//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-7")
-//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-8")
-//                FirebaseClient.shared.addFairytaleToCategory(.educational, name: "educational-story-sample-9")
-
                 FirebaseClient.shared.requestAllFairytalesAndMakeCategories()
             }).store(in: &bag)
         

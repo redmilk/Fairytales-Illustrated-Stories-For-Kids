@@ -55,9 +55,9 @@ final class FirebaseClient: ImageDownloaderProvidable {
     }
     
     func requestAllFairytalesAndMakeCategories() {
+        requestFairytales(by: .educational)
         requestFairytales(by: .healing)
         requestFairytales(by: .silent)
-        requestFairytales(by: .educational)
         
         var educationalTotal: Int = 0
         var healingTotal: Int = 0
@@ -79,20 +79,25 @@ final class FirebaseClient: ImageDownloaderProvidable {
                     .compactMap { $0 }
                     .handleEvents(receiveOutput: { items in
                         educationalTotal = items.count
+                        print(educationalTotal)
                     })
                     .flatMap ({ fairytales -> AnyPublisher<FairytaleDTO, Never> in
                         Publishers.Sequence(sequence: fairytales).eraseToAnyPublisher()
                     })
+                    //.filter { !$0.storage_path.contains("great_happiness") }
                     .flatMap({ fairytaleDTO -> AnyPublisher<StoryModel, Never> in
                         Future<StoryModel, Never> ({ [weak self] promise in
                             let path = fairytaleDTO.storage_path + (UIDevice.current.isIPad ? fairytaleDTO.image_ipad : fairytaleDTO.image_iphone)
                             FirebaseClient.shared.storage.reference(withPath: path).downloadURL(completion: { url, error in
+                                if let u = url {
+                                    print(u)
+                                }
                                 if let error = error { Logger.logError(error) }
                                 let fairytale = StoryModel(dto: fairytaleDTO)
                                 fairytale.imageThumbnail = Constants.storyThumbnailPlaceholder
                                 guard let url = url else { return promise(.success(fairytale)) }
                                 var cancellable: AnyCancellable?
-                                cancellable = self?.imageDownloader.loadImage(withURL: url)
+                                cancellable = self?.imageDownloader.loadImage(withURL: url, cacheKey: path)
                                 //.subscribe(on: Scheduler.backgroundWorkScheduler)
                                     .sink(receiveCompletion: { completion in
                                         switch completion {
@@ -140,7 +145,7 @@ final class FirebaseClient: ImageDownloaderProvidable {
                                 fairytale.imageThumbnail = Constants.storyThumbnailPlaceholder
                                 guard let url = url else { return promise(.success(fairytale)) }
                                 var cancellable: AnyCancellable?
-                                cancellable = self?.imageDownloader.loadImage(withURL: url)
+                                cancellable = self?.imageDownloader.loadImage(withURL: url, cacheKey: path)
                                     .subscribe(on: Scheduler.backgroundWorkScheduler)
                                     .sink(receiveCompletion: { completion in
                                         switch completion {
@@ -186,7 +191,7 @@ final class FirebaseClient: ImageDownloaderProvidable {
                                 fairytale.imageThumbnail = Constants.storyThumbnailPlaceholder
                                 guard let url = url else { return promise(.success(fairytale)) }
                                 var cancellable: AnyCancellable?
-                                cancellable = self?.imageDownloader.loadImage(withURL: url)
+                                cancellable = self?.imageDownloader.loadImage(withURL: url, cacheKey: path)
                                     .subscribe(on: Scheduler.backgroundWorkScheduler)
                                     .sink(receiveCompletion: { completion in
                                         switch completion {
@@ -282,132 +287,6 @@ final class FirebaseClient: ImageDownloaderProvidable {
                 case .silent: self?.silentSubject.value = fairytales
                 }
             })
-    }
-    
-    func getUpdates() {
-        let db = Firestore.firestore()
-        
-        // Document
-        func listenDocument() {
-            db.collection("categories")
-                .document("educational")
-            []
-                .publisher
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished: print("🏁 finished")
-                    case .failure(let error): print("❗️ failure: \(error)")
-                    }
-                }) { document in
-                    print("Document data: \(document)")
-                }
-                .store(in: &bag)
-        }
-        
-        var cityDocumentSnapshotMapper: (DocumentSnapshot) throws -> FairytaleDTO? {
-            {
-                var story =  try $0.data(as: FairytaleDTO.self)
-                //story.id = $0.documentID
-                return story
-            }
-        }
-        
-        func listenDocumentAsObject() {
-            db.collection("categories")
-                .document("educational")
-            // .publisher(for: "fairytales")
-            [].publisher
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished: print("🏁 finished")
-                    case .failure(let error): print("❗️ failure: \(error)")
-                    }
-                }) { story in
-                    print("Story: \(story)")
-                }
-                .store(in: &bag)
-        }
-        
-        
-        // Collection
-        func listenCollection() {
-            //            db.collection("categories")
-            //                .publisher()
-            //                .sink(receiveCompletion: { completion in
-            //                    switch completion {
-            //                    case .finished: print("🏁 finished")
-            //                    case .failure(let error): print("❗️ failure: \(error)")
-            //                    }
-            //                }) { snapshot in
-            //                    print("collection data: \(snapshot.documents)")
-            //                }.store(in: &bag)
-        }
-        
-        func listenCollectionAsObject() {
-            db.collection("categories")
-            [].publisher
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished: print("🏁 finished")
-                    case .failure(let error): print("❗️ failure: \(error)")
-                    }
-                }) { cities in
-                    //print("Stories: \(stories)")
-                }.store(in: &bag)
-        }
-    }
-    
-    func getDocument(source: FirestoreSource = .default) -> Future<DocumentSnapshot, Error> {
-        Future { promise in
-            //            self.getDocument(source: source) { snapshot, error in
-            //                if let error = error {
-            //                    promise(.failure(error))
-            //                } else if let snapshot = snapshot {
-            //                    promise(.success(snapshot))
-            //                }
-            //            }
-        }
-    }
-    
-    func delete() -> Future<Void, Error> {
-        Future { promise in
-            //            self.delete { error in
-            //                if let error = error {
-            //                    promise(.failure(error))
-            //                } else {
-            //                    promise(.success(()))
-            //                }
-            //            }
-        }
-    }
-    
-    func updateData(_ documentData: [String: Any]) -> Future<Void, Error> {
-        Future { promise in
-            //           self.updateData(documentData) { error in
-            //                if let error = error {
-            //                    promise(.failure(error))
-            //                } else {
-            //                    promise(.success(()))
-            //                }
-            //            }
-        }
-    }
-    
-    func setData<T: Encodable>(from value: T, mergeFields: [Any], encoder: Firestore.Encoder = Firestore.Encoder()
-    ) -> Future<Void, Error > {
-        Future { promise in
-            do {
-                //                try self.setData(from: value, mergeFields: mergeFields) { error in
-                //                    if let error = error {
-                //                        promise(.failure(error))
-                //                    } else {
-                //                        promise(.success(()))
-                //                    }
-                //                }
-            } catch {
-                promise(.failure(error))
-            }
-        }
     }
     
     func signInWithGoogle() {
@@ -591,7 +470,7 @@ final class FirebaseClient: ImageDownloaderProvidable {
         
         let titles: [String: String] = ["en": "Fairytale title english sample", "ru" : "Пример-название сказки рус. локализация"]
         
-        let fairytale = FairytaleDTO(titles: titles, annotation: ["ru" : "sample annotation"], description: ["ru": "Example description"],
+        let fairytale = FairytaleDTO(titles: titles, annotation: ["ru" : ["boy": "sample annotation"]], description: ["ru": "Example description"],
                                      default_title: "example_default_title", id_internal: "fairytale-sample-id",
                                      pages: [page1, page2, page3, page4, page5, page6, page7, page8, page9, page10, page11, page12, page13],
                                      image_ipad: "/00_thumbnail/Vmeste_veselee_ipad6.png",

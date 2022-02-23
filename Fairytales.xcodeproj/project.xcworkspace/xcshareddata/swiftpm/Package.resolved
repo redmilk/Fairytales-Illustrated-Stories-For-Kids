@@ -29,24 +29,6 @@
         }
       },
       {
-        "package": "CombineCocoa",
-        "repositoryURL": "https://github.com/CombineCommunity/CombineCocoa",
-        "state": {
-          "branch": "main",
-          "revision": "4e262c2f9fb1cee1cb3be5717f7e6b55eb823971",
-          "version": null
-        }
-      },
-      {
-        "package": "CombineExt",
-        "repositoryURL": "https://github.com/CombineCommunity/CombineExt",
-        "state": {
-          "branch": "main",
-          "revision": "0880829102152185190064fd17847a7c681d2127",
-          "version": null
-        }
-      },
-      {
         "package": "Facebook",
         "repositoryURL": "https://github.com/facebook/facebook-ios-sdk",
         "state": {
@@ -107,6 +89,15 @@
           "branch": null,
           "revision": "bc6a19702ac76ac4e488b68148710eb815f9bc56",
           "version": "1.7.0"
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher",
+        "state": {
+          "branch": "master",
+          "revision": "c21f9abbfa29dd3e1456387503d722ca5d11a71e",
+          "version": null
         }
       },
       {

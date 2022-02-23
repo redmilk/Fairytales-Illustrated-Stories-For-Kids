@@ -21,6 +21,7 @@ extension StorySelectViewController {
         var layout: Layout = .line
         var previousItem: CarouselItemView?
         var carouselCurrentItemIndex: Int = 0
+        var isFirstSetup: Bool = true
     }
 }
 
@@ -38,6 +39,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
     @IBOutlet weak var giftButton: BaseButton!
     @IBOutlet weak var layoutButton: BaseButton!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var favoritesCounterLabel: UILabel!
     
     private lazy var displayDataManager = StorySelectDisplayManager(collectionView: self.collectionView)
     
@@ -64,23 +66,25 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         carousel.isScrollEnabled = true
         pageControl.preferredIndicatorImage = UIImage(named: "page-control-indicator")!
         displayDataManager.input.send(.configure(with: userSession.selectedCategory))
-        if let node = self.carousel.currentItemView as? CarouselItemView,
-            let model = self.stateValue.selectedCategory.items[safe: self.carousel.currentItemIndex] {
-            node.layoutState = .selected
-            model.state = .selected
-            carousel.reloadItem(at: self.carousel.currentItemIndex, animated: true)
-        }
-        
+        userSession.selectedStory = stateValue.selectedCategory.items[safe: carousel.currentItemIndex]
+        favoritesCounterLabel.text = userSession.favoritesCounter.description
+        favoritesCounterLabel.isHidden = (favoritesCounterLabel.text ?? "0") == "0"
+    }
+    
+    private func selectInitialItem() {
         if let state  = userSession.selectedCategory.items.first?.state {
             if state == .idle {
                 debugPrint(state)
+                carousel.currentItemIndex = 0
                 userSession.selectedCategory.items.first?.state = .selected
-                userSession.selectedCategory.items.first
-                carousel.reloadData()
+                let node = carousel.currentItemView
+                (node as? CarouselItemView)?.layoutState = .selected
+                //carousel.reloadData()
+                //carousel.reloadItem(at: self.carousel.currentItemIndex, animated: true)
             }
         }
-
     }
+    
     override func applyStyling() {
         let emitter = ParticleEmitterView()
         emitter.tag = 1
@@ -113,9 +117,12 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
     override func handleEvents() {
         // lifecycle
         lifecycle.sink(receiveValue: { [weak self] lifecycle in
+            guard let self = self else { return }
             switch lifecycle {
             case .viewWillAppear:
-                self?.navigationController?.setNavigationBarHidden(true, animated: false)
+                self.navigationController?.setNavigationBarHidden(true, animated: false)
+                self.favoritesCounterLabel.text = self.userSession.favoritesCounter.description
+                self.favoritesCounterLabel.isHidden = (self.favoritesCounterLabel.text ?? "0") == "0"
 //            case .viewDidDisappear:
 //                self?.navigationController?.setNavigationBarHidden(false, animated: false)
             case _: break
@@ -123,10 +130,10 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         }).store(in: &bag)
         // buttons
         Publishers.MergeMany(
-            backButton.tapPublisher.map { _ in Buttons.back },
-            favoritesButton.tapPublisher.map { _ in Buttons.heart },
-            giftButton.tapPublisher.map { _ in Buttons.gift },
-            layoutButton.tapPublisher.map { _ in Buttons.layout })
+            backButton.publisher().map { _ in Buttons.back },
+            favoritesButton.publisher().map { _ in Buttons.heart },
+            giftButton.publisher().map { _ in Buttons.gift },
+            layoutButton.publisher().map { _ in Buttons.layout })
             .sink(receiveValue: { [weak self] button in
                 guard let self = self else { return }
                 switch button {
@@ -160,12 +167,24 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
         }
         let item = stateValue.selectedCategory.items[index]
         recycled.configure(with: item)
+        let isFavorite = userSession.checkIsStoryFavorite(with: item.dto.id_internal)
+        recycled.heartButton.isSelected = isFavorite
+        item.isFavorite = isFavorite
         recycled.openButtonCallback = { [weak self] in
             (self?.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
         }
-        recycled.heartButtonCallback = {
-            item.isFavorite.toggle()
-            recycled.isFavorite = item.isFavorite
+        recycled.heartButtonCallback = { [weak recycled, weak item, weak userSession, weak favoritesCounterLabel] in
+            item?.isFavorite.toggle()
+            recycled?.isFavorite = item?.isFavorite ?? false
+            if let internalID = item?.dto.id_internal {
+                userSession?.toggleFavorites(with: internalID)
+            }
+            favoritesCounterLabel?.text = userSession?.favoritesCounter.description
+            favoritesCounterLabel?.isHidden = (favoritesCounterLabel?.text ?? "0") == "0"
+        }
+        if stateValue.isFirstSetup {
+            recycled.layoutState = .selected
+            stateValue.isFirstSetup = false
         }
         return recycled
     }

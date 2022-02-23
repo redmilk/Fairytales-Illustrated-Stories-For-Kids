@@ -19,7 +19,7 @@ final class StorySelectionCell: UICollectionViewCell {
     @IBOutlet weak var heartButton: UIButton!
     
     override func awakeFromNib() {
-        heartButton.tapPublisher.sink(receiveValue: { [weak self] in
+        heartButton.publisher().sink(receiveValue: { [weak self] _ in
             guard let self = self, let model = self.model else { return }
             self.output.send(.heartButtonPressed(cell: self, model: model))
         }).store(in: &bag)

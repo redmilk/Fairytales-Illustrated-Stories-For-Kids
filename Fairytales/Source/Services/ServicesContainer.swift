@@ -11,7 +11,7 @@ fileprivate let services = ServicesContainer()
 
 final class ServicesContainer {
     lazy var userSession: UserSession = UserSession()
-    var imageDownloader: ImageLoader = ImageLoader(cache: ImageCacher())
+    var imageDownloader: ImageLoader = ImageLoader()
     var purchases: PurchesService = PurchesService()
 }
 

@@ -9,7 +9,7 @@ import Foundation
 
 struct FairytaleDTO: Codable {
     let titles: [String: String]
-    let annotation: [String: String]?
+    let annotation: [String: [String: String]]?
     let description: [String: String]?
     let default_title: String?
     let id_internal: String

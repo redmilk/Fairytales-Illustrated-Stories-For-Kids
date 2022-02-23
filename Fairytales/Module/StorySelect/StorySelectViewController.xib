@@ -14,6 +14,7 @@
                 <outlet property="carousel" destination="HKO-cG-7fk" id="9KL-cG-gv5"/>
                 <outlet property="collectionView" destination="ncO-Lc-e5Y" id="TOK-pS-WP6"/>
                 <outlet property="favoritesButton" destination="Gq9-jh-HvN" id="0Iv-7B-0QH"/>
+                <outlet property="favoritesCounterLabel" destination="5gq-8n-fMj" id="qn7-lT-zGk"/>
                 <outlet property="giftButton" destination="ISb-9T-c36" id="s3m-6c-e32"/>
                 <outlet property="layoutButton" destination="bm0-uQ-zUd" id="Oe7-VV-kXH"/>
                 <outlet property="pageControl" destination="pe2-os-pO5" id="5xv-oN-gLr"/>

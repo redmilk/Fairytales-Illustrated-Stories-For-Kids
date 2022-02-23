@@ -34,8 +34,12 @@ final class OnboardingCoordinator: Coordinatable, OnboardingCoordinatorProtocol 
         window.makeKeyAndVisible()
         UIView.transition(with: window, duration: 1, options: [.transitionCrossDissolve], animations: { }, completion: nil)
     }
+    func displayGenderSettings() {
+        let coordinator = GenderSelectCoordinator(navigationController: navigationController)
+        coordinator.start()
+    }
     
     func end() {
-
+        navigationController?.popViewController(animated: true)
     }
 }

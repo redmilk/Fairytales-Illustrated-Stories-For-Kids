@@ -9,7 +9,6 @@
 
 import UIKit
 import Combine
-import CombineCocoa
 
 extension OnboardingViewController {
     class State: BaseState {
@@ -37,6 +36,7 @@ extension OnboardingViewController {
         lazy var currentHeading: String = self.headingList[currentImageIndex]
         lazy var currentDescription: String = self.descriptionList[currentImageIndex]
         var shouldEndOnboarding: Bool = false
+        
 
         var currentImageIndex = 0 {
             didSet {
@@ -77,14 +77,18 @@ final class OnboardingViewController: BaseViewController {
         pageControl.currentPage = 0
     }
     override func handleEvents() {
-        continueButton.tapPublisher.map { _ in }
+        continueButton.publisher().map { _ in }
         .sink(receiveValue: { [weak self] in
             guard let state = self?.stateValue else { return }
+            if state.currentImageIndex == 3 {
+                (self?.coordinator as? OnboardingCoordinator)?.displayGenderSettings()
+                return
+            }
             state.currentImageIndex += 1
             self?.pageControl.currentPage += 1
             self?.state.value = state
         }).store(in: &bag)
-        skipButton.tapPublisher.map { _ in }
+        skipButton.publisher().map { _ in }
         .sink(receiveValue: { [weak self] in
             guard let state = self?.stateValue else { return }
             state.currentImageIndex -= 1
@@ -108,4 +112,5 @@ final class OnboardingViewController: BaseViewController {
                 self.descriptionLabel.text = state.currentDescription
         }).store(in: &bag)
     }
+  
 }

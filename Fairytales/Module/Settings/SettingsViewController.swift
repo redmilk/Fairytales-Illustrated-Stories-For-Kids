@@ -45,8 +45,8 @@ final class SettingsViewController: BaseViewController {
     override func handleEvents() {
         // buttons
         Publishers.MergeMany(
-            backButton.tapPublisher.map { _ in Buttons.back },
-            favoritesButton.tapPublisher.map { _ in Buttons.heart })
+            backButton.publisher().map { _ in Buttons.back },
+            favoritesButton.publisher().map { _ in Buttons.heart })
             .sink(receiveValue: { [weak self] button in
                 guard let self = self else { return }
                 switch button {

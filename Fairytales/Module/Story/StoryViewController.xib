@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Lato-Bold.ttf">
+            <string>Lato-Bold</string>
+        </array>
         <array key="Lato-Regular.ttf">
             <string>Lato-Regular</string>
         </array>
@@ -15,8 +18,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoryViewController" customModule="Fairytales" customModuleProvider="target">
             <connections>
+                <outlet property="currentPageNumberLabel" destination="fvw-iF-IlH" id="Bve-5O-hsG"/>
+                <outlet property="endStoryContainer" destination="Sid-pw-Trg" id="eAm-bY-tTS"/>
+                <outlet property="endStoryDescriptionLabel" destination="Amx-tS-wgR" id="QYG-14-fu4"/>
+                <outlet property="endStoryReadAgainButton" destination="LYz-Nh-0Sr" id="OXy-MU-nmu"/>
+                <outlet property="endStorySelectNewStoryButton" destination="mjN-nI-8kl" id="3ls-x3-a4d"/>
+                <outlet property="endStoryTitleLabel" destination="OLJ-V5-RAI" id="TZ2-91-WPM"/>
                 <outlet property="favoritesButton" destination="GzO-46-wmw" id="l4U-Sb-Gn7"/>
+                <outlet property="favoritesCounterLabel" destination="Ai9-Qn-O1Q" id="skn-GD-iP3"/>
                 <outlet property="homeButton" destination="QNi-bs-XBO" id="Jde-gY-l0O"/>
+                <outlet property="maxPageNumberLabel" destination="AGF-tz-c1D" id="1Al-CK-d9e"/>
                 <outlet property="nextPageButton" destination="vze-W9-dec" id="sPK-VC-fDk"/>
                 <outlet property="pageImage" destination="MXF-kW-nkS" id="ZzX-hF-zpm"/>
                 <outlet property="pageTextLabel" destination="4Cl-eR-Z6N" id="7Gv-L3-tEs"/>
@@ -52,10 +63,12 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khq-tA-7IS">
                                     <rect key="frame" x="805" y="41" width="30" height="30"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzO-46-wmw" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzO-46-wmw" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" backgroundImage="heart-button"/>
+                                            <state key="selected" image="button-add-favorite"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="_identifier" value="heart"/>
                                             </userDefinedRuntimeAttributes>
@@ -107,12 +120,11 @@
                             </constraints>
                         </view>
                         <stackView verifyAmbiguity="ignoreSizes" opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="307" placeholderIntrinsicHeight="50" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aKT-P8-Bso">
-                            <rect key="frame" x="130" y="291.5" width="605.5" height="83.5"/>
+                            <rect key="frame" x="279" y="308" width="307" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" verticalCompressionResistancePriority="800" insetsLayoutMarginsFromSafeArea="NO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Cl-eR-Z6N">
-                                    <rect key="frame" x="8" y="8" width="589.5" height="67.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" verticalCompressionResistancePriority="800" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Cl-eR-Z6N">
+                                    <rect key="frame" x="8" y="8" width="291" height="34"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</string>
                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                     <color key="textColor" red="0.13725490200000001" green="0.14901960780000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
@@ -133,7 +145,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Далее" backgroundImage="button-forward">
+                            <state key="normal" backgroundImage="button-forward">
                                 <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
@@ -148,17 +160,42 @@
                                 <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="numeration-image" translatesAutoresizingMaskIntoConstraints="NO" id="7Lu-yr-hDj">
-                            <rect key="frame" x="30" y="157.5" width="60" height="55"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGF-tz-c1D">
+                            <rect key="frame" x="75" y="179" width="12" height="12"/>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⎯" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJz-v1-pbN">
+                            <rect key="frame" x="59.5" y="179" width="10" height="12"/>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvw-iF-IlH">
+                            <rect key="frame" x="38" y="176" width="18" height="18"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="XE0-Qc-CcD"/>
-                                <constraint firstAttribute="height" constant="55" id="fYF-9h-LDk"/>
+                                <constraint firstAttribute="height" constant="18" id="F7F-Wn-TNj"/>
+                                <constraint firstAttribute="width" secondItem="fvw-iF-IlH" secondAttribute="height" multiplier="1:1" id="t8f-Gj-ym8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="12" backgroundImage="story-page-current-circle">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="story-page-numeration-container" translatesAutoresizingMaskIntoConstraints="NO" id="7Lu-yr-hDj">
+                            <rect key="frame" x="30" y="172" width="65" height="26"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="65" id="XE0-Qc-CcD"/>
+                                <constraint firstAttribute="height" constant="26" id="fYF-9h-LDk"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="iwc-Lq-xp0" firstAttribute="top" secondItem="GIu-E5-1u6" secondAttribute="top" id="0Wh-Vg-URm"/>
+                        <constraint firstItem="PJz-v1-pbN" firstAttribute="centerX" secondItem="7Lu-yr-hDj" secondAttribute="centerX" constant="2" id="1NJ-TG-XhS"/>
                         <constraint firstItem="7Lu-yr-hDj" firstAttribute="leading" secondItem="GIu-E5-1u6" secondAttribute="leading" constant="30" id="2Bo-6d-vT5"/>
                         <constraint firstAttribute="trailing" secondItem="MXF-kW-nkS" secondAttribute="trailing" id="5XU-w7-EIV"/>
                         <constraint firstItem="MXF-kW-nkS" firstAttribute="top" secondItem="GIu-E5-1u6" secondAttribute="top" id="9mK-Ul-mH4"/>
@@ -167,13 +204,81 @@
                         <constraint firstItem="aKT-P8-Bso" firstAttribute="width" relation="lessThanOrEqual" secondItem="GIu-E5-1u6" secondAttribute="width" multiplier="0.7" id="KG5-9h-HWm"/>
                         <constraint firstItem="aKT-P8-Bso" firstAttribute="centerX" secondItem="GIu-E5-1u6" secondAttribute="centerX" id="L7N-TL-4Z2"/>
                         <constraint firstAttribute="trailing" secondItem="vze-W9-dec" secondAttribute="trailing" constant="30" id="LwV-LI-MW0"/>
+                        <constraint firstItem="AGF-tz-c1D" firstAttribute="centerY" secondItem="7Lu-yr-hDj" secondAttribute="centerY" id="MPY-7w-UZN"/>
                         <constraint firstItem="iwc-Lq-xp0" firstAttribute="leading" secondItem="GIu-E5-1u6" secondAttribute="leading" id="MZz-6u-OsF"/>
                         <constraint firstAttribute="bottom" secondItem="MXF-kW-nkS" secondAttribute="bottom" id="NBi-i6-U7F"/>
                         <constraint firstItem="7Lu-yr-hDj" firstAttribute="centerY" secondItem="GIu-E5-1u6" secondAttribute="centerY" id="OKz-bN-cml"/>
+                        <constraint firstItem="PJz-v1-pbN" firstAttribute="centerY" secondItem="7Lu-yr-hDj" secondAttribute="centerY" id="UxH-Bq-S12"/>
                         <constraint firstItem="MXF-kW-nkS" firstAttribute="leading" secondItem="GIu-E5-1u6" secondAttribute="leading" id="dAm-0g-OXO"/>
+                        <constraint firstItem="fvw-iF-IlH" firstAttribute="leading" secondItem="7Lu-yr-hDj" secondAttribute="leading" constant="8" id="eW1-hm-Nh3"/>
+                        <constraint firstItem="AGF-tz-c1D" firstAttribute="trailing" secondItem="7Lu-yr-hDj" secondAttribute="trailing" constant="-8" id="fI6-Wl-udp"/>
+                        <constraint firstItem="fvw-iF-IlH" firstAttribute="centerY" secondItem="7Lu-yr-hDj" secondAttribute="centerY" id="fXh-gp-Pkp"/>
                         <constraint firstItem="vze-W9-dec" firstAttribute="centerY" secondItem="aKT-P8-Bso" secondAttribute="centerY" id="qYr-8v-hO1"/>
                         <constraint firstAttribute="trailing" secondItem="iwc-Lq-xp0" secondAttribute="trailing" id="r22-os-Y6X"/>
                     </constraints>
+                </view>
+                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sid-pw-Trg">
+                    <rect key="frame" x="237" y="132.5" width="391" height="105"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pLT-OM-IPw">
+                            <rect key="frame" x="0.0" y="0.0" width="391" height="105"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" verticalCompressionResistancePriority="800" insetsLayoutMarginsFromSafeArea="NO" text="Конец сказки" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLJ-V5-RAI">
+                                    <rect key="frame" x="0.0" y="0.0" width="391" height="30"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="J1L-dV-0ts"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
+                                    <color key="textColor" red="0.13725490200000001" green="0.14901960780000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" verticalCompressionResistancePriority="800" insetsLayoutMarginsFromSafeArea="NO" text="Lorem ipsum dolor sit amet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Amx-tS-wgR">
+                                    <rect key="frame" x="0.0" y="40" width="391" height="15"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                                    <color key="textColor" red="0.13725490200000001" green="0.14901960780000001" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="N1x-AV-F7I">
+                                    <rect key="frame" x="0.0" y="65" width="391" height="40"/>
+                                    <subviews>
+                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYz-Nh-0Sr" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="0.0" width="165.5" height="32"/>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title=" Читать заново" backgroundImage="button-stroke-1">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjN-nI-8kl" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
+                                            <rect key="frame" x="205.5" y="0.0" width="165.5" height="32"/>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Выбрать новую" backgroundImage="button-filled-1">
+                                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <edgeInsets key="layoutMargins" top="0.0" left="20" bottom="8" right="20"/>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="pLT-OM-IPw" firstAttribute="top" secondItem="Sid-pw-Trg" secondAttribute="top" id="42v-jh-e4R"/>
+                        <constraint firstAttribute="trailing" secondItem="pLT-OM-IPw" secondAttribute="trailing" id="TSa-k9-t8B"/>
+                        <constraint firstAttribute="bottom" secondItem="pLT-OM-IPw" secondAttribute="bottom" id="j5r-YA-SLp"/>
+                        <constraint firstItem="pLT-OM-IPw" firstAttribute="leading" secondItem="Sid-pw-Trg" secondAttribute="leading" id="u7c-A7-0KO"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                            <real key="value" value="16"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -183,6 +288,10 @@
                 <constraint firstItem="GIu-E5-1u6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BrC-kC-p8j"/>
                 <constraint firstItem="aKT-P8-Bso" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.8" id="IZH-RR-IdX"/>
                 <constraint firstItem="GIu-E5-1u6" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="MTK-Xr-M6g"/>
+                <constraint firstItem="Sid-pw-Trg" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.283784" id="beb-Fq-v2v"/>
+                <constraint firstItem="Sid-pw-Trg" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.452023" id="eed-tt-2xO"/>
+                <constraint firstItem="Sid-pw-Trg" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mII-6G-jpy"/>
+                <constraint firstItem="Sid-pw-Trg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qdE-kc-XRp"/>
                 <constraint firstItem="khq-tA-7IS" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.0346821" id="ubA-ik-Ybx"/>
                 <constraint firstItem="GIu-E5-1u6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="upf-OM-I5S"/>
                 <constraint firstItem="vze-W9-dec" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.0346821" id="z1K-Q0-SHi"/>
@@ -193,12 +302,16 @@
         </view>
     </objects>
     <resources>
+        <image name="button-add-favorite" width="30" height="30"/>
         <image name="button-backward" width="30" height="30"/>
+        <image name="button-filled-1" width="93" height="30"/>
         <image name="button-forward" width="30" height="30"/>
+        <image name="button-stroke-1" width="112" height="30"/>
         <image name="heart-button" width="31" height="30"/>
         <image name="home-button" width="30" height="30"/>
-        <image name="numeration-image" width="59" height="26"/>
         <image name="story-bg" width="812" height="375"/>
+        <image name="story-page-current-circle" width="18" height="18"/>
+        <image name="story-page-numeration-container" width="59" height="26"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

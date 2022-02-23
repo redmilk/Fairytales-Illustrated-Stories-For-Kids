@@ -18,13 +18,21 @@ final class UserSession {
     private var bag = Set<AnyCancellable>()
 
     var categories: Set<CategorySection> = []
-    var isBoy: Bool = true
+    var isBoy: Bool { kidActor == .boy }
     var isIpad: Bool = UIDevice.current.isIPad
-    var locale: String = "en"
+    
+    @UD(.locale, "ru")
+    var locale: String
+    @UD(.kidName, "")
+    var kidName: String
+    @UD(.kidGender, .boy)
+    var kidActor: KidActor
+    @UD(.favoritesCounter, 0)
+    var favoritesCounter: Int
     
     //var favoritesCount: Int { stories.filter { $0.isFavorite == true }.count }
     var selectedCategory: CategorySection!
-    var selectedStory: StoryModel!// = StoryModel(title: "Рапунцель 3", thumbnail: "story-thumbnail-1", state: .idle, isHeartHidden: false)
+    var selectedStory: StoryModel!
 
     init() {
         input.sink(receiveValue: { [weak self] event in
@@ -36,5 +44,44 @@ final class UserSession {
             }
         })
         .store(in: &bag)
+    }
+    
+    var pagesTotalNumber: Int { selectedStory.pages.count }
+    func checkIsStoryFavorite(with internalID: String) -> Bool {
+        guard let favoritesIDList = UserDefaults.standard.value(forKey: "favorites") as? [String],
+              let _ = favoritesIDList.firstIndex(where: { $0 == internalID }) else { return false }
+        return true
+    }
+    
+    var currentPageNumber: Int {
+        let storyId = selectedStory.dto.id_internal
+        return (UserDefaults.standard.object(forKey: storyId + "page") as? Int) ?? 0
+    }
+    
+    func saveCurrentPageOfSelectedStory(_ currentPage: Int) {
+        let storyId = selectedStory.dto.id_internal
+        UserDefaults.standard.set(currentPage, forKey: storyId + "page")
+    }
+    
+    @discardableResult
+    func toggleFavorites(with internalID: String) -> (Bool, Int) {
+        if var favoritesIDList = UserDefaults.standard.value(forKey: "favorites") as? [String] {
+            if let index = favoritesIDList.firstIndex(where: { $0 == internalID }) {
+                let deletedFromFavorites = favoritesIDList.remove(at: index)
+                UserDefaults.standard.set(favoritesIDList, forKey: "favorites")
+                favoritesCounter = favoritesIDList.count
+                return (false, favoritesIDList.count)
+            } else {
+                favoritesIDList.append(internalID)
+                UserDefaults.standard.set(favoritesIDList, forKey: "favorites")
+                favoritesCounter = favoritesIDList.count
+                return (true, favoritesIDList.count)
+            }
+        } else {
+            let newList = [internalID]
+            UserDefaults.standard.set(newList, forKey: "favorites")
+            favoritesCounter = 1
+            return (true, 1)
+        }
     }
 }

@@ -24,7 +24,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVK-l3-ggf">
                             <rect key="frame" x="383" y="136" width="104" height="104"/>
-                            <color key="backgroundColor" red="0.097729133602904472" green="0.078826976484903097" blue="0.32154465352433859" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" red="0.1294117719" green="0.1019607931" blue="0.41568624970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </view>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear-splash-2" translatesAutoresizingMaskIntoConstraints="NO" id="k6C-aW-O7m">
                             <rect key="frame" x="383" y="136" width="104" height="104"/>
@@ -33,7 +33,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.097729133602904472" green="0.078826976484903097" blue="0.32154465352433859" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" red="0.1294117719" green="0.1019607931" blue="0.41568624970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstItem="WVK-l3-ggf" firstAttribute="centerX" secondItem="jpe-iy-DGc" secondAttribute="centerX" id="Kjz-0E-NKn"/>
                         <constraint firstItem="WVK-l3-ggf" firstAttribute="height" secondItem="k6C-aW-O7m" secondAttribute="height" id="hGc-gQ-Clo"/>
@@ -42,7 +42,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.097729133602904472" green="0.078826976484903097" blue="0.32154465352433859" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.1294117719" green="0.1019607931" blue="0.41568624970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="k6C-aW-O7m" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5l1-Yd-wta"/>
                 <constraint firstItem="jpe-iy-DGc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="AwC-Iu-HYX"/>

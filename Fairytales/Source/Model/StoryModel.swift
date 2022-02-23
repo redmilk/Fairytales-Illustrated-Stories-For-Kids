@@ -28,14 +28,13 @@ final class StoryModel: Hashable, Comparable {
     
     let id: String
     let colorForCategory: UIColor
+    var dto: FairytaleDTO!
     
     init(dto: FairytaleDTO) {
+        self.dto = dto
         let isIpad = UIDevice.current.isIPad
         let thumbnailPath = isIpad ? dto.image_ipad : dto.image_iphone
         title = dto.titles["ru"] ?? dto.default_title ?? "---"
-        FirebaseClient.shared.storage.reference(withPath: dto.storage_path + thumbnailPath).downloadURL() { url, error in
-            
-        }
         assetThumbnail = ""
         isHeartHidden = false
         isFavorite = false
@@ -54,6 +53,7 @@ final class StoryModel: Hashable, Comparable {
         self.isHeartHidden = isHeartHidden
         self.id = id
         self.colorForCategory = color
+        self.dto = nil
     }
     
     // comparable

@@ -121,6 +121,7 @@ private extension StorySelectDisplayManager {
                     withReuseIdentifier: String(describing: StorySelectionCell.self),
                     for: indexPath) as? StorySelectionCell
                 cell?.configure(with: model)
+                //cell?.
                 cell?.output.sink(receiveValue: { event in
                     switch event {
                     case .heartButtonPressed(let cell, let model):

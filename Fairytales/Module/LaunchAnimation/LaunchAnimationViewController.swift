@@ -12,6 +12,13 @@ import Combine
 import AVFoundation
 import AVKit
 
+final class VideoPlayerController: AVPlayerViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        videoGravity = .resizeAspectFill
+    }
+}
+
 // MARK: - LaunchAnimationViewController
 
 final class LaunchAnimationViewController: BaseViewController {
@@ -55,7 +62,7 @@ final class LaunchAnimationViewController: BaseViewController {
             return debugPrint("video.m4v not found")
         }
         let player = AVPlayer(url: URL(fileURLWithPath: path))
-        let playerController = AVPlayerViewController()
+        let playerController = VideoPlayerController()
         playerController.view.backgroundColor = view.backgroundColor
         playerController.showsPlaybackControls = false
         playerController.view.isUserInteractionEnabled = false

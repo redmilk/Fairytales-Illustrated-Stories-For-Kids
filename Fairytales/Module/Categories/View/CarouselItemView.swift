@@ -14,7 +14,7 @@ final class CarouselItemView: UIView {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var primaryButton: BaseButton!
     @IBOutlet private weak var containerBottomConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var heartButton: UIButton!
+    @IBOutlet weak var heartButton: UIButton!
     
     var openButtonCallback: VoidClosure?
     var heartButtonCallback: VoidClosure?

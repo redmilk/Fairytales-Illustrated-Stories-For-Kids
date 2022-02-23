@@ -14,9 +14,9 @@ struct PageText: Codable {
     
     func getText(boy: Bool, locale: String) -> String {
         if boy {
-            return self.boy[locale] ?? default_text ?? "---"
+            return StoryTextFormatter.shared.preparePageText(self.boy[locale] ?? default_text ?? "---")
         } else {
-            return self.girl[locale] ?? default_text ?? "---"
+            return StoryTextFormatter.shared.preparePageText(self.girl[locale] ?? default_text ?? "---")
         }
     }
 }
