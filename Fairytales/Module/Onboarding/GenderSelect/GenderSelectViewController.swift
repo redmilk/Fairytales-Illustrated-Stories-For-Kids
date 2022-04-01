@@ -18,7 +18,7 @@ enum KidActor: Codable {
 extension GenderSelectViewController {
     class State: BaseState {
         override init() { }
-        
+
         var currentKid: KidActor = .boy
         var name: String = ""
     }
@@ -100,6 +100,11 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
 }
 
 extension GenderSelectViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         stateValue.name = textField.text ?? ""
     }

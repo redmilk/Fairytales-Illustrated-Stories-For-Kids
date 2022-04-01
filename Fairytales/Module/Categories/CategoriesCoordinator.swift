@@ -15,7 +15,7 @@ protocol CategoriesCoordinatorProtocol {
    
 }
 
-final class CategoriesCoordinator: Coordinatable, CategoriesCoordinatorProtocol {
+final class CategoriesCoordinator: Coordinatable, CategoriesCoordinatorProtocol, PurchesServiceProvidable {
     var navigationController: UINavigationController?
     unowned let window: UIWindow
     
@@ -50,7 +50,11 @@ final class CategoriesCoordinator: Coordinatable, CategoriesCoordinatorProtocol 
     }
     
     func displaySpecialGift() {
-        let coordinator = SubscriptionsCoordinator(whatToShow: .speciealGift)
+        var whatToShow = SubscriptionsViewController.ScreenOptions.howItWorks
+        if purchases.isUserHasActiveSubscription {
+            whatToShow = .speciealGift
+        }
+        let coordinator = SubscriptionsCoordinator(whatToShow: whatToShow)
         coordinator.start()
     }
     

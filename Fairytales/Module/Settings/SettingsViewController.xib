@@ -34,11 +34,11 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu-background-dark-blue" translatesAutoresizingMaskIntoConstraints="NO" id="iQV-q1-kX9">
                             <rect key="frame" x="0.0" y="0.0" width="865" height="900"/>
                         </imageView>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-iq-5zs">
-                            <rect key="frame" x="0.0" y="64" width="865" height="836"/>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-iq-5zs">
+                            <rect key="frame" x="173" y="64" width="519" height="836"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CEh-Te-FEG">
-                                    <rect key="frame" x="173" y="0.0" width="519" height="600"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="519" height="600"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="7XY-2F-Uyx">
                                             <rect key="frame" x="0.0" y="23" width="519" height="554"/>
@@ -466,7 +466,6 @@
                                     <constraints>
                                         <constraint firstItem="7XY-2F-Uyx" firstAttribute="leading" secondItem="CEh-Te-FEG" secondAttribute="leading" id="1LT-Az-uOo"/>
                                         <constraint firstAttribute="height" constant="600" id="ZFo-cK-Upu"/>
-                                        <constraint firstAttribute="width" constant="519" id="beh-Cg-qk2"/>
                                         <constraint firstAttribute="trailing" secondItem="7XY-2F-Uyx" secondAttribute="trailing" id="onY-qx-ACc"/>
                                         <constraint firstItem="7XY-2F-Uyx" firstAttribute="centerY" secondItem="CEh-Te-FEG" secondAttribute="centerY" id="xmA-D7-a2C"/>
                                     </constraints>
@@ -565,7 +564,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="iQV-q1-kX9" secondAttribute="bottom" id="Hqk-um-FVH"/>
-                        <constraint firstItem="dku-iq-5zs" firstAttribute="width" secondItem="CKn-hF-YZj" secondAttribute="width" id="HvK-69-aWY"/>
+                        <constraint firstItem="dku-iq-5zs" firstAttribute="width" secondItem="CKn-hF-YZj" secondAttribute="width" multiplier="0.6" id="HvK-69-aWY"/>
                         <constraint firstItem="CKn-hF-YZj" firstAttribute="top" secondItem="xgc-nH-9ao" secondAttribute="top" id="UpS-de-XrB"/>
                         <constraint firstAttribute="trailing" secondItem="CKn-hF-YZj" secondAttribute="trailing" id="XRd-k6-gMU"/>
                         <constraint firstItem="dku-iq-5zs" firstAttribute="top" secondItem="CKn-hF-YZj" secondAttribute="bottom" constant="-16" id="YRH-9w-sWu"/>
@@ -573,6 +572,7 @@
                         <constraint firstAttribute="trailing" secondItem="iQV-q1-kX9" secondAttribute="trailing" id="ceV-9y-1EI"/>
                         <constraint firstItem="iQV-q1-kX9" firstAttribute="leading" secondItem="xgc-nH-9ao" secondAttribute="leading" id="gt9-oP-Z93"/>
                         <constraint firstAttribute="bottom" secondItem="dku-iq-5zs" secondAttribute="bottom" id="gxW-yf-Tw9"/>
+                        <constraint firstItem="CEh-Te-FEG" firstAttribute="width" secondItem="xgc-nH-9ao" secondAttribute="width" multiplier="0.6" id="mHA-5A-t1Q"/>
                         <constraint firstItem="iQV-q1-kX9" firstAttribute="top" secondItem="xgc-nH-9ao" secondAttribute="top" id="wBy-QC-ZKp"/>
                         <constraint firstItem="dku-iq-5zs" firstAttribute="centerX" secondItem="CKn-hF-YZj" secondAttribute="centerX" id="xVD-4W-CSy"/>
                     </constraints>

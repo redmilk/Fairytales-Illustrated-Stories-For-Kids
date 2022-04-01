@@ -43,6 +43,7 @@ final class PurchesService: AnalyticServiceProvider {
         case gotUpdatedPrices(weekly: String, monthly: String, yearly: String)
         case loadingState(Bool)
         case displayAlert(text: String, title: String, action: VoidClosure?, buttonTitle: String?)
+        case successfullyPurchased
     }
     
     static var hasUserActiveSubscriptionPricesCached: [String]? {
@@ -162,16 +163,14 @@ final class PurchesService: AnalyticServiceProvider {
             case .failure(let purchaseError):
                 guard let self = self else { return }
                 let errorText = self.handleErrorAsErrorText(purchaseError)
-                self.output.send(.displayAlert(text: errorText, title: "Purchase error", action: nil, buttonTitle: nil))
+                self.output.send(.displayAlert(text: errorText, title: "Ошибка платежа", action: nil, buttonTitle: nil))
             case _: break
             }
         }, receiveValue: { [weak self] in
             if self?.isUserHasActiveSubscription ?? false {
-                self?.output.send(.displayAlert(text: "Selected subscription plan was successfully purchased", title: "Success", action: nil, buttonTitle: nil))
+                self?.output.send(.displayAlert(text: "Новый тарифный план установлен", title: "Оплата прошла успешно", action: nil, buttonTitle: nil))
                 Logger.log("Successfully purchased annual subscription", type: .purchase)
-//                if let userActionBeforeSubscriptionDialog = self?.proceedWithActionAfterSubscriptionReady {
-//                    self?.coordinator.endWithSelectedAction(userActionBeforeSubscriptionDialog)
-//                }
+                self?.output.send(.successfullyPurchased)
             }
             Logger.log("Purchase is not detected", type: .purchase)
         }).store(in: &bag)
@@ -186,19 +185,17 @@ final class PurchesService: AnalyticServiceProvider {
             switch completion {
             case .failure(let error):
                 let errorMessage = self.handleErrorAsErrorText(error)
-                self.output.send(.displayAlert(text: errorMessage, title: "Restore error", action: nil, buttonTitle: nil))
+                self.output.send(.displayAlert(text: errorMessage, title: "Ошибка восстановления", action: nil, buttonTitle: nil))
                 Logger.logError(error)
             case _: break
             }
         }, receiveValue: { [weak self] isSuccess in
             if isSuccess && self?.isUserHasActiveSubscription ?? false {
-                self?.output.send(.displayAlert(text: "Your previous subscription plan was restored successfully", title: "Success", action: nil, buttonTitle: nil))
+                self?.output.send(.displayAlert(text: "Ваш предыдущий тарифный план восстановлен", title: "Оплата прошла успешно", action: nil, buttonTitle: nil))
                 Logger.log("Restore subscription: Purchase is not detected", type: .purchase)
-//                if let userActionBeforeSubscriptionDialog = self?.proceedWithActionAfterSubscriptionReady {
-//                    self?.coordinator.endWithSelectedAction(userActionBeforeSubscriptionDialog)
-//                }
+                self?.output.send(.successfullyPurchased)
             } else {
-                self?.output.send(.displayAlert(text: "Any data related to your previous subscription plan wasn't found", title: "Nothing to restore", action: nil, buttonTitle: nil))
+                self?.output.send(.displayAlert(text: "Информация о предыдущем тарифном плане не найдена", title: "Ошибка восстановления", action: nil, buttonTitle: nil))
             }
         }).store(in: &bag)
     }
@@ -266,7 +263,7 @@ final class PurchesService: AnalyticServiceProvider {
                 .last?.skProduct else { return nil }
         let price = product.price
         let currencyCode = " " + (product.priceLocale.currencyCode ?? "")
-        let priceParts = String.makeAttriabutedStringNoFormatting(" / ", size: size)
+        let priceParts = String.makeAttriabutedStringNoFormatting("", size: size)
         var priceDoubled = (Int(truncating: price) * 2).description
         priceDoubled.append(currencyCode)
         let strikedPrice = String.makeStrikeThroughText(priceDoubled, size: size)
@@ -330,7 +327,7 @@ final class PurchesService: AnalyticServiceProvider {
     /// refresh available in-app purchases for app and user's subscriptions status
     func restoreLastExpiredPurchase() -> AnyPublisher<Bool, PurchaseError> {
         /// refresh available in-app purchases for app
-        analytics.eventPurchaseDidPressed(plan: "restore")
+        //analytics.eventPurchaseDidPressed(plan: "restore")
         return Deferred {
             Future<Bool, PurchaseError> { promise in
                 Apphud.restorePurchases { [weak self] subscriptions, purchases, error in

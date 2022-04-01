@@ -10,8 +10,7 @@ import Combine
 
 protocol AlertPresentable: AnyObject {
     func displayAlert(fromParentView view: UIView, with text: String, title: String?,
-                      action: VoidClosure?, buttonTitle: String?, extraAction: VoidClosure?, extraActionTitle: String?
-    ) -> UIView
+                      action: VoidClosure?, buttonTitle: String?, extraAction: VoidClosure?, extraActionTitle: String?) -> UIView
 }
 
 extension AlertPresentable {
@@ -34,7 +33,7 @@ extension AlertPresentable {
         alert.primaryButtonAction = action
         alert.alertText.text = text
         alert.titleLabel.text = title
-        alert.primaryButton.setTitle(buttonTitle ?? "Okay", for: .normal)
+        alert.primaryButton.setTitle(buttonTitle ?? "OK", for: .normal)
         if let extraAction = extraAction, let extraButtonTitle = extraActionTitle {
             alert.extraActionButton.isHidden = false
             alert.extraButonAction = extraAction

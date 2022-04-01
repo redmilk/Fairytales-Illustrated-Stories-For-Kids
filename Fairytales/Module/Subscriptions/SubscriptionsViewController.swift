@@ -19,6 +19,7 @@ extension SubscriptionsViewController {
     enum ScreenOptions {
         case howItWorks
         case weekly
+        case weeklyWithDiscount
         case monthlyAndYearly
         case speciealGift
     }
@@ -67,6 +68,7 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     // how it works
     @IBOutlet weak var howItWorksDescriptions: UIStackView!
     @IBOutlet weak var howItWorksGradientImageView: UIImageView!
+    @IBOutlet weak var howItWorksTitleLabel: UILabel!
     // default descriptions
     @IBOutlet weak var defaultDescriptions: UIStackView!
     @IBOutlet weak var defaultDescriptionsGradientImageView: UIImageView!
@@ -90,7 +92,24 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     }
     
     override func configure() {
-        //specialGiftPriceLabel.text = PurchesService.previousYearlyPrice
+        var whatToShow = ScreenOptions.weekly
+        if purchases.isHowItWorksShouldBeVisibleForUser {
+            whatToShow = .howItWorks
+        }
+        if purchases.isGiftPopupShouldBeVisibleForUser {
+            whatToShow = .speciealGift
+        }
+        if purchases.isWeeklyPlanWithDiscaunt {
+            whatToShow = .weeklyWithDiscount
+        }
+        stateValue.whatToShow = whatToShow
+        
+        specialGiftPriceLabel.text = PurchesService.previousYearlyPrice
+        weeklyPriceLabel.text = PurchesService.previousWeeklyPrice
+        monthlyPriceLabel.text = PurchesService.previousMonthlyPrice
+        yearlyPriceLabel.text = PurchesService.previousYearlyPrice
+        yearlyCrossedPriceLabel.attributedText = purchases.getFormattedYearPriceForPurchase(isPurePrice: false, size: 10)
+        
         handleWhatToShow(stateValue.whatToShow)
         purchases.output.sink(receiveValue: { [weak self] response in
             guard let self = self else { return }
@@ -101,6 +120,8 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
                 state ? self.startActivityAnimation() : self.stopActivityAnimation()
             case .displayAlert(let text, let title, let action, let buttonTitle):
                 self.displayAlert(fromParentView: self.view, with: text, title: title, action: action, buttonTitle: buttonTitle, extraAction: nil, extraActionTitle: nil)
+            case .successfullyPurchased:
+                (self.coordinator as? SubscriptionsCoordinator)?.end()
             case _: break
             }
         }).store(in: &bag)
@@ -129,11 +150,22 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
             .sink(receiveValue: { [weak self] button in
                 guard let self = self else { return }
                 switch button {
-                case .close, .giftClose:
+                case .giftClose:
                     (self.coordinator as? SubscriptionsCoordinator)?.end()
-                case .purchase: break
+                case .close:
+                    if self.stateValue.whatToShow == .monthlyAndYearly {
+                        self.handleWhatToShow(.weekly)
+                        self.stateValue.selectedPurchase = .weekly
+                    } else {
+                        (self.coordinator as? SubscriptionsCoordinator)?.end()
+                    }
+                case .purchase:
+                    switch self.stateValue.selectedPurchase {
+                    case .monthly: self.purchases.purchaseSubscriptionPlan(.monthly)
+                    case .weekly: self.purchases.purchaseSubscriptionPlan(.weekly)
+                    case .yearly: self.purchases.purchaseSubscriptionPlan(.annual)
+                    }
                 case .giftPurchase:
-                    //self.purchases.input.send(.)
                     self.purchases.purchaseSubscriptionPlan(.annual)
                 case .monthly:
                     self.toggleState()
@@ -142,7 +174,8 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
                     self.toggleState()
                     self.stateValue.selectedPurchase = .yearly
                 case .rightsOfUsage: break
-                case .renewSubscription: break
+                case .renewSubscription:
+                    self.purchases.restoreLastSubscription()
                 case .politics: break
                 case .plans:
                     let state = self.stateValue
@@ -166,30 +199,39 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     private func handleWhatToShow(_ options: ScreenOptions) {
         switch options {
         case .howItWorks:
+            stateValue.whatToShow = .howItWorks
             specialGiftContainer.isHidden = true
             defaultDescriptions.isHidden = true
             defaultDescriptionsGradientImageView.isHidden = true
             howItWorksDescriptions.isHidden = false
             howItWorksGradientImageView.isHidden = false
+            howItWorksTitleLabel.isHidden = false
             monthAndYearSubscriptionContainer.isHidden = true
             weekSubscriptionContainer.isHidden = false
-        case .weekly:
+        case .weekly, .weeklyWithDiscount:
+            stateValue.whatToShow = .weekly
             specialGiftContainer.isHidden = true
             defaultDescriptions.isHidden = false
             defaultDescriptionsGradientImageView.isHidden = false
             howItWorksDescriptions.isHidden = true
             howItWorksGradientImageView.isHidden = true
+            howItWorksTitleLabel.isHidden = true
             monthAndYearSubscriptionContainer.isHidden = true
             weekSubscriptionContainer.isHidden = false
+            plansButton.isHidden = false
         case .monthlyAndYearly:
+            stateValue.whatToShow = .monthlyAndYearly
             specialGiftContainer.isHidden = true
             defaultDescriptions.isHidden = false
             defaultDescriptionsGradientImageView.isHidden = false
             howItWorksDescriptions.isHidden = true
             howItWorksGradientImageView.isHidden = true
+            howItWorksTitleLabel.isHidden = true
             monthAndYearSubscriptionContainer.isHidden = false
             weekSubscriptionContainer.isHidden = true
+            plansButton.isHidden = true
         case .speciealGift:
+            stateValue.whatToShow = .speciealGift
             specialGiftContainer.isHidden = false
         }
     }

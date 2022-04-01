@@ -15,7 +15,7 @@ protocol StorySelectCoordinatorProtocol {
    
 }
 
-final class StorySelectCoordinator: Coordinatable, StorySelectCoordinatorProtocol, UserSessionServiceProvidable {
+final class StorySelectCoordinator: Coordinatable, StorySelectCoordinatorProtocol, UserSessionServiceProvidable, PurchesServiceProvidable {
     var navigationController: UINavigationController?
     
     init(navigationController: UINavigationController?) {
@@ -29,6 +29,15 @@ final class StorySelectCoordinator: Coordinatable, StorySelectCoordinatorProtoco
     func start() {
         let controller = StorySelectViewController(coordinator: self, selectedCategory: userSession.selectedCategory)
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func displaySpecialGift() {
+        var whatToShow = SubscriptionsViewController.ScreenOptions.howItWorks
+        if purchases.isUserHasActiveSubscription {
+            whatToShow = .speciealGift
+        }
+        let coordinator = SubscriptionsCoordinator(whatToShow: whatToShow)
+        coordinator.start()
     }
     
     func displaySelectedStory() {

@@ -141,7 +141,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 case .heart:
                     break
                 case .gift:
-                    break
+                    (self.coordinator as? StorySelectCoordinator)?.displaySpecialGift()
                 case .layout:
                     let currentState = self.stateValue
                     currentState.layout = currentState.layout == .line ? .grid : .line
