@@ -16,11 +16,11 @@ enum Purchase {
     var productId: String {
         switch self {
         case .monthly:
-            return "surf.devip.print.monthly"
+            return "surf.devip.fairytale.monthly"
         case .weekly:
-            return "surf.devip.print.weekly"
+            return "surf.devip.fairytale.weekly"
         case .annual:
-            return "surf.devip.print.annual"
+            return "surf.devip.fairytale.annual"
         }
     }
 

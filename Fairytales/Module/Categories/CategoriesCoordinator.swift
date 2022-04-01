@@ -49,6 +49,11 @@ final class CategoriesCoordinator: Coordinatable, CategoriesCoordinatorProtocol 
         coordinator.start()
     }
     
+    func displaySpecialGift() {
+        let coordinator = SubscriptionsCoordinator(whatToShow: .speciealGift)
+        coordinator.start()
+    }
+    
     func end() {
 
     }

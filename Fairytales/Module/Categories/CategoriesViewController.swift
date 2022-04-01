@@ -69,7 +69,7 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
                 switch button {
                 case .settings: (self.coordinator as? CategoriesCoordinator)?.displaySettings()
                 case .favorites: (self.coordinator as? CategoriesCoordinator)?.displayFavorites()
-                case .gift: break
+                case .gift: (self.coordinator as? CategoriesCoordinator)?.displaySpecialGift()
                 }
             }).store(in: &bag)
         // lifecycle

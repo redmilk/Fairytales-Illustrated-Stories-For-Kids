@@ -15,16 +15,15 @@ import Firebase
 import Combine
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, PurchesServiceProvidable {
     
     var analytics: AnalyticsService!
-    
-    var bag = Set<AnyCancellable>()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         ApplicationGlobalConfig().configure()
         // Apphud
-        //Apphud.start(apiKey: "app_")
+        Apphud.start(apiKey: "app_YwLsuTLSmLBLd5Ew7498qEuPEA8Gqf")
+        purchases.input.send(.congifure)
         // Facebook
         //Settings.shared.isAdvertiserIDCollectionEnabled = true
         //FBSDKCoreKit.AppEvents.shared.activateApp()
@@ -32,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //analytics = AnalyticsService(application, launchOptions)
         
         FirebaseApp.configure()
-        
         
         return true
     }

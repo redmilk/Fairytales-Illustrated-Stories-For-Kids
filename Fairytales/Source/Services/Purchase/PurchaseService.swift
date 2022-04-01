@@ -41,6 +41,8 @@ final class PurchesService: AnalyticServiceProvider {
         case timerTick(String)
         case hasActiveSubscriptions(hasActiveSubscription: Bool, shouldShowHowItWorks: Bool)
         case gotUpdatedPrices(weekly: String, monthly: String, yearly: String)
+        case loadingState(Bool)
+        case displayAlert(text: String, title: String, action: VoidClosure?, buttonTitle: String?)
     }
     
     static var hasUserActiveSubscriptionPricesCached: [String]? {
@@ -126,6 +128,7 @@ final class PurchesService: AnalyticServiceProvider {
             self?.updatedAllPrices()
             self?.refreshUserPurchasesStatus()
             self?.isConnectionWasOccuredAndReceivedUpdates = true
+            self?.startTimerForGiftOffer()
         }
     }
     
@@ -152,62 +155,61 @@ final class PurchesService: AnalyticServiceProvider {
     }
     
     func purchaseSubscriptionPlan(_ plan: Purchase) {
-       /* output.send(.loadingState(true))
-        purchases.buy(model: plan).sink(receiveCompletion: { [weak self] completion in
+        output.send(.loadingState(true))
+        buy(model: plan).sink(receiveCompletion: { [weak self] completion in
             self?.output.send(.loadingState(false))
             switch completion {
             case .failure(let purchaseError):
                 guard let self = self else { return }
-                let errorText = self.purchases.handleErrorAsErrorText(purchaseError)
+                let errorText = self.handleErrorAsErrorText(purchaseError)
                 self.output.send(.displayAlert(text: errorText, title: "Purchase error", action: nil, buttonTitle: nil))
             case _: break
             }
         }, receiveValue: { [weak self] in
-            if self?.purchases.isUserHasActiveSubscription ?? false {
+            if self?.isUserHasActiveSubscription ?? false {
                 self?.output.send(.displayAlert(text: "Selected subscription plan was successfully purchased", title: "Success", action: nil, buttonTitle: nil))
                 Logger.log("Successfully purchased annual subscription", type: .purchase)
-                if let userActionBeforeSubscriptionDialog = self?.proceedWithActionAfterSubscriptionReady {
-                    self?.coordinator.endWithSelectedAction(userActionBeforeSubscriptionDialog)
-                }
+//                if let userActionBeforeSubscriptionDialog = self?.proceedWithActionAfterSubscriptionReady {
+//                    self?.coordinator.endWithSelectedAction(userActionBeforeSubscriptionDialog)
+//                }
             }
             Logger.log("Purchase is not detected", type: .purchase)
-        }).store(in: &bag) */
+        }).store(in: &bag)
     }
     
     func restoreLastSubscription() {
-       /* output.send(.loadingState(true))
-        purchases.restoreLastExpiredPurchase().sink(receiveCompletion: { [weak self] completion in
+       output.send(.loadingState(true))
+        restoreLastExpiredPurchase()
+            .sink(receiveCompletion: { [weak self] completion in
             guard let self = self else { return }
             self.output.send(.loadingState(false))
             switch completion {
             case .failure(let error):
-                let errorMessage = self.purchases.handleErrorAsErrorText(error)
+                let errorMessage = self.handleErrorAsErrorText(error)
                 self.output.send(.displayAlert(text: errorMessage, title: "Restore error", action: nil, buttonTitle: nil))
                 Logger.logError(error)
             case _: break
             }
         }, receiveValue: { [weak self] isSuccess in
-            if isSuccess && self?.purchases.isUserHasActiveSubscription ?? false {
+            if isSuccess && self?.isUserHasActiveSubscription ?? false {
                 self?.output.send(.displayAlert(text: "Your previous subscription plan was restored successfully", title: "Success", action: nil, buttonTitle: nil))
                 Logger.log("Restore subscription: Purchase is not detected", type: .purchase)
-                if let userActionBeforeSubscriptionDialog = self?.proceedWithActionAfterSubscriptionReady {
-                    self?.coordinator.endWithSelectedAction(userActionBeforeSubscriptionDialog)
-                }
+//                if let userActionBeforeSubscriptionDialog = self?.proceedWithActionAfterSubscriptionReady {
+//                    self?.coordinator.endWithSelectedAction(userActionBeforeSubscriptionDialog)
+//                }
             } else {
                 self?.output.send(.displayAlert(text: "Any data related to your previous subscription plan wasn't found", title: "Nothing to restore", action: nil, buttonTitle: nil))
             }
-        }).store(in: &bag) */
+        }).store(in: &bag)
     }
     
     func configurePricesForView(weeklyLabel: UILabel, monthlyLabel: UILabel, yearlyLabel: UILabel, yearlyDescriptionLabel: UILabel) {
-        /** Updated
-         self.weeklyPlanTextLabel.text = PurchesService.isUserHasActiveSubscriptionsStatusSinceLastUserSession ?
-         "Weekly Plan" : "Weekly Plan + 3 day free trial"
-         self.weeklyPriceLabel.text = PurchesService.previousWeeklyPrice
-         self.monthlyPriceLabel.text =  PurchesService.previousMonthlyPrice
-         self.yearlyPriceLabel.text = PurchesService.previousYearlyPrice
-         self.yearlyPriceDescriptionLabel.text = "Yearly Plan: \(PurchesService.previousYearlyPrice) / year"
-         */
+//         self.weeklyPlanTextLabel.text = PurchesService.isUserHasActiveSubscriptionsStatusSinceLastUserSession ?
+//         "Weekly Plan" : "Weekly Plan + 3 day free trial"
+//         self.weeklyPriceLabel.text = PurchesService.previousWeeklyPrice
+//         self.monthlyPriceLabel.text =  PurchesService.previousMonthlyPrice
+//         self.yearlyPriceLabel.text = PurchesService.previousYearlyPrice
+//         self.yearlyPriceDescriptionLabel.text = "Yearly Plan: \(PurchesService.previousYearlyPrice) / year"
     }
     
     func removeMultiSubscripionPopupIfOccures(for vc: UIViewController) {
@@ -240,8 +242,10 @@ final class PurchesService: AnalyticServiceProvider {
         if updatedPrices.yearly != "" {
             PurchesService.previousYearlyPrice = updatedPrices.yearly
         }
-        output.send(.gotUpdatedPrices(weekly: updatedPrices.weekly.withoutTrailingZeros, monthly:updatedPrices.monthly.withoutTrailingZeros, yearly: updatedPrices
-                                        .yearly.withoutTrailingZeros))
+        print(updatedPrices)
+        output.send(.gotUpdatedPrices(weekly: updatedPrices.weekly.withoutTrailingZeros,
+                                      monthly:updatedPrices.monthly.withoutTrailingZeros,
+                                      yearly: updatedPrices.yearly.withoutTrailingZeros))
     }
     
     func getPriceForPurchase(model: Purchase) -> String? {
@@ -319,8 +323,7 @@ final class PurchesService: AnalyticServiceProvider {
                 }
                 Apphud.purchase(product, callback: callback)
             }
-       }
-       .eraseToAnyPublisher()
+       }.eraseToAnyPublisher()
     }
         
     /// restore previous purchase which did expire
@@ -363,7 +366,7 @@ final class PurchesService: AnalyticServiceProvider {
                 if min <= 0 && sec <= 0 {
                     self.startTimerForGiftOffer()
                 }
-                self.output.send(.timerTick("\(min) min \(sec) sec"))
+                self.output.send(.timerTick("\(min) мин \(sec) сек"))
             })
     }
     

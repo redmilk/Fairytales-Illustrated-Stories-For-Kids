@@ -35,6 +35,7 @@ final class ApplicationCoordinator: Coordinatable, UserSessionServiceProvidable 
         OnboardingManager.shared?.onboardingFinishAction = { [weak self] in
             self?.childCoordinators.removeAll()
             self?.showContent()
+            self?.showSubscriptions()
             OnboardingManager.shared?.shouldShowOnboarding = false
             PurchesService.shouldDisplaySubscriptionsForCurrentUser = true
             OnboardingManager.shared = nil
@@ -46,6 +47,11 @@ final class ApplicationCoordinator: Coordinatable, UserSessionServiceProvidable 
     
     private func showContent() {
         let coordinator = CategoriesCoordinator(window: window)
+        coordinator.start()
+    }
+    
+    private func showSubscriptions() {
+        let coordinator = SubscriptionsCoordinator(whatToShow: .weekly)
         coordinator.start()
     }
 }

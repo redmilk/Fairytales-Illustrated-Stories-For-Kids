@@ -20,6 +20,17 @@ extension UIViewController: UIGestureRecognizerDelegate {
         return nil
     }
     
+    static var topViewController: UIViewController? {
+        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        if var topController = keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            return topController
+        }
+        return nil
+    }
+    
     func setCustomNavigationBackButton(with imageName: String, bag: inout Set<AnyCancellable>) {
         let backButton = UIBarButtonItem(
             image: UIImage(named: imageName)!,
