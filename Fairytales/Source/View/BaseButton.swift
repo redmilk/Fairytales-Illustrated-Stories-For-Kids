@@ -17,8 +17,12 @@ extension BaseButton {
 
 class BaseButton: UIButton {
     var onTouchesEnded: (() -> Void)?
-    var shouldAnimate: Bool = false
+    var viewListForAnimatingAccordinglyWithTranslationToRight: [UIView] = []
+    var viewListForAnimatingAccordinglyWithTranslationToLeft: [UIView] = []
+    var translationAmount: CGFloat = 20
     var reactiveIdentifier: String = ""
+    
+    var shouldAnimate: Bool = false
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -27,12 +31,21 @@ class BaseButton: UIButton {
         }
         UIView.animate(withDuration: 0.2) {
             self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            self.viewListForAnimatingAccordinglyWithTranslationToRight.forEach {
+                $0.transform = CGAffineTransform(scaleX: 0.9, y: 0.9).concatenating(CGAffineTransform(translationX: self.translationAmount, y: 0))
+            }
+            self.viewListForAnimatingAccordinglyWithTranslationToLeft.forEach {
+                $0.transform = CGAffineTransform(scaleX: 0.9, y: 0.9).concatenating(CGAffineTransform(translationX: -self.translationAmount, y: 0))
+            }
         }
     }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         UIView.animate(withDuration: 0.2) {
             self.transform = .identity
+            (self.viewListForAnimatingAccordinglyWithTranslationToRight + self.viewListForAnimatingAccordinglyWithTranslationToLeft).forEach {
+                $0.transform = .identity
+            }
         } completion: { [weak self] _ in
             self?.onTouchesEnded?()
         }

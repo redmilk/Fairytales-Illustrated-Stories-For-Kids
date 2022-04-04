@@ -14,6 +14,10 @@
 		790A49DB27F464BA00B9E7CE /* SubscriptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A49D727F464BA00B9E7CE /* SubscriptionsCoordinator.swift */; };
 		790A49DC27F464BA00B9E7CE /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A49D827F464BA00B9E7CE /* SubscriptionsViewController.swift */; };
 		790A49DE27F464BA00B9E7CE /* SubscriptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790A49DA27F464BA00B9E7CE /* SubscriptionsViewController.xib */; };
+		7919539127F99484006B60A3 /* ManageSubscriptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7919538D27F99484006B60A3 /* ManageSubscriptionsViewModel.swift */; };
+		7919539227F99484006B60A3 /* ManageSubscriptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7919538E27F99484006B60A3 /* ManageSubscriptionsCoordinator.swift */; };
+		7919539327F99484006B60A3 /* ManageSubscriptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7919538F27F99484006B60A3 /* ManageSubscriptionsViewController.xib */; };
+		7919539427F99484006B60A3 /* ManageSubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7919539027F99484006B60A3 /* ManageSubscriptionsViewController.swift */; };
 		792CDFAA27BAF16B00EF21D6 /* video-iphone.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 792CDFA827BAF16B00EF21D6 /* video-iphone.mp4 */; };
 		792CDFAB27BAF16B00EF21D6 /* video-ipad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 792CDFA927BAF16B00EF21D6 /* video-ipad.mp4 */; };
 		792CDFAD27BAF1C800EF21D6 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDFAC27BAF1C800EF21D6 /* PlayerView.swift */; };
@@ -142,6 +146,10 @@
 		790A49D727F464BA00B9E7CE /* SubscriptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsCoordinator.swift; sourceTree = "<group>"; };
 		790A49D827F464BA00B9E7CE /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
 		790A49DA27F464BA00B9E7CE /* SubscriptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubscriptionsViewController.xib; sourceTree = "<group>"; };
+		7919538D27F99484006B60A3 /* ManageSubscriptionsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsViewModel.swift; sourceTree = "<group>"; };
+		7919538E27F99484006B60A3 /* ManageSubscriptionsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsCoordinator.swift; sourceTree = "<group>"; };
+		7919538F27F99484006B60A3 /* ManageSubscriptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManageSubscriptionsViewController.xib; sourceTree = "<group>"; };
+		7919539027F99484006B60A3 /* ManageSubscriptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageSubscriptionsViewController.swift; sourceTree = "<group>"; };
 		792CDFA827BAF16B00EF21D6 /* video-iphone.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "video-iphone.mp4"; sourceTree = "<group>"; };
 		792CDFA927BAF16B00EF21D6 /* video-ipad.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "video-ipad.mp4"; sourceTree = "<group>"; };
 		792CDFAC27BAF1C800EF21D6 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -295,6 +303,17 @@
 			path = Subscriptions;
 			sourceTree = "<group>";
 		};
+		7919538C27F993FC006B60A3 /* ManageSubscriptions */ = {
+			isa = PBXGroup;
+			children = (
+				7919538F27F99484006B60A3 /* ManageSubscriptionsViewController.xib */,
+				7919539027F99484006B60A3 /* ManageSubscriptionsViewController.swift */,
+				7919538D27F99484006B60A3 /* ManageSubscriptionsViewModel.swift */,
+				7919538E27F99484006B60A3 /* ManageSubscriptionsCoordinator.swift */,
+			);
+			path = ManageSubscriptions;
+			sourceTree = "<group>";
+		};
 		792CDFA727BAF14D00EF21D6 /* LaunchVideo */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +456,7 @@
 		7985DC4E279EC6F8005459E0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				7919538C27F993FC006B60A3 /* ManageSubscriptions */,
 				7985DC50279EC6F8005459E0 /* SettingsViewController.swift */,
 				7985DC4F279EC6F8005459E0 /* SettingsCoordinator.swift */,
 				7985DC52279EC6F8005459E0 /* SettingsViewController.xib */,
@@ -800,6 +820,7 @@
 				79958D5627A7AAC000A32E5A /* Lato-Medium.ttf in Resources */,
 				79878EF227C3AEA0008DBD86 /* GenderSelectViewController.xib in Resources */,
 				7985DC7B279EC6F8005459E0 /* CustomAlert.xib in Resources */,
+				7919539327F99484006B60A3 /* ManageSubscriptionsViewController.xib in Resources */,
 				790A49DE27F464BA00B9E7CE /* SubscriptionsViewController.xib in Resources */,
 				792CDFAA27BAF16B00EF21D6 /* video-iphone.mp4 in Resources */,
 				79958D4927A7AAC000A32E5A /* Lato-Bold.ttf in Resources */,
@@ -863,6 +884,7 @@
 				7985DCB2279EC6F8005459E0 /* String+Extensions.swift in Sources */,
 				7985DC65279EC6F8005459E0 /* StoryCoordinator.swift in Sources */,
 				79958D2127A76B0300A32E5A /* EventTransmittable.swift in Sources */,
+				7919539127F99484006B60A3 /* ManageSubscriptionsViewModel.swift in Sources */,
 				7985DCDB279EC6F8005459E0 /* Coordinatable.swift in Sources */,
 				799E809727AC272B00ABE0C8 /* iCarousel.m in Sources */,
 				793A920427AFC22C000F3B0C /* UIFont+Extensions.swift in Sources */,
@@ -880,6 +902,7 @@
 				7907A48127B98A4A0024FBEC /* FairytaleDTO.swift in Sources */,
 				7985DC77279EC6F8005459E0 /* ApplicationCoordinator.swift in Sources */,
 				7985DCB0279EC6F8005459E0 /* UIViewController+Extensions.swift in Sources */,
+				7919539427F99484006B60A3 /* ManageSubscriptionsViewController.swift in Sources */,
 				795EA56927A80A5F0016C417 /* KeyChain.swift in Sources */,
 				793A920227AF804A000F3B0C /* Set+Extensions.swift in Sources */,
 				7985DC53279EC6F8005459E0 /* SettingsCoordinator.swift in Sources */,
@@ -895,6 +918,7 @@
 				7907A47927B989FC0024FBEC /* PageModel.swift in Sources */,
 				790A49DB27F464BA00B9E7CE /* SubscriptionsCoordinator.swift in Sources */,
 				79878EF427C53B50008DBD86 /* StoryTextFormatter.swift in Sources */,
+				7919539227F99484006B60A3 /* ManageSubscriptionsCoordinator.swift in Sources */,
 				79958D1F27A76A1200A32E5A /* StateHandable.swift in Sources */,
 				793CA39627AFEFCB005D0B77 /* LaunchAnimationViewController.swift in Sources */,
 				79B2A6CE27B9F69000188BC1 /* ImageLoader.swift in Sources */,
@@ -1061,7 +1085,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
@@ -1100,7 +1124,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;

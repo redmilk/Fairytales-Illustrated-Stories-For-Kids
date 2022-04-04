@@ -21,9 +21,10 @@ extension SettingsViewController {
 
 final class SettingsViewController: BaseViewController {
     enum Buttons {
-        case back, heart
+        case back, heart, manageSubscription
     }
             
+    @IBOutlet weak var manageSubscriptionButton: BaseButton!
     @IBOutlet weak var backButton: BaseButton!
     @IBOutlet weak var favoritesButton: BaseButton!
     
@@ -40,19 +41,21 @@ final class SettingsViewController: BaseViewController {
         Logger.log(String(describing: self), type: .deinited)
     }
     override func configure() {
-
+        
     }
     override func handleEvents() {
         // buttons
         Publishers.MergeMany(
             backButton.publisher().map { _ in Buttons.back },
-            favoritesButton.publisher().map { _ in Buttons.heart })
+            favoritesButton.publisher().map { _ in Buttons.heart },
+            manageSubscriptionButton.publisher().map { _ in Buttons.manageSubscription })
             .sink(receiveValue: { [weak self] button in
                 guard let self = self else { return }
                 switch button {
                 case .back: self.coordinator.end()
-                case .heart:
-                    break
+                case .heart: break
+                case .manageSubscription:
+                    (self.coordinator as? SettingsCoordinator)?.displayManageSubscription()
                 }
             }).store(in: &bag)
     }

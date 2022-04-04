@@ -1,9 +1,9 @@
 //
 //  
-//  SettingsCoordinator.swift
-//  Fairytales
+//  ManageSubscriptionsCoordinator.swift
+//  AirPrint
 //
-//  Created by Danyl Timofeyev on 14.01.2022.
+//  Created by Danyl Timofeyev on 11.12.2021.
 //
 //
 
@@ -11,11 +11,12 @@ import Foundation
 import UIKit.UINavigationController
 import Combine
 
-protocol SettingsCoordinatorProtocol {
-   func displayManageSubscription()
+protocol ManageSubscriptionsCoordinatorProtocol {
+    func end()
+    func displayHowItWorks()
 }
 
-final class SettingsCoordinator: Coordinatable, SettingsCoordinatorProtocol {
+final class ManageSubscriptionsCoordinator: Coordinatable, ManageSubscriptionsCoordinatorProtocol {
     var navigationController: UINavigationController?
     
     init(navigationController: UINavigationController?) {
@@ -26,15 +27,16 @@ final class SettingsCoordinator: Coordinatable, SettingsCoordinatorProtocol {
     }
     
     func start() {
-        let controller = SettingsViewController(coordinator: self)
+        let viewModel = ManageSubscriptionsViewModel(coordinator: self)
+        let controller = ManageSubscriptionsViewController(viewModel: viewModel)
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    func displayManageSubscription() {
-        let coordinator = ManageSubscriptionsCoordinator(navigationController: navigationController)
+    func displayHowItWorks() {
+        let coordinator = SubscriptionsCoordinator(whatToShow: .howItWorks)
         coordinator.start()
     }
-
+    
     func end() {
         navigationController?.popViewController(animated: true)
     }

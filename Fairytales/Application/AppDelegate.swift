@@ -28,8 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PurchesServiceProvidable 
         //Settings.shared.isAdvertiserIDCollectionEnabled = true
         //FBSDKCoreKit.AppEvents.shared.activateApp()
         // Firebase
-        //analytics = AnalyticsService(application, launchOptions)
-        
+        analytics = AnalyticsService(application, launchOptions)
         FirebaseApp.configure()
         
         return true
