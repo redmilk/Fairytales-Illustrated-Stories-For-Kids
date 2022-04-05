@@ -145,7 +145,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
     }
     
     private func loadStory() {
-        let isGirl: Bool = false
+        let isBoy: Bool = userSession.isBoy
         let isIpad: Bool = UIDevice.current.isIPad
         let educationalCategory = userSession.selectedStory.pages.publisher
         let basePath = userSession.selectedStory.dto.storage_path
@@ -155,8 +155,10 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
             Future<(UIImage, Int), Never> ({ [weak self] promise in
                 guard let self = self else { return }
                 let page = Int(pageModel.page)!
-                let imagePath = pageModel.images.getImagePath(boy: isGirl, ipad: isIpad)
+                let imagePath = pageModel.images.getImagePath(boy: isBoy, ipad: isIpad)
                 let path = basePath + imagePath
+                Logger.log(path, type: .purchase)
+                
                 self.imageDownloader.fetchFromCache(path).sink(receiveValue: { image in
                     if let img = image {
                         promise(.success((img, page)))

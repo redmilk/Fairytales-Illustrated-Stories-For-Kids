@@ -49,7 +49,6 @@ final class ManageSubscriptionsViewController: UIViewController,
     
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var buttonsContainerWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var navigationBarExtenderHeight: NSLayoutConstraint!
     
     private let viewModel: ManageSubscriptionsViewModel
     private var bag = Set<AnyCancellable>()
@@ -69,10 +68,6 @@ final class ManageSubscriptionsViewController: UIViewController,
         configureView()
         handleStates()
         viewModel.input.send(.viewDidLoad)
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            navigationBarExtenderHeight.isActive = false
-            buttonsContainerWidthConstraint.isActive = false
-        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -113,8 +108,8 @@ private extension ManageSubscriptionsViewController {
                 self.weeklyPriceLabel.text = weekly
                 self.monthlyPriceLabel.text = monthly
                 self.yearlyPriceDescriptionLabel.text = "Подписка на год"
-                let strikedSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
-                let fontSize: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 17 : 12
+                let strikedSize: CGFloat = 14//UIDevice.current.userInterfaceIdiom == .pad ? 18 : 13
+                let fontSize: CGFloat = 14//UIDevice.current.userInterfaceIdiom == .pad ? 17 : 12
                 if let yearlyStriked = self.purchases.getFormattedYearPriceForPurchase(isPurePrice: true, size: strikedSize) {
                     let yearlyPrice = String.makeAttriabutedStringNoFormatting(yearly, size: fontSize)
                     let separator = String.makeAttriabutedStringNoFormatting(" / ", size: fontSize)

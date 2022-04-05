@@ -49,8 +49,8 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Настройки" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJZ-Ja-icI">
-                            <rect key="frame" x="392.5" y="46.5" width="80.5" height="19.5"/>
-                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                            <rect key="frame" x="391.5" y="46.5" width="82" height="19.5"/>
+                            <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                             <color key="textColor" red="0.87775531780000005" green="0.99999994039999995" blue="0.95167364679999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -65,7 +65,7 @@
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qi3-cm-Wz9">
-                    <rect key="frame" x="202.5" y="80" width="460" height="260"/>
+                    <rect key="frame" x="202.5" y="76.5" width="460" height="260"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qLO-jL-tT6">
                             <rect key="frame" x="60" y="12" width="340" height="236"/>
@@ -79,7 +79,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="waJ-dp-alv">
                                     <rect key="frame" x="0.0" y="17" width="340" height="66"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OFd-zY-2sh">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OFd-zY-2sh">
                                             <rect key="frame" x="60" y="16" width="220" height="34"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="8"/>
@@ -152,7 +152,10 @@
                                     <rect key="frame" x="0.0" y="167" width="340" height="69"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3D-gr-H43" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                                            <rect key="frame" x="37.5" y="17" width="265" height="35"/>
+                                            <rect key="frame" x="36" y="16.5" width="268" height="35.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="L3D-gr-H43" secondAttribute="height" multiplier="53:7" id="KSK-QN-KoX"/>
+                                            </constraints>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="Продолжить" backgroundImage="button-continue-long-blank">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -174,7 +177,9 @@
                         <constraint firstAttribute="trailing" secondItem="qLO-jL-tT6" secondAttribute="trailing" constant="60" id="15F-tq-WU6"/>
                         <constraint firstItem="qLO-jL-tT6" firstAttribute="leading" secondItem="Qi3-cm-Wz9" secondAttribute="leading" constant="60" id="4yf-fI-RmA"/>
                         <constraint firstItem="qLO-jL-tT6" firstAttribute="top" secondItem="Qi3-cm-Wz9" secondAttribute="top" constant="12" id="CH6-9t-pwD"/>
+                        <constraint firstAttribute="width" constant="460" id="Yb8-Ad-2KI"/>
                         <constraint firstAttribute="bottom" secondItem="qLO-jL-tT6" secondAttribute="bottom" constant="12" id="eZa-ST-iox"/>
+                        <constraint firstAttribute="height" constant="260" id="zfv-Se-48h"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
@@ -186,12 +191,10 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="tcE-t0-4Sn" secondAttribute="trailing" id="1DU-Ya-sbK"/>
+                <constraint firstItem="Qi3-cm-Wz9" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.1" id="43q-PW-V1c"/>
                 <constraint firstItem="tcE-t0-4Sn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6YB-ID-8hM"/>
                 <constraint firstItem="tcE-t0-4Sn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Aoi-iW-aYl"/>
                 <constraint firstItem="WuE-kV-NEa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MGf-ZF-pKI"/>
-                <constraint firstItem="Qi3-cm-Wz9" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.531792" id="RC0-O5-gRe"/>
-                <constraint firstItem="Qi3-cm-Wz9" firstAttribute="top" secondItem="tcE-t0-4Sn" secondAttribute="bottom" id="Sey-Fr-OBE"/>
-                <constraint firstItem="Qi3-cm-Wz9" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.693333" id="fHA-by-6lz"/>
                 <constraint firstItem="WuE-kV-NEa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="how-W7-wra"/>
                 <constraint firstItem="Qi3-cm-Wz9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lDm-tu-ghN"/>
                 <constraint firstAttribute="trailing" secondItem="WuE-kV-NEa" secondAttribute="trailing" id="xSj-UV-9BT"/>
