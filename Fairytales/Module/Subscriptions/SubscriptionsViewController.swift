@@ -92,17 +92,17 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     }
     
     override func configure() {
-        var whatToShow = ScreenOptions.weekly
-        if purchases.isHowItWorksShouldBeVisibleForUser {
-            whatToShow = .howItWorks
-        }
-        if purchases.isGiftPopupShouldBeVisibleForUser {
-            whatToShow = .speciealGift
-        }
-        if purchases.isWeeklyPlanWithDiscaunt {
-            whatToShow = .weeklyWithDiscount
-        }
-        stateValue.whatToShow = whatToShow
+//        var whatToShow = ScreenOptions.weekly
+//        if purchases.isHowItWorksShouldBeVisibleForUser {
+//            whatToShow = .howItWorks
+//        }
+//        if purchases.isGiftPopupShouldBeVisibleForUser {
+//            whatToShow = .speciealGift
+//        }
+//        if purchases.isWeeklyPlanWithDiscaunt {
+//            whatToShow = .weeklyWithDiscount
+//        }
+        stateValue.whatToShow = stateValue.whatToShow
         
         specialGiftPriceLabel.text = PurchesService.previousYearlyPrice
         weeklyPriceLabel.text = PurchesService.previousWeeklyPrice
@@ -219,6 +219,13 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
             monthAndYearSubscriptionContainer.isHidden = true
             weekSubscriptionContainer.isHidden = false
             plansButton.isHidden = false
+            if !purchases.isUserEverHadSubscription {
+                howItWorksDescriptions.isHidden = false
+                howItWorksGradientImageView.isHidden = false
+                howItWorksTitleLabel.isHidden = false
+                defaultDescriptions.isHidden = true
+                defaultDescriptionsGradientImageView.isHidden = true
+            }
         case .monthlyAndYearly:
             stateValue.whatToShow = .monthlyAndYearly
             specialGiftContainer.isHidden = true

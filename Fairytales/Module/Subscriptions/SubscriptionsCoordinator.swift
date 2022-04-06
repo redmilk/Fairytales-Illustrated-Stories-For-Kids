@@ -29,8 +29,8 @@ final class SubscriptionsCoordinator: Coordinatable, SubscriptionsCoordinatorPro
     
     func start() {
         controller = SubscriptionsViewController(coordinator: self, whatToShow: whatToShow)
-        controller?.preferredContentSize = CGSize(width: 865, height: 370)
-        controller?.modalPresentationStyle = .formSheet
+        //controller?.preferredContentSize = CGSize(width: 865, height: 370)
+        controller?.modalPresentationStyle = .fullScreen
         UIViewController.topViewController?.present(controller!, animated: true, completion: nil)
     }
     
