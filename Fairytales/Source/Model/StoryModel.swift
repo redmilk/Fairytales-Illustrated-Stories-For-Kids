@@ -30,11 +30,11 @@ final class StoryModel: Hashable, Comparable {
     let colorForCategory: UIColor
     var dto: FairytaleDTO!
     
-    init(dto: FairytaleDTO) {
+    init(dto: FairytaleDTO, isBoy: Bool) {
         self.dto = dto
         let isIpad = UIDevice.current.isIPad
-        let thumbnailPath = isIpad ? dto.image_ipad : dto.image_iphone
-        title = dto.titles["ru"] ?? dto.default_title ?? "---"
+        let thumbnailPath = isIpad ? (isBoy ? dto.cover.ipadBoy : dto.cover.ipadGirl) : (isBoy ? dto.cover.iphoneBoy : dto.cover.iphoneGirl)
+        title = dto.titles?["ru"] ?? dto.default_title ?? "---"
         assetThumbnail = ""
         isHeartHidden = false
         isFavorite = false

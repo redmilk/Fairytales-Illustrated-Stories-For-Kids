@@ -17,7 +17,7 @@ class CacherError: Error {
 
 final class ImageLoader: ImageLoaderType {
     //private let cache: ImageCacher
-    private let cache = ImageCache.default
+    let cache = ImageCache.default
     init() {
         cache.diskStorage.config.sizeLimit = 1000 * 1024 * 1024
         cache.diskStorage.config.expiration = .never

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import KingfisherWebP
+import Kingfisher
 
 struct ApplicationGlobalConfig {
     func configure() {
@@ -14,5 +16,12 @@ struct ApplicationGlobalConfig {
         UINavigationBar.appearance().isTranslucent = true
         // Cache settings
         //
+        // WebP images
+        KingfisherManager.shared.defaultOptions += [
+          .processor(WebPProcessor.default),
+          .cacheSerializer(WebPSerializer.default)
+        ]
+
+       
     }
 }

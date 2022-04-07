@@ -101,12 +101,30 @@
         }
       },
       {
+        "package": "KingfisherWebP",
+        "repositoryURL": "https://github.com/yeatse/KingfisherWebP.git",
+        "state": {
+          "branch": "master",
+          "revision": "3b68ee4c284b585ebcde29111ae318d7ce4a0d01",
+          "version": null
+        }
+      },
+      {
         "package": "leveldb",
         "repositoryURL": "https://github.com/firebase/leveldb.git",
         "state": {
           "branch": null,
           "revision": "0706abcc6b0bd9cedfbb015ba840e4a780b5159b",
           "version": "1.22.2"
+        }
+      },
+      {
+        "package": "libwebp",
+        "repositoryURL": "https://github.com/SDWebImage/libwebp-Xcode",
+        "state": {
+          "branch": null,
+          "revision": "2b3b43faaef54d1b897482428428357b7f7cd08b",
+          "version": "1.2.1"
         }
       },
       {

@@ -23,8 +23,9 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
     @IBOutlet weak var carousel: iCarousel!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var favoritesCounterLabel: UILabel!
-    
+    private lazy var fDisplayManager = CategoriesDisplayManager()
     private var categories: [CategorySection] = []
+    private var previousItem: CarouselItemView?
     
     init(coordinator: Coordinatable) {
         super.init(coordinator: coordinator, type: Self.self, initialState: BaseState())
@@ -39,12 +40,12 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
     override func configure() {
         loadData()
         
-        carousel.type = .linear
+        carousel.type = .rotary
         carousel.delegate = self
         carousel.centerItemWhenSelected = true
         carousel.dataSource = self
         carousel.isPagingEnabled = true
-        carousel.isScrollEnabled = false
+        carousel.isScrollEnabled = true
         carousel.currentItemIndex = 1
         pageControl.numberOfPages = categories.count
         pageControl.currentPage = 1
@@ -90,8 +91,9 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
         FirebaseClient.shared.signInAnonim()
         FirebaseClient.shared.userSubject
             .compactMap { $0 }
-            .sink(receiveValue: { user in
-                FirebaseClient.shared.requestAllFairytalesAndMakeCategories()
+            .sink(receiveValue: { [weak self] user in
+                guard let self = self else { return }
+                FirebaseClient.shared.requestAllFairytalesAndMakeCategories(isForBoy: self.userSession.isBoy)
             }).store(in: &bag)
         
         FirebaseClient.shared.categoriesInternalType
@@ -121,6 +123,7 @@ extension CategoriesViewController: iCarouselDelegate, iCarouselDataSource {
     func numberOfItems(in carousel: iCarousel) -> Int {
         return categories.count
     }
+    
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         var recycled: CarouselItemView
 
@@ -139,18 +142,29 @@ extension CategoriesViewController: iCarouselDelegate, iCarouselDataSource {
         }
         return recycled
     }
+    
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         if (option == .spacing) {
-            return value * 1.15
+            return value * 1.2
         }
         if (option == .visibleItems) {
             return 3
         }
+        if (option == .wrap) {
+            return 1
+        }
+        if (option == .count) {
+            return 5
+        }
         return value
     }
+    
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
         if let node = carousel.currentItemView as? CarouselItemView {
             node.layoutState = .selected
+            previousItem?.layoutState = .idle
+            previousItem = node
+            
             userSession.selectedCategory = userSession.categories.toSortedArray[carousel.currentItemIndex]
             self.view.layer.removeAllAnimations()
             UIView.animate(withDuration: 1, delay: 0, options: [.allowUserInteraction], animations: {
@@ -159,7 +173,7 @@ extension CategoriesViewController: iCarouselDelegate, iCarouselDataSource {
             pageControl.currentPage = carousel.currentItemIndex
         }
     }
-        
+    
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
         //userSession.selectedCategory = userSession.categories.toSortedArray[carousel.currentItemIndex]
         guard index != carousel.currentItemIndex else { return }

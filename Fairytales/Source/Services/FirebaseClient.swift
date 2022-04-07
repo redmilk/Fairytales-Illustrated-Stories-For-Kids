@@ -52,7 +52,29 @@ final class FirebaseClient: ImageDownloaderProvidable {
             }
     }
     
-    func requestAllFairytalesAndMakeCategories() {
+    // for copy existing story, or extracting fields, or updating storie's inner fields structure
+    func copyFields() {
+        let db = Firestore.firestore()
+        var cancellable: AnyCancellable?
+        cancellable = db.collection("categories").document("healing").collection("fairytales").getDocuments()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error): Logger.logError(error)
+                case .finished: break
+                }
+                cancellable?.cancel()
+                cancellable = nil
+            }, receiveValue: { snapshot in
+                for document in snapshot.documents {
+                    db.collection("categories").document("healing").collection("fairytales").document("copy-2").setData(document.data()) { error in
+                        guard let error = error else { return }
+                        Logger.logError(error)
+                    }
+                }
+            })
+    }
+    
+    func requestAllFairytalesAndMakeCategories(isForBoy: Bool) {
         requestFairytales(by: .educational)
         requestFairytales(by: .healing)
         requestFairytales(by: .silent)
@@ -85,13 +107,13 @@ final class FirebaseClient: ImageDownloaderProvidable {
                     //.filter { !$0.storage_path.contains("great_happiness") }
                     .flatMap({ fairytaleDTO -> AnyPublisher<StoryModel, Never> in
                         Future<StoryModel, Never> ({ [weak self] promise in
-                            let path = fairytaleDTO.storage_path + (UIDevice.current.isIPad ? fairytaleDTO.image_ipad : fairytaleDTO.image_iphone)
+                            let path = fairytaleDTO.storage_path + (UIDevice.current.isIPad ? (isForBoy ? fairytaleDTO.cover.ipadBoy : fairytaleDTO.cover.ipadGirl) : (isForBoy ? fairytaleDTO.cover.iphoneBoy : fairytaleDTO.cover.iphoneGirl))
                             FirebaseClient.shared.storage.reference(withPath: path).downloadURL(completion: { url, error in
                                 if let u = url {
                                     print(u)
                                 }
                                 if let error = error { Logger.logError(error) }
-                                let fairytale = StoryModel(dto: fairytaleDTO)
+                                let fairytale = StoryModel(dto: fairytaleDTO, isBoy: isForBoy)
                                 fairytale.imageThumbnail = Constants.storyThumbnailPlaceholder
                                 guard let url = url else { return promise(.success(fairytale)) }
                                 var cancellable: AnyCancellable?
@@ -103,14 +125,14 @@ final class FirebaseClient: ImageDownloaderProvidable {
                                             break
                                         case .failure(let error):
                                             Logger.logError(error)
-                                            let fairytale = StoryModel(dto: fairytaleDTO)
+                                            let fairytale = StoryModel(dto: fairytaleDTO, isBoy: isForBoy)
                                             fairytale.imageThumbnail = Constants.storyThumbnailPlaceholder
                                             promise(.success(fairytale))
                                         }
                                         cancellable?.cancel()
                                         cancellable = nil
                                     }, receiveValue: { image in
-                                        let fairytale = StoryModel(dto: fairytaleDTO)
+                                        let fairytale = StoryModel(dto: fairytaleDTO, isBoy: isForBoy)
                                         fairytale.imageThumbnail = image
                                         promise(.success(fairytale))
                                     })
@@ -136,10 +158,10 @@ final class FirebaseClient: ImageDownloaderProvidable {
                     })
                     .flatMap({ fairytaleDTO -> AnyPublisher<StoryModel, Never> in
                         return Future<StoryModel, Never> ({ [weak self] promise in
-                            let path = fairytaleDTO.storage_path + (UIDevice.current.isIPad ? fairytaleDTO.image_ipad : fairytaleDTO.image_iphone)
+                            let path = fairytaleDTO.storage_path + (UIDevice.current.isIPad ? (isForBoy ? fairytaleDTO.cover.ipadBoy : fairytaleDTO.cover.ipadGirl) : (isForBoy ? fairytaleDTO.cover.iphoneBoy : fairytaleDTO.cover.iphoneGirl))
                             FirebaseClient.shared.storage.reference(withPath: path).downloadURL(completion: { url, error in
                                 if let error = error { Logger.logError(error) }
-                                let fairytale = StoryModel(dto: fairytaleDTO)
+                                let fairytale = StoryModel(dto: fairytaleDTO, isBoy: isForBoy)
                                 fairytale.imageThumbnail = Constants.storyThumbnailPlaceholder
                                 guard let url = url else { return promise(.success(fairytale)) }
                                 var cancellable: AnyCancellable?
@@ -150,14 +172,14 @@ final class FirebaseClient: ImageDownloaderProvidable {
                                         case .finished: break
                                         case .failure(let error):
                                             Logger.logError(error)
-                                            let fairytale = StoryModel(dto: fairytaleDTO)
+                                            let fairytale = StoryModel(dto: fairytaleDTO, isBoy: isForBoy)
                                             fairytale.imageThumbnail = Constants.storyThumbnailPlaceholder
                                             promise(.success(fairytale))
                                         }
                                         cancellable?.cancel()
                                         cancellable = nil
                                     }, receiveValue: { image in
-                                        let fairytale = StoryModel(dto: fairytaleDTO)
+                                        let fairytale = StoryModel(dto: fairytaleDTO, isBoy: isForBoy)
                                         fairytale.imageThumbnail = image
                                         promise(.success(fairytale))
                                     })
@@ -181,10 +203,11 @@ final class FirebaseClient: ImageDownloaderProvidable {
                     })
                     .flatMap({ fairytaleDTO -> AnyPublisher<StoryModel, Never> in
                         Future<StoryModel, Never> ({ [weak self] promise in
-                            let path = fairytaleDTO.storage_path + (UIDevice.current.isIPad ? fairytaleDTO.image_ipad : fairytaleDTO.image_iphone)
+                            let path = fairytaleDTO.storage_path + (UIDevice.current.isIPad ? (isForBoy ? fairytaleDTO.cover.ipadBoy : fairytaleDTO.cover.ipadGirl) : (isForBoy ? fairytaleDTO.cover.iphoneBoy : fairytaleDTO.cover.iphoneGirl))
+                            //let path = fairytaleDTO.storage_path + (UIDevice.current.isIPad ? fairytaleDTO.image_ipad : fairytaleDTO.image_iphone)
                             FirebaseClient.shared.storage.reference(withPath: path).downloadURL(completion: { url, error in
                                 if let error = error { Logger.logError(error) }
-                                let fairytale = StoryModel(dto: fairytaleDTO)
+                                let fairytale = StoryModel(dto: fairytaleDTO, isBoy: isForBoy)
                                 fairytale.imageThumbnail = Constants.storyThumbnailPlaceholder
                                 guard let url = url else { return promise(.success(fairytale)) }
                                 var cancellable: AnyCancellable?
@@ -195,14 +218,14 @@ final class FirebaseClient: ImageDownloaderProvidable {
                                         case .finished: break
                                         case .failure(let error):
                                             Logger.logError(error)
-                                            let fairytale = StoryModel(dto: fairytaleDTO)
+                                            let fairytale = StoryModel(dto: fairytaleDTO, isBoy: isForBoy)
                                             fairytale.imageThumbnail = Constants.storyThumbnailPlaceholder
                                             promise(.success(fairytale))
                                         }
                                         cancellable?.cancel()
                                         cancellable = nil
                                     }, receiveValue: { image in
-                                        let fairytale = StoryModel(dto: fairytaleDTO)
+                                        let fairytale = StoryModel(dto: fairytaleDTO, isBoy: isForBoy)
                                         fairytale.imageThumbnail = image
                                         promise(.success(fairytale))
                                     })

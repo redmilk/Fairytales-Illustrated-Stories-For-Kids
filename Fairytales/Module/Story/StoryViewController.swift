@@ -127,7 +127,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
         let index = max(0, stateValue.currentPage)
         let image = userSession.selectedStory.pagePictures[index]
         let text = userSession.selectedStory.pages[index].text.getText(boy: userSession.isBoy, locale: userSession.locale)
-        pageImage.image = image
+        pageImage.kf.base.image = image
         pageTextLabel.text = text
         maxPageNumberLabel.text = stateValue.pagesTotal.description
         currentPageNumberLabel.setTitle((index + 1).description, for: .normal)
@@ -145,6 +145,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
     }
     
     private func loadStory() {
+        let imageViewForDownloadingPictures = UIImageView(frame: .zero)
         let isBoy: Bool = userSession.isBoy
         let isIpad: Bool = UIDevice.current.isIPad
         let educationalCategory = userSession.selectedStory.pages.publisher
@@ -158,7 +159,6 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
                 let imagePath = pageModel.images.getImagePath(boy: isBoy, ipad: isIpad)
                 let path = basePath + imagePath
                 Logger.log(path, type: .purchase)
-                
                 self.imageDownloader.fetchFromCache(path).sink(receiveValue: { image in
                     if let img = image {
                         promise(.success((img, page)))
@@ -166,21 +166,34 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
                         FirebaseClient.shared.storage.reference(withPath: path).downloadURL(completion: { url, error in
                             if let error = error { Logger.logError(error) }
                             guard let url = url else { return promise(.success((Constants.storyThumbnailPlaceholder, page))) }
-                            var cancellable: AnyCancellable?
-                            cancellable = self.imageDownloader.loadImage(withURL: url, cacheKey: path)
-                                .subscribe(on: Scheduler.backgroundWorkScheduler)
-                                .sink(receiveCompletion: { completion in
-                                    switch completion {
-                                    case .finished: break
+                            if path.contains(".webp") {
+                                imageViewForDownloadingPictures.kf.setImage(with: url, placeholder: nil, options: nil) { result in
+                                    switch result {
+                                    case .success(let imageResult):
+                                        promise(.success((imageResult.image, page)))
+                                        self.imageDownloader.cache.store(imageResult.image, forKey: path)
                                     case .failure(let error):
                                         Logger.logError(error)
                                         promise(.success((Constants.storyThumbnailPlaceholder, page)))
                                     }
-                                    cancellable?.cancel()
-                                    cancellable = nil
-                                }, receiveValue: { image in
-                                    promise(.success((image, page)))
-                                })
+                                }
+                            } else {
+                                var cancellable: AnyCancellable?
+                                cancellable = self.imageDownloader.loadImage(withURL: url, cacheKey: path)
+                                    .subscribe(on: Scheduler.backgroundWorkScheduler)
+                                    .sink(receiveCompletion: { completion in
+                                        switch completion {
+                                        case .finished: break
+                                        case .failure(let error):
+                                            Logger.logError(error)
+                                            promise(.success((Constants.storyThumbnailPlaceholder, page)))
+                                        }
+                                        cancellable?.cancel()
+                                        cancellable = nil
+                                    }, receiveValue: { image in
+                                        promise(.success((image, page)))
+                                    })
+                            }
                         })
                     }
                 }).store(in: &self.bag)

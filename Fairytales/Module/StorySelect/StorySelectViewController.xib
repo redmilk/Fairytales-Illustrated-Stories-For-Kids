@@ -135,7 +135,7 @@
                             <color key="pageIndicatorTintColor" red="0.45519328120000002" green="0.41392958159999999" blue="0.49020493030000001" alpha="0.54805712129999995" colorSpace="custom" customColorSpace="displayP3"/>
                             <color key="currentPageIndicatorTintColor" red="0.99719864130000002" green="0.59852820630000003" blue="0.48231929540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </pageControl>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-uQ-zUd" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm0-uQ-zUd" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
                             <rect key="frame" x="805" y="9" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="bm0-uQ-zUd" secondAttribute="height" multiplier="1:1" id="T8N-uF-7c1"/>
