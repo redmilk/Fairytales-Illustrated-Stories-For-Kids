@@ -163,7 +163,7 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
         if let node = view as? CarouselItemView {
             recycled = node
         } else {
-            let node = CarouselItemView(frame: .init(origin: .zero, size: CGSize(width: Constants.menuItemWidth, height: Constants.menuItemWidth)))
+            let node = CarouselItemView(frame: .init(origin: .zero, size: CGSize(width: Constants.storySelectWidth, height: Constants.storySelectHeight)))
             recycled = node
         }
         let item = stateValue.selectedCategory.items[index]

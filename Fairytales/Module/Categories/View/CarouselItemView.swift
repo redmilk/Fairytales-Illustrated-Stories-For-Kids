@@ -16,6 +16,8 @@ final class CarouselItemView: UIView {
     @IBOutlet private weak var containerBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var categoryDescriptionLabel: UILabel!
+    @IBOutlet weak var stackviewCenterY: NSLayoutConstraint!
+    @IBOutlet weak var storyTitleLabel: UILabel!
     
     var openButtonCallback: VoidClosure?
     var heartButtonCallback: VoidClosure?
@@ -52,6 +54,7 @@ final class CarouselItemView: UIView {
         thumbnail.image = category.thumbnail
         titleLabel.text = category.title
         categoryDescriptionLabel.text = category.description
+        storyTitleLabel.isHidden = true
     }
     
     func configure(with model: StoryModel) {
@@ -59,7 +62,10 @@ final class CarouselItemView: UIView {
         categoryDescriptionLabel.isHidden = true
         heartButton.isHidden = model.isHeartHidden
         thumbnail.image = model.imageThumbnail ?? UIImage(named: model.assetThumbnail)
-        titleLabel.text = model.title
+        storyTitleLabel.isHidden = false
+        titleLabel.isHidden = true
+        storyTitleLabel.text = model.title
+        stackviewCenterY.isActive = true
     }
     
     override init(frame: CGRect) {
