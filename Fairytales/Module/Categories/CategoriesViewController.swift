@@ -40,7 +40,7 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
     override func configure() {
         loadData()
         
-        carousel.type = .rotary
+        carousel.type = .linear
         carousel.delegate = self
         carousel.centerItemWhenSelected = true
         carousel.dataSource = self
@@ -145,7 +145,7 @@ extension CategoriesViewController: iCarouselDelegate, iCarouselDataSource {
     
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         if (option == .spacing) {
-            return value * 1.2
+            return value * 1.11
         }
         if (option == .visibleItems) {
             return 3
@@ -154,8 +154,9 @@ extension CategoriesViewController: iCarouselDelegate, iCarouselDataSource {
             return 1
         }
         if (option == .count) {
-            return 5
+            return 8
         }
+//        tr 
         return value
     }
     

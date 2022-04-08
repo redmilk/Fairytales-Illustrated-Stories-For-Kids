@@ -36,8 +36,12 @@ final class CarouselItemView: UIView {
             guard layoutState != nil else { return }
             switch layoutState! {
             case .idle:
-                primaryButton.isHidden = true
                 containerBottomConstraint.constant = 40
+                contentView.layer.removeAllAnimations()
+                UIView.animate(withDuration: 0.35, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: {
+                    self.primaryButton.isHidden = true
+                    self.contentView.layoutIfNeeded()
+                }, completion: nil)
             case .selected:
                 primaryButton.isHidden = false
                 containerBottomConstraint.constant = 15

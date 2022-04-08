@@ -59,7 +59,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
     }
     override func configure() {
         carousel.currentItemIndex = 1
-        carousel.type = .coverFlow
+        carousel.type = .linear
         carousel.delegate = self
         carousel.centerItemWhenSelected = true
         carousel.dataSource = self
@@ -191,10 +191,13 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
     }
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         if (option == .spacing) {
-            return value * 1.2
+            return value * 1.11
         }
         if (option == .visibleItems) {
-            return 10
+            return 3
+        }
+        if (option == .wrap) {
+            return 1
         }
         return value
     }
