@@ -9,14 +9,16 @@ import Foundation
 
 final class CategorySection: Hashable, Comparable {
     let title: String
+    let description: String
     let color: UIColor
     let thumbnail: UIImage
     let category: CategoryPath
     let items: [StoryModel]
     
-    init(title: String, color: UIColor, thumbnail: UIImage, items: [StoryModel], category: CategoryPath) {
+    init(title: String, description: String, color: UIColor, thumbnail: UIImage, items: [StoryModel], category: CategoryPath) {
         self.items = items
         self.title = title
+        self.description = description
         self.color = color
         self.thumbnail = thumbnail
         self.category = category
@@ -27,6 +29,7 @@ final class CategorySection: Hashable, Comparable {
         hasher.combine(title)
         hasher.combine(color)
         hasher.combine(category)
+        hasher.combine(description)
     }
     
     static func < (lhs: CategorySection, rhs: CategorySection) -> Bool {

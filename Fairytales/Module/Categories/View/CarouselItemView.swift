@@ -15,6 +15,7 @@ final class CarouselItemView: UIView {
     @IBOutlet private weak var primaryButton: BaseButton!
     @IBOutlet private weak var containerBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var heartButton: UIButton!
+    @IBOutlet weak var categoryDescriptionLabel: UILabel!
     
     var openButtonCallback: VoidClosure?
     var heartButtonCallback: VoidClosure?
@@ -50,10 +51,12 @@ final class CarouselItemView: UIView {
         heartButton.isHidden = true
         thumbnail.image = category.thumbnail
         titleLabel.text = category.title
+        categoryDescriptionLabel.text = category.description
     }
     
     func configure(with model: StoryModel) {
         heartButton.isSelected = model.isFavorite
+        categoryDescriptionLabel.isHidden = true
         heartButton.isHidden = model.isHeartHidden
         thumbnail.image = model.imageThumbnail ?? UIImage(named: model.assetThumbnail)
         titleLabel.text = model.title
