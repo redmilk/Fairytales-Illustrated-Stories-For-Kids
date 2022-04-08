@@ -166,6 +166,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
                         FirebaseClient.shared.storage.reference(withPath: path).downloadURL(completion: { url, error in
                             if let error = error { Logger.logError(error) }
                             guard let url = url else { return promise(.success((Constants.storyThumbnailPlaceholder, page))) }
+                            print(url.absoluteString)
                             if path.contains(".webp") {
                                 imageViewForDownloadingPictures.kf.setImage(with: url, placeholder: nil, options: nil) { result in
                                     switch result {

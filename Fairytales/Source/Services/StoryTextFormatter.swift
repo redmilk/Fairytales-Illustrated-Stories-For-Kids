@@ -14,7 +14,11 @@ struct StoryTextFormatter: UserSessionServiceProvidable {
     static let shared = StoryTextFormatter()
     private var name: String { userSession.kidName }
     
-    func preparePageText(_ text: String) -> String {
+    func preparePageTextNameReplacement(_ text: String) -> String {
         return text.replacingOccurrences(of: kNameKey, with: name)
+    }
+    
+    func preparePageTextNewLinesReplacement(_ text: String) -> String {
+        return text.replacingOccurrences(of: kNewlineKey, with: "\n")
     }
 }

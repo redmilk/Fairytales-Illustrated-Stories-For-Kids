@@ -18,6 +18,8 @@ final class CarouselItemView: UIView {
     @IBOutlet weak var categoryDescriptionLabel: UILabel!
     @IBOutlet weak var stackviewCenterY: NSLayoutConstraint!
     @IBOutlet weak var storyTitleLabel: UILabel!
+    @IBOutlet weak var buttonStoryInfo: UIButton!
+    @IBOutlet weak var pageCountLabelButton: UIButton!
     
     var openButtonCallback: VoidClosure?
     var heartButtonCallback: VoidClosure?
@@ -55,6 +57,8 @@ final class CarouselItemView: UIView {
         titleLabel.text = category.title
         categoryDescriptionLabel.text = category.description
         storyTitleLabel.isHidden = true
+        buttonStoryInfo.isHidden = true
+        pageCountLabelButton.isHidden = true
     }
     
     func configure(with model: StoryModel) {
@@ -65,7 +69,9 @@ final class CarouselItemView: UIView {
         storyTitleLabel.isHidden = false
         titleLabel.isHidden = true
         storyTitleLabel.text = model.title
-        stackviewCenterY.isActive = true
+        buttonStoryInfo.isHidden = false
+        pageCountLabelButton.isHidden = false
+        //stackviewCenterY.isActive = true
     }
     
     override init(frame: CGRect) {

@@ -13,10 +13,9 @@ struct PageText: Codable {
     let girl: [String: String]
     
     func getText(boy: Bool, locale: String) -> String {
-        if boy {
-            return StoryTextFormatter.shared.preparePageText(self.boy[locale] ?? default_text ?? "---")
-        } else {
-            return StoryTextFormatter.shared.preparePageText(self.girl[locale] ?? default_text ?? "---")
-        }
+        var text = ""
+        text = StoryTextFormatter.shared.preparePageTextNameReplacement((boy ? self.boy[locale] : self.girl[locale]) ?? default_text ?? "---")
+        text = StoryTextFormatter.shared.preparePageTextNewLinesReplacement(text)
+        return text
     }
 }

@@ -35,6 +35,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCl-V2-Wg0">
                                 <rect key="frame" x="0.0" y="171" width="217" height="33"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pf9-MB-lI1">
+                                        <rect key="frame" x="76" y="-12" width="65" height="21.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Pf9-MB-lI1" secondAttribute="height" multiplier="52:17" id="jEQ-Hx-mE9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="10"/>
+                                        <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="46 стр" backgroundImage="button-pages">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Категория сказки" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtT-Ab-4gm">
                                         <rect key="frame" x="52.5" y="8" width="112.5" height="17"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
@@ -45,7 +56,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="MtT-Ab-4gm" firstAttribute="centerY" secondItem="oCl-V2-Wg0" secondAttribute="centerY" id="064-VA-hLG"/>
+                                    <constraint firstItem="Pf9-MB-lI1" firstAttribute="width" secondItem="oCl-V2-Wg0" secondAttribute="width" multiplier="0.3" id="9D1-Oe-zMo"/>
                                     <constraint firstItem="MtT-Ab-4gm" firstAttribute="centerX" secondItem="oCl-V2-Wg0" secondAttribute="centerX" id="Cec-YN-gwc"/>
+                                    <constraint firstItem="Pf9-MB-lI1" firstAttribute="centerX" secondItem="oCl-V2-Wg0" secondAttribute="centerX" id="nyU-8u-Rzp"/>
+                                    <constraint firstItem="Pf9-MB-lI1" firstAttribute="top" secondItem="oCl-V2-Wg0" secondAttribute="top" constant="-12" id="pu6-cY-9nh"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKC-Hp-qbn">
@@ -98,6 +112,7 @@
     </objects>
     <resources>
         <image name="button-add-favorite" width="30" height="30"/>
+        <image name="button-pages" width="52" height="17"/>
         <image name="button-remove-favorite" width="30" height="30"/>
         <image name="categorie-thumbnail-3" width="188" height="144"/>
     </resources>
