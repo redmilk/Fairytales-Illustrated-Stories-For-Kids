@@ -27,7 +27,7 @@ extension StorySelectViewController {
 
 // MARK: - StorySelectViewController
 
-final class StorySelectViewController: BaseViewController, UserSessionServiceProvidable {
+final class StorySelectViewController: BaseViewController, UserSessionServiceProvidable, ImageDownloaderProvidable {
     enum Buttons {
         case back, heart, gift, layout
     }
@@ -40,6 +40,8 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
     @IBOutlet weak var layoutButton: BaseButton!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var favoritesCounterLabel: UILabel!
+    let imageViewForDownloadingPictures = UIImageView(frame: .zero)
+
     
     private lazy var displayDataManager = StorySelectDisplayManager(collectionView: self.collectionView)
     
@@ -70,20 +72,6 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         userSession.selectedStory = stateValue.selectedCategory.items[safe: carousel.currentItemIndex]
         favoritesCounterLabel.text = userSession.favoritesCounter.description
         favoritesCounterLabel.isHidden = (favoritesCounterLabel.text ?? "0") == "0"
-    }
-    
-    private func selectInitialItem() {
-        if let state  = userSession.selectedCategory.items.first?.state {
-            if state == .idle {
-                debugPrint(state)
-                carousel.currentItemIndex = 0
-                userSession.selectedCategory.items.first?.state = .selected
-                let node = carousel.currentItemView
-                (node as? CarouselItemView)?.layoutState = .selected
-                //carousel.reloadData()
-                //carousel.reloadItem(at: self.carousel.currentItemIndex, animated: true)
-            }
-        }
     }
     
     override func applyStyling() {
@@ -124,12 +112,9 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 self.navigationController?.setNavigationBarHidden(true, animated: false)
                 self.favoritesCounterLabel.text = self.userSession.favoritesCounter.description
                 self.favoritesCounterLabel.isHidden = (self.favoritesCounterLabel.text ?? "0") == "0"
-//            case .viewDidDisappear:
-//                self?.navigationController?.setNavigationBarHidden(false, animated: false)
             case _: break
             }
         }).store(in: &bag)
-        // buttons
         Publishers.MergeMany(
             backButton.publisher().map { _ in Buttons.back },
             favoritesButton.publisher().map { _ in Buttons.heart },
@@ -152,6 +137,92 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
     }
 }
 
+// MARK: - Loading story
+private extension StorySelectViewController {
+    func loadStory(item: CarouselItemView, completion: VoidClosure?) {
+        var progressTotalPages: CGFloat = CGFloat(userSession.selectedStory.dto.pages.count)
+        var progressCurrentPage: CGFloat = 1
+        
+        let isBoy: Bool = userSession.isBoy
+        let isIpad: Bool = UIDevice.current.isIPad
+        let educationalCategory = userSession.selectedStory.pages.publisher
+        let basePath = userSession.selectedStory.dto.storage_path
+        var loadPagesCancellable: AnyCancellable?
+        startActivityAnimation()
+        loadPagesCancellable = educationalCategory.flatMap({ pageModel -> AnyPublisher<(UIImage, Int), Never> in
+            Future<(UIImage, Int), Never> ({ [weak self] promise in
+                guard let self = self else { return }
+                let page = Int(pageModel.page)!
+                let imagePath = pageModel.images.getImagePath(boy: isBoy, ipad: isIpad)
+                let path = basePath + imagePath
+                                
+                Logger.log(path, type: .purchase)
+                self.imageDownloader.fetchFromCache(path).sink(receiveValue: { image in
+                    if let img = image {
+                        promise(.success((img, page)))
+                    } else {
+                        FirebaseClient.shared.storage.reference(withPath: path).downloadURL(completion: { url, error in
+                            if let error = error { Logger.logError(error) }
+                            guard let url = url else { return promise(.success((Constants.storyThumbnailPlaceholder, page))) }
+                            print(url.absoluteString)
+                            if path.contains(".webp") {
+                                self.imageViewForDownloadingPictures.kf.setImage(with: url, placeholder: nil, options: nil) { result in
+                                    switch result {
+                                    case .success(let imageResult):
+                                        self.imageDownloader.cache.store(imageResult.image, forKey: path)
+                                        promise(.success((imageResult.image, page)))
+                                    case .failure(let error):
+                                        Logger.logError(error)
+                                        promise(.success((Constants.storyThumbnailPlaceholder, page)))
+                                    }
+                                    progressCurrentPage += 1
+                                    let progress = progressCurrentPage / progressTotalPages
+                                    item.updateProgress(progress)
+                                    Logger.log(progress.description, type: .all)
+                                }
+                            } else {
+                                var cancellable: AnyCancellable?
+                                cancellable = self.imageDownloader.loadImage(withURL: url, cacheKey: path)
+                                    .subscribe(on: Scheduler.backgroundWorkScheduler)
+                                    .sink(receiveCompletion: { completion in
+                                        switch completion {
+                                        case .finished: break
+                                        case .failure(let error):
+                                            Logger.logError(error)
+                                            promise(.success((Constants.storyThumbnailPlaceholder, page)))
+                                        }
+                                        cancellable?.cancel()
+                                        cancellable = nil
+                                    }, receiveValue: { image in
+                                        promise(.success((image, page)))
+                                    })
+                            }
+                        })
+                    }
+                }).store(in: &self.bag)
+            }).eraseToAnyPublisher()
+        }).collect()
+            .receive(on: Scheduler.main, options: nil)
+            .sink(receiveCompletion: { [weak self, weak item] completion in
+                item?.progressView.isHidden = true
+                switch completion {
+                case .finished: break
+                case .failure(let error): Logger.logError(error)
+                }
+                loadPagesCancellable?.cancel()
+                loadPagesCancellable = nil
+                self?.stopActivityAnimation()
+            }, receiveValue: { [weak self, weak item] pagesImageList in
+                item?.progressView.isHidden = true
+                self?.userSession.selectedStory.pagePictures = pagesImageList.sorted(by: { $0.1 < $1.1 }).map { $0.0 }
+                self?.favoritesCounterLabel.text = self?.userSession.favoritesCounter.description ?? "0"
+                self?.favoritesCounterLabel.isHidden = (self?.favoritesCounterLabel.text ?? "0") == "0"
+                self?.stopActivityAnimation()
+                completion?()
+            })
+    }
+}
+
 // MARK: - CarouselDelegate and CarouselDatasource
 
 extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
@@ -163,7 +234,7 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
         if let node = view as? CarouselItemView {
             recycled = node
         } else {
-            let node = CarouselItemView(frame: .init(origin: .zero, size: CGSize(width: Constants.storySelectWidth, height: Constants.storySelectHeight)))
+            let node = CarouselItemView(frame: .init(origin: .zero, size: CGSize(width: Constants.storySelectWidth, height: Constants.storySelectWidth)))
             recycled = node
         }
         let item = stateValue.selectedCategory.items[index]
@@ -171,8 +242,16 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
         let isFavorite = userSession.checkIsStoryFavorite(with: item.dto.id_internal)
         recycled.heartButton.isSelected = isFavorite
         item.isFavorite = isFavorite
-        recycled.openButtonCallback = { [weak self] in
-            (self?.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
+        recycled.isPersisted = userSession.checkIsStoryPersistedInStorage(with: item.dto.id_internal)
+        recycled.openButtonCallback = { [weak self, weak recycled] in
+            guard let recycled = recycled else { return }
+            self?.loadStory(item: recycled, completion: {
+                self?.loadStory(item: recycled, completion: {
+                    self?.userSession.setStoryPersistanceStatusOn(with: item.dto.id_internal)
+                    recycled.isPersisted = self?.userSession.checkIsStoryPersistedInStorage(with: item.dto.id_internal)
+                    (self?.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
+                })
+            })
         }
         recycled.heartButtonCallback = { [weak recycled, weak item, weak userSession, weak favoritesCounterLabel] in
             item?.isFavorite.toggle()
@@ -197,7 +276,7 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
             return 3
         }
         if (option == .wrap) {
-            return 1
+            return stateValue.selectedCategory.items.count > 2 ? 1 : 0
         }
         return value
     }

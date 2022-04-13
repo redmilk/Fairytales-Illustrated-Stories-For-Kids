@@ -47,7 +47,6 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
     @IBOutlet weak var endStoryDescriptionLabel: UILabel!
     @IBOutlet weak var endStoryReadAgainButton: BaseButton!
     @IBOutlet weak var endStorySelectNewStoryButton: BaseButton!
-    
     @IBOutlet weak var favoritesCounterLabel: UILabel!
     
     private var stateValue: State { state.value as! State }
@@ -65,7 +64,9 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
         Logger.log(String(describing: self), type: .deinited)
     }
     override func configure() {
-        loadStory()
+        stateValue.currentPage = userSession.currentPageNumber - 1
+        stateValue.pagesTotal = selectedStory.pages.count
+        setupNextPage()
     }
     override func handleEvents() {
         // lifecycle
@@ -80,6 +81,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
                 if let page = self?.stateValue.currentPage {
                     self?.userSession.saveCurrentPageOfSelectedStory(page)
                 }
+            case .viewDidAppear: break
             case _: break
             }
         }).store(in: &bag)
@@ -143,89 +145,4 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
         maxPageNumberLabel.text = stateValue.pagesTotal.description
         currentPageNumberLabel.setTitle((stateValue.currentPage + 1).description, for: .normal)
     }
-    
-    private func loadStory() {
-        let imageViewForDownloadingPictures = UIImageView(frame: .zero)
-        let isBoy: Bool = userSession.isBoy
-        let isIpad: Bool = UIDevice.current.isIPad
-        let educationalCategory = userSession.selectedStory.pages.publisher
-        let basePath = userSession.selectedStory.dto.storage_path
-        var loadPagesCancellable: AnyCancellable?
-        startActivityAnimation()
-        loadPagesCancellable = educationalCategory.flatMap({ pageModel -> AnyPublisher<(UIImage, Int), Never> in
-            Future<(UIImage, Int), Never> ({ [weak self] promise in
-                guard let self = self else { return }
-                let page = Int(pageModel.page)!
-                let imagePath = pageModel.images.getImagePath(boy: isBoy, ipad: isIpad)
-                let path = basePath + imagePath
-                Logger.log(path, type: .purchase)
-                self.imageDownloader.fetchFromCache(path).sink(receiveValue: { image in
-                    if let img = image {
-                        promise(.success((img, page)))
-                    } else {
-                        FirebaseClient.shared.storage.reference(withPath: path).downloadURL(completion: { url, error in
-                            if let error = error { Logger.logError(error) }
-                            guard let url = url else { return promise(.success((Constants.storyThumbnailPlaceholder, page))) }
-                            print(url.absoluteString)
-                            if path.contains(".webp") {
-                                imageViewForDownloadingPictures.kf.setImage(with: url, placeholder: nil, options: nil) { result in
-                                    switch result {
-                                    case .success(let imageResult):
-                                        promise(.success((imageResult.image, page)))
-                                        self.imageDownloader.cache.store(imageResult.image, forKey: path)
-                                    case .failure(let error):
-                                        Logger.logError(error)
-                                        promise(.success((Constants.storyThumbnailPlaceholder, page)))
-                                    }
-                                }
-                            } else {
-                                var cancellable: AnyCancellable?
-                                cancellable = self.imageDownloader.loadImage(withURL: url, cacheKey: path)
-                                    .subscribe(on: Scheduler.backgroundWorkScheduler)
-                                    .sink(receiveCompletion: { completion in
-                                        switch completion {
-                                        case .finished: break
-                                        case .failure(let error):
-                                            Logger.logError(error)
-                                            promise(.success((Constants.storyThumbnailPlaceholder, page)))
-                                        }
-                                        cancellable?.cancel()
-                                        cancellable = nil
-                                    }, receiveValue: { image in
-                                        promise(.success((image, page)))
-                                    })
-                            }
-                        })
-                    }
-                }).store(in: &self.bag)
-            }).eraseToAnyPublisher()
-        }).collect()
-            .receive(on: Scheduler.main, options: nil)
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .finished: break
-                case .failure(let error): Logger.logError(error)
-                }
-                loadPagesCancellable?.cancel()
-                loadPagesCancellable = nil
-                self?.stopActivityAnimation()
-            }, receiveValue: { [weak self] pagesImageList in
-                self?.userSession.selectedStory.pagePictures = pagesImageList.sorted(by: { $0.1 < $1.1 }).map { $0.0 }
-//                self?.userSession.selectedStory.pagePictures = pagesImageList.sorted(by: { tupleL, tupleR in
-//                    tupleL.0.accessibilityIdentifier ?? "" < tupleR.0.accessibilityIdentifier ?? ""
-//                }).compactMap { $0.0 }
-                if let currentPage = self?.userSession.currentPageNumber {
-                    self?.stateValue.currentPage = currentPage - 1
-                }
-                self?.stateValue.pagesTotal = pagesImageList.count
-                
-                let pages = self!.selectedStory.pagePictures
-                self?.setupNextPage()
-                self?.stateValue.pagesTotal = pages.count
-                self?.favoritesCounterLabel.text = self?.userSession.favoritesCounter.description ?? "0"
-                self?.favoritesCounterLabel.isHidden = (self?.favoritesCounterLabel.text ?? "0") == "0"
-                self?.stopActivityAnimation()
-            })
-    }
-    
 }

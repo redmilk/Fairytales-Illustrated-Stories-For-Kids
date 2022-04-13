@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="865" height="70"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NE7-cv-Fxg" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                            <rect key="frame" x="30" y="34" width="30" height="30"/>
+                            <rect key="frame" x="30" y="20" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="NE7-cv-Fxg" secondAttribute="height" multiplier="1:1" id="mli-wo-pha"/>
                             </constraints>
@@ -43,7 +43,7 @@
                             <state key="normal" backgroundImage="settings-button"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выберите категорию" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3SW-L2-WVz">
-                            <rect key="frame" x="353" y="32.5" width="159.5" height="19.5"/>
+                            <rect key="frame" x="353" y="25.5" width="159.5" height="19.5"/>
                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="16"/>
                             <color key="textColor" red="0.87775531780000005" green="0.99999994039999995" blue="0.95167364679999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
@@ -55,7 +55,7 @@
                             </variation>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdL-02-Hf7">
-                            <rect key="frame" x="805" y="34" width="30" height="30"/>
+                            <rect key="frame" x="805" y="20" width="30" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3V-Nx-hQh" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -103,11 +103,11 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="EdL-02-Hf7" firstAttribute="width" secondItem="cnp-NS-MJJ" secondAttribute="width" multiplier="0.0346821" id="3YX-EA-mqX"/>
-                        <constraint firstItem="NE7-cv-Fxg" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" multiplier="1.4" id="6FA-78-pZg"/>
+                        <constraint firstItem="NE7-cv-Fxg" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" id="6FA-78-pZg"/>
                         <constraint firstItem="NE7-cv-Fxg" firstAttribute="width" secondItem="cnp-NS-MJJ" secondAttribute="width" multiplier="0.0346821" id="6HH-j3-PEI"/>
                         <constraint firstItem="3SW-L2-WVz" firstAttribute="centerX" secondItem="cnp-NS-MJJ" secondAttribute="centerX" id="Dtu-pi-wxQ"/>
-                        <constraint firstItem="EdL-02-Hf7" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" multiplier="1.4" id="Kbw-eV-z8R"/>
-                        <constraint firstItem="3SW-L2-WVz" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" multiplier="1.2" id="Lfh-TR-YWh"/>
+                        <constraint firstItem="EdL-02-Hf7" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" id="Kbw-eV-z8R"/>
+                        <constraint firstItem="3SW-L2-WVz" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" id="Lfh-TR-YWh"/>
                         <constraint firstItem="NE7-cv-Fxg" firstAttribute="leading" secondItem="cnp-NS-MJJ" secondAttribute="leading" constant="30" id="nLT-7d-q59"/>
                         <constraint firstAttribute="height" constant="70" id="qXO-Wk-6au"/>
                         <constraint firstAttribute="trailing" secondItem="EdL-02-Hf7" secondAttribute="trailing" constant="30" id="qrk-32-mDN"/>

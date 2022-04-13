@@ -12,7 +12,7 @@ final class CarouselItemView: UIView {
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var thumbnail: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var primaryButton: BaseButton!
+    @IBOutlet weak var primaryButton: BaseButton!
     @IBOutlet private weak var containerBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var categoryDescriptionLabel: UILabel!
@@ -20,14 +20,22 @@ final class CarouselItemView: UIView {
     @IBOutlet weak var storyTitleLabel: UILabel!
     @IBOutlet weak var buttonStoryInfo: UIButton!
     @IBOutlet weak var pageCountLabelButton: UIButton!
+    @IBOutlet weak var progressView: UIProgressView!
     
     var openButtonCallback: VoidClosure?
     var heartButtonCallback: VoidClosure?
     
     var isFavorite: Bool! {
         didSet {
-            guard layoutState != nil else { return }
+            guard isFavorite != nil else { return }
             heartButton.isSelected = isFavorite
+        }
+    }
+    
+    var isPersisted: Bool! {
+        didSet {
+            guard isPersisted != nil else { return }
+            primaryButton.setTitle(isPersisted ? "Открыть" : "Загрузить", for: .normal)
         }
     }
     
@@ -63,6 +71,7 @@ final class CarouselItemView: UIView {
         storyTitleLabel.isHidden = true
         buttonStoryInfo.isHidden = true
         pageCountLabelButton.isHidden = true
+        progressView.isHidden = true
     }
     
     func configure(with model: StoryModel) {
@@ -75,7 +84,16 @@ final class CarouselItemView: UIView {
         storyTitleLabel.text = model.title
         buttonStoryInfo.isHidden = false
         pageCountLabelButton.isHidden = false
+        progressView.isHidden = true
         //stackviewCenterY.isActive = true
+    }
+    
+    func updateProgress(_ value: CGFloat) {
+        progressView.isHidden = false
+        progressView.progress = Float(value)
+        if progressView.progress >= 0.9 {
+            progressView.isHidden = true
+        }
     }
     
     override init(frame: CGRect) {

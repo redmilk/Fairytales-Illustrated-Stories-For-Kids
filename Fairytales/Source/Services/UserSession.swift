@@ -23,7 +23,7 @@ final class UserSession {
     
     @UD(.locale, "ru")
     var locale: String
-    @UD(.kidName, "")
+    @UD(.kidName, "<Имя малыша>")
     var kidName: String
     @UD(.kidGender, .boy)
     var kidActor: KidActor
@@ -47,12 +47,7 @@ final class UserSession {
     }
     
     var pagesTotalNumber: Int { selectedStory.pages.count }
-    func checkIsStoryFavorite(with internalID: String) -> Bool {
-        guard let favoritesIDList = UserDefaults.standard.value(forKey: "favorites") as? [String],
-              let _ = favoritesIDList.firstIndex(where: { $0 == internalID }) else { return false }
-        return true
-    }
-    
+
     var currentPageNumber: Int {
         let storyId = selectedStory.dto.id_internal
         return (UserDefaults.standard.object(forKey: storyId + "page") as? Int) ?? 0
@@ -63,6 +58,12 @@ final class UserSession {
         UserDefaults.standard.set(currentPage, forKey: storyId + "page")
     }
     
+    // Favorites
+    func checkIsStoryFavorite(with internalID: String) -> Bool {
+        guard let favoritesIDList = UserDefaults.standard.value(forKey: "favorites") as? [String],
+              let _ = favoritesIDList.firstIndex(where: { $0 == internalID }) else { return false }
+        return true
+    }
     @discardableResult
     func toggleFavorites(with internalID: String) -> (Bool, Int) {
         if var favoritesIDList = UserDefaults.standard.value(forKey: "favorites") as? [String] {
@@ -82,6 +83,27 @@ final class UserSession {
             UserDefaults.standard.set(newList, forKey: "favorites")
             favoritesCounter = 1
             return (true, 1)
+        }
+    }
+    
+    // Persistance status
+    func checkIsStoryPersistedInStorage(with internalID: String) -> Bool {
+        guard let persistance = UserDefaults.standard.value(forKey: "persistance") as? [String],
+              let _ = persistance.firstIndex(where: { $0 == internalID }) else { return false }
+        return true
+    }
+    
+    func setStoryPersistanceStatusOn(with internalID: String) {
+        if var persistanceIDList = UserDefaults.standard.value(forKey: "persistance") as? [String] {
+            if let index = persistanceIDList.firstIndex(where: { $0 == internalID }) {
+                // story id already persist
+            } else {
+                persistanceIDList.append(internalID)
+                UserDefaults.standard.set(persistanceIDList, forKey: "persistance")
+            }
+        } else {
+            let newList = [internalID]
+            UserDefaults.standard.set(newList, forKey: "persistance")
         }
     }
 }
