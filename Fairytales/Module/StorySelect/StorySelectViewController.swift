@@ -141,14 +141,15 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
 private extension StorySelectViewController {
     func loadStory(item: CarouselItemView, completion: VoidClosure?) {
         var progressTotalPages: CGFloat = CGFloat(userSession.selectedStory.dto.pages.count)
-        var progressCurrentPage: CGFloat = 1
+        var progressCurrentPage: CGFloat = 0
         
         let isBoy: Bool = userSession.isBoy
         let isIpad: Bool = UIDevice.current.isIPad
         let educationalCategory = userSession.selectedStory.pages.publisher
         let basePath = userSession.selectedStory.dto.storage_path
         var loadPagesCancellable: AnyCancellable?
-        startActivityAnimation()
+       // startActivityAnimation()
+        item.startAnimateDownloading()
         loadPagesCancellable = educationalCategory.flatMap({ pageModel -> AnyPublisher<(UIImage, Int), Never> in
             Future<(UIImage, Int), Never> ({ [weak self] promise in
                 guard let self = self else { return }
@@ -175,10 +176,10 @@ private extension StorySelectViewController {
                                         Logger.logError(error)
                                         promise(.success((Constants.storyThumbnailPlaceholder, page)))
                                     }
-                                    progressCurrentPage += 1
+                                    progressCurrentPage += progressCurrentPage < progressTotalPages ? 1 : 0
                                     let progress = progressCurrentPage / progressTotalPages
                                     item.updateProgress(progress)
-                                    Logger.log(progress.description, type: .all)
+                                    Logger.log(progressCurrentPage.description, type: .all)
                                 }
                             } else {
                                 var cancellable: AnyCancellable?
@@ -191,6 +192,10 @@ private extension StorySelectViewController {
                                             Logger.logError(error)
                                             promise(.success((Constants.storyThumbnailPlaceholder, page)))
                                         }
+                                        progressCurrentPage += progressCurrentPage < progressTotalPages ? 1 : 0
+                                        let progress = progressCurrentPage / progressTotalPages
+                                        item.updateProgress(progress)
+                                        Logger.log(progressCurrentPage.description, type: .all)
                                         cancellable?.cancel()
                                         cancellable = nil
                                     }, receiveValue: { image in
@@ -204,20 +209,18 @@ private extension StorySelectViewController {
         }).collect()
             .receive(on: Scheduler.main, options: nil)
             .sink(receiveCompletion: { [weak self, weak item] completion in
-                item?.progressView.isHidden = true
+                item?.stopAnimateDownloading()
                 switch completion {
                 case .finished: break
                 case .failure(let error): Logger.logError(error)
                 }
                 loadPagesCancellable?.cancel()
                 loadPagesCancellable = nil
-                self?.stopActivityAnimation()
             }, receiveValue: { [weak self, weak item] pagesImageList in
-                item?.progressView.isHidden = true
+                item?.stopAnimateDownloading()
                 self?.userSession.selectedStory.pagePictures = pagesImageList.sorted(by: { $0.1 < $1.1 }).map { $0.0 }
                 self?.favoritesCounterLabel.text = self?.userSession.favoritesCounter.description ?? "0"
                 self?.favoritesCounterLabel.isHidden = (self?.favoritesCounterLabel.text ?? "0") == "0"
-                self?.stopActivityAnimation()
                 completion?()
             })
     }
@@ -289,7 +292,6 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
             userSession.selectedStory = stateValue.selectedCategory.items[safe: carousel.currentItemIndex]
         }
     }
-        
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
         guard index != carousel.currentItemIndex else { return }
         if let node = carousel.currentItemView as? CarouselItemView {

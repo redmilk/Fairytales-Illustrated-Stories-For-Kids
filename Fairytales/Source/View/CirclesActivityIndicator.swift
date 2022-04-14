@@ -44,7 +44,7 @@ extension ActivityIndicatorPresentable {
     }
 }
 
-fileprivate class CirclesActivityIndicator {
+class CirclesActivityIndicator {
     func makeActivityIndicator(height: CGFloat = 60.0, color: UIColor = .white) -> UIView {
         let size = CGSize(width: height, height: height)
         let view = UIView(frame: CGRect(origin: .zero, size: size))

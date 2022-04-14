@@ -58,7 +58,7 @@ final class StoryModel: Hashable, Comparable {
     
     // comparable
     static func < (lhs: StoryModel, rhs: StoryModel) -> Bool {
-        lhs.title < rhs.title
+        lhs.dto.id_internal < rhs.dto.id_internal
     }
     // hashable
     static func == (lhs: StoryModel, rhs: StoryModel) -> Bool {

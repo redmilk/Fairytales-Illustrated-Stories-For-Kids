@@ -21,6 +21,7 @@ final class CarouselItemView: UIView {
     @IBOutlet weak var buttonStoryInfo: UIButton!
     @IBOutlet weak var pageCountLabelButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var activitySpinnerContainer: UIView!
     
     var openButtonCallback: VoidClosure?
     var heartButtonCallback: VoidClosure?
@@ -84,16 +85,29 @@ final class CarouselItemView: UIView {
         storyTitleLabel.text = model.title
         buttonStoryInfo.isHidden = false
         pageCountLabelButton.isHidden = false
+        pageCountLabelButton.setTitle("\(model.pages.count) стр", for: .normal)
         progressView.isHidden = true
         //stackviewCenterY.isActive = true
+        let indicator = CirclesActivityIndicator().makeActivityIndicator(height: activitySpinnerContainer.bounds.height - 14, color: .white)
+        activitySpinnerContainer.addAndFill(indicator, padding: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 0))
+        activitySpinnerContainer.isHidden = true
+    }
+    
+    func startAnimateDownloading() {
+        progressView.isHidden = false
+        activitySpinnerContainer.isHidden = false
+        primaryButton.setTitle("", for: .normal)
+    }
+    
+    func stopAnimateDownloading() {
+        progressView.isHidden = true
+        primaryButton.setTitle("Открыть", for: .normal)
+        activitySpinnerContainer.isHidden = true
     }
     
     func updateProgress(_ value: CGFloat) {
         progressView.isHidden = false
         progressView.progress = Float(value)
-        if progressView.progress >= 0.9 {
-            progressView.isHidden = true
-        }
     }
     
     override init(frame: CGRect) {

@@ -59,8 +59,7 @@ final class StorySelectDisplayManager: NSObject, InteractionFeedbackService { //
             case .populate(let items):
                 self.incrementItems(items)
             }
-        })
-        .store(in: &bag)
+        }).store(in: &bag)
     }
     
     private func incrementItems(_ items: [StoryModel]) {

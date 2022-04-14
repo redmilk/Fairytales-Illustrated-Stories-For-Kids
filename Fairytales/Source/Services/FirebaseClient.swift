@@ -144,8 +144,7 @@ final class FirebaseClient: ImageDownloaderProvidable {
                     .map { fairytales -> CategorySection in
                         CategorySection(title: "Обучающая", description: "Учит дружить, делиться и работать в команде", color: ColorPalette.categoryDarkGreen,
                                         thumbnail: UIImage(named: "categorie-thumbnail-1")!, items: fairytales, category: .educational)
-                    }
-                    .receive(on: Scheduler.main, options: nil)
+                    }.receive(on: Scheduler.main, options: nil)
                 
                 let healingCategory = FirebaseClient.shared.healingSubject
                     .compactMap { $0 }
@@ -248,6 +247,7 @@ final class FirebaseClient: ImageDownloaderProvidable {
                         cancellable = nil
                     }, receiveValue: { [weak self] categories in
                         self?.categoriesInternalType.value = categories
+                        
                     })
             })
             .store(in: &bag)

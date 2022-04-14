@@ -156,7 +156,6 @@ extension CategoriesViewController: iCarouselDelegate, iCarouselDataSource {
         if (option == .count) {
             return 8
         }
-//        tr 
         return value
     }
     
