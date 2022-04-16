@@ -115,7 +115,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
                     self.coordinator.end()
                 }
             }).store(in: &bag)
-    }
+    } 
     
     private func setupNextPage() {
         guard stateValue.currentPage + 1 < selectedStory.pagePictures.count && stateValue.currentPage + 1 < selectedStory.pages.count else {

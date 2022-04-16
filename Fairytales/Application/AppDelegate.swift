@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PurchesServiceProvidable 
         // Firebase
         analytics = AnalyticsService(application, launchOptions)
         FirebaseApp.configure()
-        
+                
         return true
     }
 

@@ -94,25 +94,21 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
             .sink(receiveValue: { [weak self] user in
                 guard let self = self else { return }
                 FirebaseClient.shared.requestAllFairytalesAndMakeCategories(isForBoy: self.userSession.isBoy)
-            }).store(in: &bag)
-        
-        FirebaseClient.shared.categoriesInternalType
-            .compactMap { $0 }
-            .sink(receiveCompletion: { [weak self] completion in
-                self?.stopActivityAnimation()
-                switch completion {
-                case .finished: break
-                case .failure(let error): Logger.logError(error)
-                }
-            }, receiveValue: { [weak self] cats in
-                self?.userSession.categories.removeAll()
-                self?.userSession.categories = cats
-                self?.categories = cats.toSortedArray
-                self?.stopActivityAnimation()
-                self?.carousel.reloadData()
-                Logger.log(cats.toArray[safe: 0]?.items.count.description, type: .token)
-                Logger.log(cats.toArray[safe: 1]?.items.count.description, type: .token)
-                Logger.log(cats.toArray[safe: 2]?.items.count.description, type: .token)
+                FirebaseClient.shared.categoriesInternalType
+                    .compactMap { $0 }
+                    .sink(receiveCompletion: { [weak self] completion in
+                        self?.stopActivityAnimation()
+                        switch completion {
+                        case .finished: break
+                        case .failure(let error): Logger.logError(error)
+                        }
+                    }, receiveValue: { [weak self] cats in
+                        self?.userSession.categories.removeAll()
+                        self?.userSession.categories = cats
+                        self?.categories = cats.toSortedArray
+                        self?.stopActivityAnimation()
+                        self?.carousel.reloadData()
+                    }).store(in: &self.bag)
             }).store(in: &bag)
     }
 }

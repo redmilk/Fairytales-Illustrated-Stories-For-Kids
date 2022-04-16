@@ -67,19 +67,5 @@ final class ImageLoader: ImageLoaderType {
         }.eraseToAnyPublisher()
     }
     
-//    private func fetchFromCache(_ cacheKey: String) -> UIImage? {
-//        guard  checkIfCached(cacheKey) else { return nil }
-//        cache.retrieveImage(forKey: cacheKey) { result in
-//            switch result {
-//            case .success(let value):
-//                Logger.log("from CACHE", type: .redirectURL)
-//                return value.image
-//            case .failure(let error):
-//                Logger.logError(error)
-//                return nil
-//            }
-//        }
-//    }
-    
     private func checkIfCached(_ key: String) -> Bool { cache.isCached(forKey: key) }
 }

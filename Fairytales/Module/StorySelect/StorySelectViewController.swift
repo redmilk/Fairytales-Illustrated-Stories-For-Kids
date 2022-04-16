@@ -166,42 +166,34 @@ private extension StorySelectViewController {
                             if let error = error { Logger.logError(error) }
                             guard let url = url else { return promise(.success((Constants.storyThumbnailPlaceholder, page))) }
                             print(url.absoluteString)
-                            if path.contains(".webp") {
-                                self.imageViewForDownloadingPictures.kf.setImage(with: url, placeholder: nil, options: nil) { result in
-                                    switch result {
-                                    case .success(let imageResult):
-                                        self.imageDownloader.cache.store(imageResult.image, forKey: path)
-                                        promise(.success((imageResult.image, page)))
+                            var cancellable: AnyCancellable?
+                            cancellable = self.imageDownloader.loadImage(withURL: url, cacheKey: path)
+                                .subscribe(on: Scheduler.backgroundWorkScheduler)
+                                .sink(receiveCompletion: { completion in
+                                    switch completion {
+                                    case .finished: break
                                     case .failure(let error):
                                         Logger.logError(error)
-                                        promise(.success((Constants.storyThumbnailPlaceholder, page)))
-                                    }
-                                    progressCurrentPage += progressCurrentPage < progressTotalPages ? 1 : 0
-                                    let progress = progressCurrentPage / progressTotalPages
-                                    item.updateProgress(progress)
-                                    Logger.log(progressCurrentPage.description, type: .all)
-                                }
-                            } else {
-                                var cancellable: AnyCancellable?
-                                cancellable = self.imageDownloader.loadImage(withURL: url, cacheKey: path)
-                                    .subscribe(on: Scheduler.backgroundWorkScheduler)
-                                    .sink(receiveCompletion: { completion in
-                                        switch completion {
-                                        case .finished: break
-                                        case .failure(let error):
-                                            Logger.logError(error)
-                                            promise(.success((Constants.storyThumbnailPlaceholder, page)))
-                                        }
                                         progressCurrentPage += progressCurrentPage < progressTotalPages ? 1 : 0
                                         let progress = progressCurrentPage / progressTotalPages
-                                        item.updateProgress(progress)
+                                        DispatchQueue.main.async {
+                                            item.updateProgress(progress)
+                                        }
                                         Logger.log(progressCurrentPage.description, type: .all)
-                                        cancellable?.cancel()
-                                        cancellable = nil
-                                    }, receiveValue: { image in
-                                        promise(.success((image, page)))
-                                    })
-                            }
+                                        promise(.success((Constants.storyThumbnailPlaceholder, page)))
+                                    }
+                                    cancellable?.cancel()
+                                    cancellable = nil
+                                }, receiveValue: { image in
+                                    self.imageDownloader.cache.store(image, forKey: path)
+                                    progressCurrentPage += progressCurrentPage < progressTotalPages ? 1 : 0
+                                    let progress = progressCurrentPage / progressTotalPages
+                                    DispatchQueue.main.async {
+                                        item.updateProgress(progress)
+                                    }
+                                    Logger.log(progressCurrentPage.description, type: .all)
+                                    promise(.success((image, page)))
+                                })
                         })
                     }
                 }).store(in: &self.bag)
@@ -249,11 +241,9 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
         recycled.openButtonCallback = { [weak self, weak recycled] in
             guard let recycled = recycled else { return }
             self?.loadStory(item: recycled, completion: {
-                self?.loadStory(item: recycled, completion: {
-                    self?.userSession.setStoryPersistanceStatusOn(with: item.dto.id_internal)
-                    recycled.isPersisted = self?.userSession.checkIsStoryPersistedInStorage(with: item.dto.id_internal)
-                    (self?.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
-                })
+                self?.userSession.setStoryPersistanceStatusOn(with: item.dto.id_internal)
+                recycled.isPersisted = self?.userSession.checkIsStoryPersistedInStorage(with: item.dto.id_internal)
+                (self?.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
             })
         }
         recycled.heartButtonCallback = { [weak recycled, weak item, weak userSession, weak favoritesCounterLabel] in
