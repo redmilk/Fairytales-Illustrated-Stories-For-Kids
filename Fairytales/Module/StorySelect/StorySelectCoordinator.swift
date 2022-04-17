@@ -45,6 +45,11 @@ final class StorySelectCoordinator: Coordinatable, StorySelectCoordinatorProtoco
         coordinator.start()
     }
     
+    func displaySubscriptionsPopup() {
+        let coordinator = SubscriptionsCoordinator(whatToShow: .weekly)
+        coordinator.start()
+    }
+    
     func end() {
         navigationController?.popViewController(animated: true)
     }

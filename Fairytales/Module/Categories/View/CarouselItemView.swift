@@ -26,6 +26,8 @@ final class CarouselItemView: UIView {
     var openButtonCallback: VoidClosure?
     var heartButtonCallback: VoidClosure?
     
+    var isLoading: Bool = false
+    
     var isFavorite: Bool! {
         didSet {
             guard isFavorite != nil else { return }
@@ -49,6 +51,7 @@ final class CarouselItemView: UIView {
                 contentView.layer.removeAllAnimations()
                 UIView.animate(withDuration: 0.35, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: {
                     self.primaryButton.isHidden = true
+                    self.activitySpinnerContainer.isHidden = true
                     self.contentView.layoutIfNeeded()
                 }, completion: nil)
             case .selected:
@@ -59,6 +62,7 @@ final class CarouselItemView: UIView {
                 UIView.animate(withDuration: 0.35, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: {
                     self.contentView.layoutIfNeeded()
                     self.primaryButton.transform = .identity
+                    self.activitySpinnerContainer.isHidden = !self.isLoading
                 }, completion: nil)
             }
         }

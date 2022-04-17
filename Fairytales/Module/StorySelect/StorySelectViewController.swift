@@ -22,12 +22,13 @@ extension StorySelectViewController {
         var previousItem: CarouselItemView?
         var carouselCurrentItemIndex: Int = 0
         var isFirstSetup: Bool = true
+        var isCarouselBlocked: Bool = false
     }
 }
 
 // MARK: - StorySelectViewController
 
-final class StorySelectViewController: BaseViewController, UserSessionServiceProvidable, ImageDownloaderProvidable {
+final class StorySelectViewController: BaseViewController, UserSessionServiceProvidable, ImageDownloaderProvidable, PurchesServiceProvidable {
     enum Buttons {
         case back, heart, gift, layout
     }
@@ -60,7 +61,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         Logger.log(String(describing: self), type: .deinited)
     }
     override func configure() {
-        carousel.currentItemIndex = 1
+        carousel.currentItemIndex = 0
         carousel.type = .linear
         carousel.delegate = self
         carousel.centerItemWhenSelected = true
@@ -216,6 +217,16 @@ private extension StorySelectViewController {
                 completion?()
             })
     }
+    
+    func shouldShowSubscriptionsPopup() -> Bool {
+        if carousel.currentItemIndex == 0 {
+            return false
+        } else if carousel.currentItemIndex > 0 && purchases.isUserHasActiveSubscription {
+            return false
+        } else {
+            return true
+        }
+    }
 }
 
 // MARK: - CarouselDelegate and CarouselDatasource
@@ -239,11 +250,17 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
         item.isFavorite = isFavorite
         recycled.isPersisted = userSession.checkIsStoryPersistedInStorage(with: item.dto.id_internal)
         recycled.openButtonCallback = { [weak self, weak recycled] in
-            guard let recycled = recycled else { return }
-            self?.loadStory(item: recycled, completion: {
-                self?.userSession.setStoryPersistanceStatusOn(with: item.dto.id_internal)
-                recycled.isPersisted = self?.userSession.checkIsStoryPersistedInStorage(with: item.dto.id_internal)
-                (self?.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
+            guard let self = self, let recycled = recycled else { return }
+            recycled.isLoading = true
+            self.carousel.isUserInteractionEnabled = false
+            self.loadStory(item: recycled, completion: {
+                recycled.isLoading = false
+                self.carousel.isUserInteractionEnabled = true
+                self.userSession.setStoryPersistanceStatusOn(with: item.dto.id_internal)
+                recycled.isPersisted = self.userSession.checkIsStoryPersistedInStorage(with: item.dto.id_internal)
+                self.shouldShowSubscriptionsPopup() ?
+                (self.coordinator as? StorySelectCoordinator)?.displaySubscriptionsPopup() :
+                (self.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
             })
         }
         recycled.heartButtonCallback = { [weak recycled, weak item, weak userSession, weak favoritesCounterLabel] in

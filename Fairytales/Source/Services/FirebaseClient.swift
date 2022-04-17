@@ -162,7 +162,7 @@ final class FirebaseClient: ImageDownloaderProvidable {
                     .eraseToAnyPublisher()
                     .map { fairytales -> CategorySection in
                         CategorySection(title: "Обучающая", description: "Учит дружить, делиться и работать в команде", color: ColorPalette.categoryDarkGreen,
-                                        thumbnail: UIImage(named: "categorie-thumbnail-1")!, items: fairytales, category: .educational)
+                                        thumbnail: UIImage(named: "categorie-thumbnail-1")!, items: fairytales.sorted(), category: .educational)
                     }.receive(on: Scheduler.main, options: nil)
                 
                 let healingCategory = FirebaseClient.shared.healingSubject
@@ -221,7 +221,7 @@ final class FirebaseClient: ImageDownloaderProvidable {
                     .collect(healingTotal)
                     .map ({ fairytales -> CategorySection in
                         CategorySection(title: "Терапевтическая", description: "Поможет справиться со страхами и стать увереннее", color: ColorPalette.categoryDarkRed,
-                                        thumbnail: UIImage(named: "categorie-thumbnail-2")!, items: fairytales.compactMap { $0 }, category: .healing)
+                                        thumbnail: UIImage(named: "categorie-thumbnail-2")!, items: fairytales.compactMap { $0 }.sorted(), category: .healing)
                     })
                     .receive(on: Scheduler.main, options: nil)
                 
@@ -280,7 +280,7 @@ final class FirebaseClient: ImageDownloaderProvidable {
                     .collect(silentTotal)
                     .map ({ fairytales -> CategorySection in
                         CategorySection(title: "Тихая", description: "Успокоит малыша перед сном", color: ColorPalette.categoryDarkBlue,
-                                        thumbnail: UIImage(named: "categorie-thumbnail-3")!, items: fairytales.compactMap { $0 }, category: .silent)
+                                        thumbnail: UIImage(named: "categorie-thumbnail-3")!, items: fairytales.compactMap { $0 }.sorted(), category: .silent)
                     })
                     .receive(on: Scheduler.main, options: nil)
                 
