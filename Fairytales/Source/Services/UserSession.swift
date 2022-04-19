@@ -30,8 +30,7 @@ final class UserSession {
     @UD(.favoritesCounter, 0)
     var favoritesCounter: Int
     
-    //var favoritesCount: Int { stories.filter { $0.isFavorite == true }.count }
-    var selectedCategory: CategorySection!
+    var selectedCategory: CategorySection!    
     var selectedStory: StoryModel!
 
     init() {

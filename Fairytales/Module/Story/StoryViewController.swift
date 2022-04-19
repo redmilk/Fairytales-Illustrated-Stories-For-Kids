@@ -48,7 +48,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
     @IBOutlet weak var endStoryReadAgainButton: BaseButton!
     @IBOutlet weak var endStorySelectNewStoryButton: BaseButton!
     @IBOutlet weak var favoritesCounterLabel: UILabel!
-    
+
     private var stateValue: State { state.value as! State }
     private var selectedStory: StoryModel { userSession.selectedStory }
     private let storyTextFormatter = StoryTextFormatter()
@@ -66,6 +66,8 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
     override func configure() {
         stateValue.currentPage = userSession.currentPageNumber - 1
         stateValue.pagesTotal = selectedStory.pages.count
+        favoritesCounterLabel.text = userSession.favoritesCounter.description
+        favoritesCounterLabel.isHidden = (favoritesCounterLabel.text ?? "0") == "0"
         setupNextPage()
     }
     override func handleEvents() {
@@ -102,6 +104,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
                     self.favoritesButton.isSelected = isOn.0
                     self.favoritesCounterLabel.isHidden = isOn.1 <= 0
                     self.favoritesCounterLabel.text = isOn.1.description
+                    self.selectedStory.isFavorite.toggle()
                 case .prevPage:
                     self.setupPreviousPage()
                 case .nextPage:

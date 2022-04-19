@@ -40,7 +40,7 @@ final class CategoriesCoordinator: Coordinatable, CategoriesCoordinatorProtocol,
     }
     
     func displayFavorites() {
-        let coordinator = StorySelectCoordinator(navigationController: navigationController)
+        let coordinator = StorySelectCoordinator(navigationController: navigationController, isFavorites: true)
         coordinator.start()
     }
     

@@ -23,6 +23,7 @@ extension StorySelectViewController {
         var carouselCurrentItemIndex: Int = 0
         var isFirstSetup: Bool = true
         var isCarouselBlocked: Bool = false
+        var isFavorites: Bool = false
     }
 }
 
@@ -48,10 +49,11 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
     
     private var stateValue: State { state.value as! State }
 
-    init(coordinator: Coordinatable, selectedCategory: CategorySection) {
+    init(coordinator: Coordinatable, selectedCategory: CategorySection, isFavorites: Bool) {
         let initialState = State()
         initialState.layout = .line
         initialState.selectedCategory = selectedCategory
+        initialState.isFavorites = isFavorites
         super.init(coordinator: coordinator, type: Self.self, initialState: initialState)
     }
     required init?(coder: NSCoder) {
@@ -113,6 +115,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 self.navigationController?.setNavigationBarHidden(true, animated: false)
                 self.favoritesCounterLabel.text = self.userSession.favoritesCounter.description
                 self.favoritesCounterLabel.isHidden = (self.favoritesCounterLabel.text ?? "0") == "0"
+                self.carousel.reloadData()
             case _: break
             }
         }).store(in: &bag)
@@ -125,10 +128,8 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 guard let self = self else { return }
                 switch button {
                 case .back: self.coordinator.end()
-                case .heart:
-                    break
-                case .gift:
-                    (self.coordinator as? StorySelectCoordinator)?.displaySpecialGift()
+                case .heart: (self.coordinator as? StorySelectCoordinator)?.displayFavorites()
+                case .gift: (self.coordinator as? StorySelectCoordinator)?.displaySpecialGift()
                 case .layout:
                     let currentState = self.stateValue
                     currentState.layout = currentState.layout == .line ? .grid : .line
@@ -233,6 +234,7 @@ private extension StorySelectViewController {
 
 extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
     func numberOfItems(in carousel: iCarousel) -> Int {
+        pageControl.isHidden = stateValue.selectedCategory.items.count == 0
         return stateValue.selectedCategory.items.count
     }
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
@@ -271,6 +273,17 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
             }
             favoritesCounterLabel?.text = userSession?.favoritesCounter.description
             favoritesCounterLabel?.isHidden = (favoritesCounterLabel?.text ?? "0") == "0"
+            if self.stateValue.isFavorites, let isFavorite = recycled?.isFavorite, !isFavorite {
+                let index = self.stateValue.selectedCategory.items.firstIndex { story in
+                    story.dto.id_internal == item?.dto.id_internal
+                }
+                if let index = index {
+                    self.stateValue.selectedCategory.items.remove(at: index)
+                    self.pageControl.numberOfPages = self.stateValue.selectedCategory.items.count
+                    self.pageControl.currentPage = self.carousel.currentItemIndex
+                    carousel.reloadData()
+                }
+            }
         }
         if stateValue.isFirstSetup {
             recycled.layoutState = .selected

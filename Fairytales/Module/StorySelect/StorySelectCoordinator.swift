@@ -17,17 +17,21 @@ protocol StorySelectCoordinatorProtocol {
 
 final class StorySelectCoordinator: Coordinatable, StorySelectCoordinatorProtocol, UserSessionServiceProvidable, PurchesServiceProvidable {
     var navigationController: UINavigationController?
+    private let isFavorites: Bool
     
-    init(navigationController: UINavigationController?) {
+    init(navigationController: UINavigationController?, isFavorites: Bool = false) {
         self.navigationController = navigationController
-
+        self.isFavorites = isFavorites
     }
     deinit {
         Logger.log(String(describing: self), type: .deinited)
     }
     
     func start() {
-        let controller = StorySelectViewController(coordinator: self, selectedCategory: userSession.selectedCategory)
+        let controller = StorySelectViewController(
+            coordinator: self,
+            selectedCategory: isFavorites ? FirebaseClient.shared.makeFavoritesCategory() : userSession.selectedCategory,
+            isFavorites: self.isFavorites)
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -47,6 +51,11 @@ final class StorySelectCoordinator: Coordinatable, StorySelectCoordinatorProtoco
     
     func displaySubscriptionsPopup() {
         let coordinator = SubscriptionsCoordinator(whatToShow: .weekly)
+        coordinator.start()
+    }
+    
+    func displayFavorites() {
+        let coordinator = StorySelectCoordinator(navigationController: navigationController, isFavorites: true)
         coordinator.start()
     }
     

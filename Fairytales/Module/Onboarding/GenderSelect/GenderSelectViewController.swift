@@ -50,6 +50,7 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
     
     override func configure() {
         nameTextfield.delegate = self
+        continueButton.isEnabled = false
     }
     
     override func handleEvents() {
@@ -97,16 +98,22 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
             
         }).store(in: &bag)
     }
+    
+    @IBAction func textDidChange(_ sender: UITextField) {
+        sender.text = sender.text?.capitalized
+        if (sender.text?.count ?? 0) > 2 {
+            stateValue.name = (sender.text ?? "").capitalized
+            continueButton.isEnabled = true
+        } else {
+            continueButton.isEnabled = false
+        }
+    }
 }
 
 extension GenderSelectViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        stateValue.name = textField.text ?? ""
     }
 }
 

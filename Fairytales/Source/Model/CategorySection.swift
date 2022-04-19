@@ -13,7 +13,7 @@ final class CategorySection: Hashable, Comparable {
     let color: UIColor
     let thumbnail: UIImage
     let category: CategoryPath
-    let items: [StoryModel]
+    var items: [StoryModel]
     
     init(title: String, description: String, color: UIColor, thumbnail: UIImage, items: [StoryModel], category: CategoryPath) {
         self.items = items
