@@ -13,16 +13,18 @@ protocol GenderSelectCoordinatorProtocol {
 
 final class GenderSelectCoordinator: Coordinatable, GenderSelectCoordinatorProtocol {
     var navigationController: UINavigationController?
+    private let isFromSettings: Bool
     
-    init(navigationController: UINavigationController?) {
+    init(navigationController: UINavigationController?, isFromSetting: Bool = false) {
         self.navigationController = navigationController
+        self.isFromSettings = isFromSetting
     }
     deinit {
         Logger.log(String(describing: self), type: .deinited)
     }
     
     func start() {
-        let controller = GenderSelectViewController(coordinator: self)
+        let controller = GenderSelectViewController(coordinator: self, isFromSettings: self.isFromSettings)
         navigationController?.pushViewController(controller, animated: true)
     }
     

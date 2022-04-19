@@ -34,6 +34,11 @@ final class SettingsCoordinator: Coordinatable, SettingsCoordinatorProtocol {
         let coordinator = ManageSubscriptionsCoordinator(navigationController: navigationController)
         coordinator.start()
     }
+    
+    func displayChangeName() {
+        let coordinator = GenderSelectCoordinator(navigationController: navigationController, isFromSetting: true)
+        coordinator.start()
+    }
 
     func end() {
         navigationController?.popViewController(animated: true)

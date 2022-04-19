@@ -20,6 +20,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="Fairytales" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="y4T-te-U87" id="nWp-F7-CPl"/>
+                <outlet property="changeNameButton" destination="7Sa-cn-txC" id="pPa-vN-VZI"/>
                 <outlet property="favoritesButton" destination="9mR-o9-Ner" id="NW8-hZ-yk1"/>
                 <outlet property="manageSubscriptionButton" destination="xFn-4B-Q9C" id="Rjc-Ss-llm"/>
                 <outlet property="view" destination="iN0-l3-epB" id="0n7-No-Wep"/>
@@ -36,7 +37,7 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu-background-dark-blue" translatesAutoresizingMaskIntoConstraints="NO" id="iQV-q1-kX9">
                             <rect key="frame" x="0.0" y="0.0" width="865" height="900"/>
                         </imageView>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-iq-5zs">
+                        <scrollView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-iq-5zs">
                             <rect key="frame" x="173" y="64" width="519" height="836"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CEh-Te-FEG">
@@ -124,59 +125,10 @@
                                                         <stackView verifyAmbiguity="ignoreSizes" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="w1i-ZI-IPD">
                                                             <rect key="frame" x="0.0" y="20" width="519" height="48"/>
                                                             <subviews>
-                                                                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0eI-pH-RDF" userLabel="SectionItem">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="519" height="48"/>
-                                                                    <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqA-Od-zOq" customClass="TapAnimatedButton" customModule="Fairytales" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="519" height="48"/>
-                                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                        </button>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button-settings-language" translatesAutoresizingMaskIntoConstraints="NO" id="Wsh-di-mzk">
-                                                                            <rect key="frame" x="20" y="12" width="24" height="24"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" secondItem="Wsh-di-mzk" secondAttribute="height" multiplier="1:1" id="2DW-J9-QSz"/>
-                                                                                <constraint firstAttribute="height" constant="24" id="wvF-vO-nJs"/>
-                                                                            </constraints>
-                                                                        </imageView>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button-settings-chevron" translatesAutoresizingMaskIntoConstraints="NO" id="qSQ-1m-sfb">
-                                                                            <rect key="frame" x="483" y="16" width="16" height="16"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="16" id="hdx-8n-7qM"/>
-                                                                            </constraints>
-                                                                        </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выбор языка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGe-sW-XtI">
-                                                                            <rect key="frame" x="64" y="15.5" width="399" height="17"/>
-                                                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                                                            <color key="textColor" red="0.13725490870000001" green="0.14901961389999999" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <constraints>
-                                                                        <constraint firstItem="WqA-Od-zOq" firstAttribute="width" secondItem="0eI-pH-RDF" secondAttribute="width" id="3V5-iM-Fiz"/>
-                                                                        <constraint firstAttribute="height" constant="48" id="4sT-dw-yt5"/>
-                                                                        <constraint firstItem="WqA-Od-zOq" firstAttribute="centerX" secondItem="0eI-pH-RDF" secondAttribute="centerX" id="76n-mK-6Qd"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="qSQ-1m-sfb" secondAttribute="trailing" constant="20" id="JbD-Bp-7Ed"/>
-                                                                        <constraint firstItem="Wsh-di-mzk" firstAttribute="centerY" secondItem="0eI-pH-RDF" secondAttribute="centerY" id="X1s-Vu-0uK"/>
-                                                                        <constraint firstItem="qSQ-1m-sfb" firstAttribute="leading" secondItem="PGe-sW-XtI" secondAttribute="trailing" constant="20" id="Xzq-sC-9bd"/>
-                                                                        <constraint firstItem="WqA-Od-zOq" firstAttribute="height" secondItem="0eI-pH-RDF" secondAttribute="height" id="ZpZ-KR-vb5"/>
-                                                                        <constraint firstItem="WqA-Od-zOq" firstAttribute="centerY" secondItem="0eI-pH-RDF" secondAttribute="centerY" id="hAV-gh-vGs"/>
-                                                                        <constraint firstItem="PGe-sW-XtI" firstAttribute="leading" secondItem="Wsh-di-mzk" secondAttribute="trailing" constant="20" id="kap-tM-Paj"/>
-                                                                        <constraint firstItem="qSQ-1m-sfb" firstAttribute="width" secondItem="qSQ-1m-sfb" secondAttribute="height" multiplier="1:1" id="lpP-SZ-gZ0"/>
-                                                                        <constraint firstItem="qSQ-1m-sfb" firstAttribute="centerY" secondItem="0eI-pH-RDF" secondAttribute="centerY" id="nFb-0V-BG9"/>
-                                                                        <constraint firstItem="Wsh-di-mzk" firstAttribute="leading" secondItem="0eI-pH-RDF" secondAttribute="leading" constant="20" id="ouB-53-MyK"/>
-                                                                        <constraint firstItem="PGe-sW-XtI" firstAttribute="centerY" secondItem="0eI-pH-RDF" secondAttribute="centerY" id="y8m-ud-NXw"/>
-                                                                    </constraints>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
-                                                                            <real key="value" value="24"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </view>
                                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y3T-cu-Wvz" userLabel="SectionItem">
                                                                     <rect key="frame" x="0.0" y="0.0" width="519" height="48"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sa-cn-txC" customClass="TapAnimatedButton" customModule="Fairytales" customModuleProvider="target">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sa-cn-txC" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="519" height="48"/>
                                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                         </button>
@@ -215,55 +167,6 @@
                                                                         <constraint firstItem="jDd-rI-zBD" firstAttribute="width" secondItem="jDd-rI-zBD" secondAttribute="height" multiplier="1:1" id="pmt-Ee-I6c"/>
                                                                         <constraint firstItem="VsF-0i-oWh" firstAttribute="centerY" secondItem="Y3T-cu-Wvz" secondAttribute="centerY" id="tMQ-K9-a9T"/>
                                                                         <constraint firstItem="7Sa-cn-txC" firstAttribute="centerX" secondItem="Y3T-cu-Wvz" secondAttribute="centerX" id="yin-ZL-lNZ"/>
-                                                                    </constraints>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
-                                                                            <real key="value" value="24"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </view>
-                                                                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JCW-BR-3aa" userLabel="SectionItem">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="519" height="48"/>
-                                                                    <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Av9-mr-QDL" customClass="TapAnimatedButton" customModule="Fairytales" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="519" height="48"/>
-                                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                        </button>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button-settings-doublecheck" translatesAutoresizingMaskIntoConstraints="NO" id="uSD-YZ-92q">
-                                                                            <rect key="frame" x="20" y="12" width="24" height="24"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="24" id="Alh-6n-pXj"/>
-                                                                                <constraint firstAttribute="width" secondItem="uSD-YZ-92q" secondAttribute="height" multiplier="1:1" id="Xrk-aW-pvJ"/>
-                                                                            </constraints>
-                                                                        </imageView>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button-settings-chevron" translatesAutoresizingMaskIntoConstraints="NO" id="aAi-ha-xyX">
-                                                                            <rect key="frame" x="483" y="16" width="16" height="16"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="16" id="Lq0-Mx-KZ3"/>
-                                                                            </constraints>
-                                                                        </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Родительский контроль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ox-5g-qfa">
-                                                                            <rect key="frame" x="64" y="15.5" width="399" height="17"/>
-                                                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                                                            <color key="textColor" red="0.13725490870000001" green="0.14901961389999999" blue="0.18823529780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <constraints>
-                                                                        <constraint firstItem="aAi-ha-xyX" firstAttribute="centerY" secondItem="JCW-BR-3aa" secondAttribute="centerY" id="1VG-Ms-NFw"/>
-                                                                        <constraint firstAttribute="height" constant="48" id="4mp-G3-MfB"/>
-                                                                        <constraint firstItem="Av9-mr-QDL" firstAttribute="centerY" secondItem="JCW-BR-3aa" secondAttribute="centerY" id="BBl-vL-SKE"/>
-                                                                        <constraint firstItem="aAi-ha-xyX" firstAttribute="leading" secondItem="9ox-5g-qfa" secondAttribute="trailing" constant="20" id="LSF-SP-iC0"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="aAi-ha-xyX" secondAttribute="trailing" constant="20" id="Qbb-O6-jXD"/>
-                                                                        <constraint firstItem="Av9-mr-QDL" firstAttribute="height" secondItem="JCW-BR-3aa" secondAttribute="height" id="SXg-EB-Rlw"/>
-                                                                        <constraint firstItem="9ox-5g-qfa" firstAttribute="leading" secondItem="uSD-YZ-92q" secondAttribute="trailing" constant="20" id="V2b-dE-CHw"/>
-                                                                        <constraint firstItem="Av9-mr-QDL" firstAttribute="width" secondItem="JCW-BR-3aa" secondAttribute="width" id="aYE-i8-sRw"/>
-                                                                        <constraint firstItem="uSD-YZ-92q" firstAttribute="leading" secondItem="JCW-BR-3aa" secondAttribute="leading" constant="20" id="cV7-Sx-KBS"/>
-                                                                        <constraint firstItem="Av9-mr-QDL" firstAttribute="centerX" secondItem="JCW-BR-3aa" secondAttribute="centerX" id="eBR-qY-ZqD"/>
-                                                                        <constraint firstItem="uSD-YZ-92q" firstAttribute="centerY" secondItem="JCW-BR-3aa" secondAttribute="centerY" id="oSR-Of-b04"/>
-                                                                        <constraint firstItem="9ox-5g-qfa" firstAttribute="centerY" secondItem="JCW-BR-3aa" secondAttribute="centerY" id="tPo-34-emb"/>
-                                                                        <constraint firstItem="aAi-ha-xyX" firstAttribute="width" secondItem="aAi-ha-xyX" secondAttribute="height" multiplier="1:1" id="tiS-dT-FYP"/>
                                                                     </constraints>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
@@ -597,10 +500,8 @@
     <resources>
         <image name="back-button" width="30" height="30"/>
         <image name="button-settings-chevron" width="16" height="16"/>
-        <image name="button-settings-doublecheck" width="24" height="24"/>
         <image name="button-settings-edit" width="24" height="24"/>
         <image name="button-settings-fileminus" width="24" height="24"/>
-        <image name="button-settings-language" width="24" height="24"/>
         <image name="button-settings-settings" width="24" height="24"/>
         <image name="button-settings-share" width="24" height="24"/>
         <image name="button-settings-shield" width="24" height="24"/>

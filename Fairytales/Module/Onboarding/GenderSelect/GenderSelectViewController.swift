@@ -40,8 +40,10 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
     @IBOutlet weak var continueButton: BaseButton!
 
     var stateValue: GenderSelectViewController.State { state.value as! GenderSelectViewController.State }
+    private let isFromSettings: Bool
     
-    init(coordinator: GenderSelectCoordinator) {
+    init(coordinator: GenderSelectCoordinator, isFromSettings: Bool = false) {
+        self.isFromSettings = isFromSettings
         super.init(coordinator: coordinator, type: Self.self, initialState: State())
     }
     required init?(coder: NSCoder) {
@@ -51,6 +53,11 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
     override func configure() {
         nameTextfield.delegate = self
         continueButton.isEnabled = false
+        nameTextfield.text = userSession.kidName
+        if isFromSettings {
+            continueButton.setTitle("Изменить", for: .normal)
+            continueButton.isEnabled = true
+        }
     }
     
     override func handleEvents() {
@@ -73,11 +80,15 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
                 state.name = self?.nameTextfield.text ?? ""
                 let isKidBoy = self?.boyButton.isSelected ?? true
                 state.currentKid = isKidBoy ? KidActor.boy : KidActor.girl
-                guard state.name.count > 1 else { return }
-                self?.userSession.kidName = state.name
-                self?.userSession.kidActor = state.currentKid
-                OnboardingManager.shared?.onboardingFinishAction()
-                OnboardingManager.shared = nil
+                guard let self = self, state.name.count > 1 else { return }
+                self.userSession.kidName = state.name
+                self.userSession.kidActor = state.currentKid
+                if !self.isFromSettings {
+                    OnboardingManager.shared?.onboardingFinishAction()
+                    OnboardingManager.shared = nil
+                } else {
+                    self.coordinator.end()
+                }
             case .back:
                 self?.coordinator.end()
             }
