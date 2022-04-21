@@ -148,6 +148,27 @@ extension UIView: InteractionFeedbackService {
         animation.beginTime = CACurrentMediaTime() + delay
         layer.add(animation, forKey: "shake")
     }
+    func animateShakeRepeatedly(duration: TimeInterval = 0.6, delay: TimeInterval = 3) -> AnyCancellable? {
+        var cancelable: AnyCancellable?
+        cancelable = Timer.publish(every: delay, tolerance: .none, on: RunLoop.main, in: .common, options: nil)
+            .autoconnect()
+            .eraseToAnyPublisher()
+            .sink(receiveValue: { [weak self] _ in
+                let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+                animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+                animation.duration = duration
+                animation.values = [-10.0, 10.0, -10.0, 10.0, -5.0, 5.0, -2.5, 2.5, 0.0 ]
+                animation.beginTime = CACurrentMediaTime()
+                self?.layer.add(animation, forKey: "shake")
+                
+                let shadow = CABasicAnimation(keyPath: "shadowOpacity")
+                shadow.fromValue = 1.0
+                shadow.toValue = 0.0
+                shadow.duration = 0.3
+                self?.layer.add(shadow, forKey: animation.keyPath)
+            })
+        return cancelable
+    }
     func animateBounceAndShadow() -> AnyCancellable? {
         var cancelable: AnyCancellable?
         cancelable = Timer.publish(every: 2, tolerance: .none, on: RunLoop.main, in: .common, options: nil)

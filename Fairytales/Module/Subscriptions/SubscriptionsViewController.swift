@@ -79,6 +79,7 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     @IBOutlet weak var specialGiftCloseButton: UIButton!
     
     private var stateValue: State { state.value as! State }
+    private var continueButtonAnimCancellable: AnyCancellable?
     
     init(coordinator: Coordinatable, whatToShow: ScreenOptions) {
         let initialState = State(whatToShow: whatToShow)
@@ -92,18 +93,13 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     }
     
     override func configure() {
-//        var whatToShow = ScreenOptions.weekly
-//        if purchases.isHowItWorksShouldBeVisibleForUser {
-//            whatToShow = .howItWorks
-//        }
-//        if purchases.isGiftPopupShouldBeVisibleForUser {
-//            whatToShow = .speciealGift
-//        }
-//        if purchases.isWeeklyPlanWithDiscaunt {
-//            whatToShow = .weeklyWithDiscount
-//        }
-        stateValue.whatToShow = stateValue.whatToShow
+
+        continueButton.layer.removeAllAnimations()
+        continueButton.dropShadow(color: .blue, opacity: 0.0, offSet: .zero, radius: 10, scale: true)
+        continueButtonAnimCancellable?.cancel()
+        continueButtonAnimCancellable = continueButton.animateBounceAndShadow()
         
+        stateValue.whatToShow = stateValue.whatToShow
         specialGiftPriceLabel.text = PurchesService.previousYearlyPrice
         weeklyPriceLabel.text = PurchesService.previousWeeklyPrice
         monthlyPriceLabel.text = PurchesService.previousMonthlyPrice

@@ -26,6 +26,7 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
     private lazy var fDisplayManager = CategoriesDisplayManager()
     private var categories: [CategorySection] = []
     private var previousItem: CarouselItemView?
+    private var giftButtonAnimCancelable: AnyCancellable?
     
     init(coordinator: Coordinatable) {
         super.init(coordinator: coordinator, type: Self.self, initialState: BaseState())
@@ -50,6 +51,10 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
         pageControl.numberOfPages = categories.count
         pageControl.currentPage = 1
         pageControl.preferredIndicatorImage = UIImage(named: "page-control-indicator")!
+        
+        giftButton.dropShadow(color: .yellow, opacity: 0.0, offSet: .zero, radius: 10, scale: true)
+        giftButtonAnimCancelable?.cancel()
+        giftButtonAnimCancelable = giftButton.animateShakeRepeatedly()
     }
     override func applyStyling() {
         let emitter = ParticleEmitterView()

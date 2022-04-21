@@ -114,14 +114,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCu-tn-ESa" customClass="iCarousel">
-                    <rect key="frame" x="0.0" y="70" width="865" height="225"/>
+                    <rect key="frame" x="0.0" y="80" width="865" height="235"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U11-By-YLg">
-                    <rect key="frame" x="0.0" y="295" width="865" height="80"/>
+                    <rect key="frame" x="0.0" y="315" width="865" height="60"/>
                     <subviews>
                         <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="14" translatesAutoresizingMaskIntoConstraints="NO" id="CM9-RL-aZa">
-                            <rect key="frame" x="307.5" y="11" width="250" height="26"/>
+                            <rect key="frame" x="307.5" y="5" width="250" height="26"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="250" id="8l3-VB-chH"/>
                             </constraints>
@@ -130,7 +130,7 @@
                             <color key="currentPageIndicatorTintColor" red="0.99719864130000002" green="0.59852820630000003" blue="0.48231929540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </pageControl>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bg0-KF-jGK" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                            <rect key="frame" x="30" y="9" width="30" height="30"/>
+                            <rect key="frame" x="30" y="3" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="bg0-KF-jGK" secondAttribute="height" multiplier="1:1" id="1LR-jM-oiX"/>
                             </constraints>
@@ -138,7 +138,7 @@
                             <state key="normal" backgroundImage="gift-button"/>
                         </button>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvy-0Z-JPL">
-                            <rect key="frame" x="805" y="9" width="30" height="30"/>
+                            <rect key="frame" x="805" y="3" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="qvy-0Z-JPL" secondAttribute="height" multiplier="1:1" id="oJi-Df-mNT"/>
                             </constraints>
@@ -149,7 +149,7 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="4Ag-c3-CGY"/>
+                        <constraint firstAttribute="height" constant="60" id="4Ag-c3-CGY"/>
                         <constraint firstItem="CM9-RL-aZa" firstAttribute="centerX" secondItem="U11-By-YLg" secondAttribute="centerX" id="4io-mI-TFd"/>
                         <constraint firstItem="CM9-RL-aZa" firstAttribute="centerY" secondItem="U11-By-YLg" secondAttribute="centerY" multiplier="0.6" id="CDq-XK-vaz"/>
                         <constraint firstItem="bg0-KF-jGK" firstAttribute="leading" secondItem="U11-By-YLg" secondAttribute="leading" constant="30" id="I9l-ab-bPy"/>
@@ -172,7 +172,7 @@
                 <constraint firstAttribute="trailing" secondItem="cnp-NS-MJJ" secondAttribute="trailing" id="O5w-BX-gth"/>
                 <constraint firstItem="bg0-KF-jGK" firstAttribute="width" secondItem="cnp-NS-MJJ" secondAttribute="width" multiplier="0.0346821" id="PcA-gv-e1h"/>
                 <constraint firstItem="cnp-NS-MJJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SW9-OX-2wS"/>
-                <constraint firstItem="BCu-tn-ESa" firstAttribute="top" secondItem="cnp-NS-MJJ" secondAttribute="bottom" id="Yg8-hh-bPU"/>
+                <constraint firstItem="BCu-tn-ESa" firstAttribute="top" secondItem="cnp-NS-MJJ" secondAttribute="bottom" constant="10" id="Yg8-hh-bPU"/>
                 <constraint firstItem="BCu-tn-ESa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dev-4z-Jpd"/>
                 <constraint firstItem="axK-Hw-FaJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dtk-7a-z4O"/>
                 <constraint firstAttribute="trailing" secondItem="axK-Hw-FaJ" secondAttribute="trailing" id="hMI-tZ-6Mc"/>

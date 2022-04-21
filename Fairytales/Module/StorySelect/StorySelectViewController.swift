@@ -31,7 +31,7 @@ extension StorySelectViewController {
 
 final class StorySelectViewController: BaseViewController, UserSessionServiceProvidable, ImageDownloaderProvidable, PurchesServiceProvidable {
     enum Buttons {
-        case back, heart, gift, layout
+        case back, heart, gift, layout, closeDescription, startReadFromDescription, emptyFavoritesOk
     }
             
     @IBOutlet weak var collectionView: UICollectionView!
@@ -42,11 +42,19 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
     @IBOutlet weak var layoutButton: BaseButton!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var favoritesCounterLabel: UILabel!
-    let imageViewForDownloadingPictures = UIImageView(frame: .zero)
-
+    // story description container
+    @IBOutlet weak var storyDescriptionContainer: UIView!
+    @IBOutlet weak var storyDescriptionCloseButton: BaseButton!
+    @IBOutlet weak var storyDescriptionButton: BaseButton!
+    @IBOutlet weak var storyDescriptionLabel: UILabel!
+    @IBOutlet weak var sotryDescriptionImage: UIImageView!
+    // empty favorites popup
+    @IBOutlet weak var emptyFavoritesContainer: UIView!
+    @IBOutlet weak var emptyFavoritesButton: BaseButton!
+    @IBOutlet weak var emptyFavoritesBackgroundImageView: UIImageView!
     
+    private var storyDescriptionStartReadingAction: VoidClosure?
     private lazy var displayDataManager = StorySelectDisplayManager(collectionView: self.collectionView)
-    
     private var stateValue: State { state.value as! State }
 
     init(coordinator: Coordinatable, selectedCategory: CategorySection, isFavorites: Bool) {
@@ -75,6 +83,16 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         userSession.selectedStory = stateValue.selectedCategory.items[safe: carousel.currentItemIndex]
         favoritesCounterLabel.text = userSession.favoritesCounter.description
         favoritesCounterLabel.isHidden = (favoritesCounterLabel.text ?? "0") == "0"
+        sotryDescriptionImage.layer.borderColor = UIColor.white.cgColor
+        sotryDescriptionImage.layer.borderWidth = 5
+        emptyFavoritesBackgroundImageView.layer.borderWidth = 5
+        emptyFavoritesBackgroundImageView.layer.borderColor = UIColor.white.cgColor
+        emptyFavoritesBackgroundImageView.layer.cornerRadius = 30
+        emptyFavoritesContainer.layer.borderColor = UIColor.white.cgColor
+        emptyFavoritesContainer.isHidden = !(stateValue.isFavorites && userSession.favoritesCounter == 0)
+        
+        giftButton.dropShadow(color: .yellow, opacity: 0.0, offSet: .zero, radius: 10, scale: true)
+        giftButton.animateShakeRepeatedly()?.store(in: &bag)
     }
     
     override func applyStyling() {
@@ -115,7 +133,13 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 self.navigationController?.setNavigationBarHidden(true, animated: false)
                 self.favoritesCounterLabel.text = self.userSession.favoritesCounter.description
                 self.favoritesCounterLabel.isHidden = (self.favoritesCounterLabel.text ?? "0") == "0"
-                self.carousel.reloadData()
+                //if self.stateValue.isFavorites {
+                    self.carousel.reloadData()
+                //}
+            case .viewDidAppear:
+                //if self.stateValue.isFavorites {
+                    (self.carousel.currentItemView as? CarouselItemView)?.layoutState = .selected
+                //}
             case _: break
             }
         }).store(in: &bag)
@@ -123,8 +147,11 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
             backButton.publisher().map { _ in Buttons.back },
             favoritesButton.publisher().map { _ in Buttons.heart },
             giftButton.publisher().map { _ in Buttons.gift },
-            layoutButton.publisher().map { _ in Buttons.layout })
-            .sink(receiveValue: { [weak self] button in
+            layoutButton.publisher().map { _ in Buttons.layout },
+            storyDescriptionCloseButton.publisher().map { _ in Buttons.closeDescription },
+            storyDescriptionButton.publisher().map { _ in Buttons.startReadFromDescription },
+            emptyFavoritesButton.publisher().map { _ in Buttons.emptyFavoritesOk }
+        ).sink(receiveValue: { [weak self] button in
                 guard let self = self else { return }
                 switch button {
                 case .back: self.coordinator.end()
@@ -134,6 +161,13 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                     let currentState = self.stateValue
                     currentState.layout = currentState.layout == .line ? .grid : .line
                     self.state.send(currentState)
+                case .closeDescription:
+                    self.storyDescriptionContainer.isHidden = true
+                case .startReadFromDescription:
+                    self.storyDescriptionStartReadingAction?()
+                    self.storyDescriptionContainer.isHidden = true
+                case .emptyFavoritesOk:
+                    self.coordinator.end()
                 }
             }).store(in: &bag)
     }
@@ -144,7 +178,6 @@ private extension StorySelectViewController {
     func loadStory(item: CarouselItemView, completion: VoidClosure?) {
         var progressTotalPages: CGFloat = CGFloat(userSession.selectedStory.dto.pages.count)
         var progressCurrentPage: CGFloat = 0
-        
         let isBoy: Bool = userSession.isBoy
         let isIpad: Bool = UIDevice.current.isIPad
         let educationalCategory = userSession.selectedStory.pages.publisher
@@ -228,6 +261,20 @@ private extension StorySelectViewController {
             return true
         }
     }
+    
+    func openStoryAction(_ recycled: CarouselItemView, storyModel item: StoryModel) {
+        recycled.isLoading = true
+        self.carousel.isUserInteractionEnabled = false
+        self.loadStory(item: recycled, completion: {
+            recycled.isLoading = false
+            self.carousel.isUserInteractionEnabled = true
+            self.userSession.setStoryPersistanceStatusOn(with: item.dto.id_internal)
+            recycled.isPersisted = self.userSession.checkIsStoryPersistedInStorage(with: item.dto.id_internal)
+            self.shouldShowSubscriptionsPopup() ?
+            (self.coordinator as? StorySelectCoordinator)?.displaySubscriptionsPopup() :
+            (self.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
+        })
+    }
 }
 
 // MARK: - CarouselDelegate and CarouselDatasource
@@ -235,6 +282,7 @@ private extension StorySelectViewController {
 extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
     func numberOfItems(in carousel: iCarousel) -> Int {
         pageControl.isHidden = stateValue.selectedCategory.items.count == 0
+        emptyFavoritesContainer.isHidden = !(stateValue.selectedCategory.items.count == 0 && stateValue.isFavorites)
         return stateValue.selectedCategory.items.count
     }
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
@@ -251,19 +299,9 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
         recycled.heartButton.isSelected = isFavorite
         item.isFavorite = isFavorite
         recycled.isPersisted = userSession.checkIsStoryPersistedInStorage(with: item.dto.id_internal)
-        recycled.openButtonCallback = { [weak self, weak recycled] in
-            guard let self = self, let recycled = recycled else { return }
-            recycled.isLoading = true
-            self.carousel.isUserInteractionEnabled = false
-            self.loadStory(item: recycled, completion: {
-                recycled.isLoading = false
-                self.carousel.isUserInteractionEnabled = true
-                self.userSession.setStoryPersistanceStatusOn(with: item.dto.id_internal)
-                recycled.isPersisted = self.userSession.checkIsStoryPersistedInStorage(with: item.dto.id_internal)
-                self.shouldShowSubscriptionsPopup() ?
-                (self.coordinator as? StorySelectCoordinator)?.displaySubscriptionsPopup() :
-                (self.coordinator as? StorySelectCoordinator)?.displaySelectedStory()
-            })
+        recycled.openButtonCallback = { [weak self, weak recycled, weak item] in
+            guard let self = self, let recycled = recycled, let item = item else { return }
+            self.openStoryAction(recycled, storyModel: item)
         }
         recycled.heartButtonCallback = { [weak recycled, weak item, weak userSession, weak favoritesCounterLabel] in
             item?.isFavorite.toggle()
@@ -283,6 +321,18 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
                     self.pageControl.currentPage = self.carousel.currentItemIndex
                     carousel.reloadData()
                 }
+            }
+        }
+        recycled.infoButtonCallback = { [weak self, weak item] in
+            guard let self = self, let item = item else { return }
+            if let storyDescription = item.dto.description?["ru"] {
+                self.storyDescriptionLabel.text = storyDescription
+                self.storyDescriptionContainer.isHidden = false
+            }
+            self.sotryDescriptionImage.image = item.imageThumbnail ?? UIImage(named: "story-info-background")
+            self.storyDescriptionStartReadingAction = nil
+            self.storyDescriptionStartReadingAction = {
+                self.openStoryAction(recycled, storyModel: item)
             }
         }
         if stateValue.isFirstSetup {

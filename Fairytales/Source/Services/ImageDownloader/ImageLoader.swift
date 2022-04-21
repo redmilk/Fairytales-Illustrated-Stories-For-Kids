@@ -24,7 +24,6 @@ final class ImageLoader: ImageLoaderType {
     }
     // MARK: - API
     func loadImage(withURL url: URL, cacheKey: String) -> AnyPublisher<UIImage, Never> {
-        Logger.log("CacheKey: \(cacheKey)", type: .redirectURL)
         let checkIfCached = fetchFromCache(cacheKey).eraseToAnyPublisher()
         let downloadImage = URLSession.shared
             .dataTaskPublisher(for: url)
@@ -56,7 +55,6 @@ final class ImageLoader: ImageLoaderType {
                 self?.cache.retrieveImage(forKey: cacheKey) { result in
                     switch result {
                     case .success(let value):
-                        Logger.log("from CACHE", type: .redirectURL)
                         promise(.success(value.image))
                     case .failure(let error):
                         Logger.logError(error)

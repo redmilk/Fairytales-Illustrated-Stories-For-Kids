@@ -14,17 +14,18 @@ final class CarouselItemView: UIView {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet weak var primaryButton: BaseButton!
     @IBOutlet private weak var containerBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var heartButton: UIButton!
+    @IBOutlet weak var heartButton: BaseButton!
     @IBOutlet weak var categoryDescriptionLabel: UILabel!
     @IBOutlet weak var stackviewCenterY: NSLayoutConstraint!
     @IBOutlet weak var storyTitleLabel: UILabel!
-    @IBOutlet weak var buttonStoryInfo: UIButton!
+    @IBOutlet weak var buttonStoryInfo: BaseButton!
     @IBOutlet weak var pageCountLabelButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var activitySpinnerContainer: UIView!
     
     var openButtonCallback: VoidClosure?
     var heartButtonCallback: VoidClosure?
+    var infoButtonCallback: VoidClosure?
     
     var isLoading: Bool = false
     
@@ -109,6 +110,18 @@ final class CarouselItemView: UIView {
         activitySpinnerContainer.isHidden = true
     }
     
+    func setOpenLayoutStateWithoutAnimation() {
+        primaryButton.isHidden = false
+        containerBottomConstraint.constant = 15
+        primaryButton.transform = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
+        contentView.layer.removeAllAnimations()
+        UIView.animate(withDuration: 0, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: {
+            self.contentView.layoutIfNeeded()
+            self.primaryButton.transform = .identity
+            self.activitySpinnerContainer.isHidden = !self.isLoading
+        }, completion: nil)
+    }
+    
     func updateProgress(_ value: CGFloat) {
         progressView.isHidden = false
         progressView.progress = Float(value)
@@ -128,6 +141,9 @@ final class CarouselItemView: UIView {
     }
     @IBAction func didPressHeart(_ sender: Any) {
         heartButtonCallback?()
+    }
+    @IBAction func didPressInfo(_ sender: Any) {
+        infoButtonCallback?()
     }
 }
 
