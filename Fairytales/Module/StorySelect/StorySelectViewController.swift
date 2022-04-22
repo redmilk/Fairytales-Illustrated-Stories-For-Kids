@@ -94,8 +94,11 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         emptyFavoritesContainer.layer.borderColor = UIColor.white.cgColor
         emptyFavoritesContainer.isHidden = !(stateValue.isFavorites && userSession.favoritesCounter == 0)
         
-        giftButton.dropShadow(color: .yellow, opacity: 0.0, offSet: .zero, radius: 10, scale: true)
-        giftButton.animateShakeRepeatedly()?.store(in: &bag)
+        giftButton.isHidden = purchases.isUserHasActiveSubscription
+        if purchases.isUserHasActiveSubscription {
+            giftButton.dropShadow(color: .yellow, opacity: 0.0, offSet: .zero, radius: 10, scale: true)
+            giftButton.animateShakeRepeatedly()?.store(in: &bag)
+        }
         menuBackground.isHidden = !stateValue.isFavorites
         favoritesBackgroundView.isHidden = !stateValue.isFavorites
     }
@@ -106,7 +109,6 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         emitter.alpha = 1
         emitter.isUserInteractionEnabled = false
         view.insertSubview(emitter, aboveSubview: favoritesBackgroundView)
-
         //view.insertSubview(emitter, at: 1)
         emitter.constraintToSides(inside: view)
     }
@@ -184,6 +186,15 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                     self.coordinator.end()
                 }
             }).store(in: &bag)
+        
+        purchases.output.receive(on: DispatchQueue.main, options: nil)
+            .sink(receiveValue: { [weak self] event in
+            switch event {
+            case .successfullyPurchased:
+                self?.giftButton.isHidden = true
+            case _: break
+            }
+        }).store(in: &bag)
     }
 }
 

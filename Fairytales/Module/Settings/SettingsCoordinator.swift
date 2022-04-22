@@ -13,6 +13,8 @@ import Combine
 
 protocol SettingsCoordinatorProtocol {
    func displayManageSubscription()
+   func displayPrivacy()
+   func displayTerms()
 }
 
 final class SettingsCoordinator: Coordinatable, SettingsCoordinatorProtocol {
@@ -37,6 +39,16 @@ final class SettingsCoordinator: Coordinatable, SettingsCoordinatorProtocol {
     
     func displayChangeName() {
         let coordinator = GenderSelectCoordinator(navigationController: navigationController, isFromSetting: true)
+        coordinator.start()
+    }
+    
+    func displayPrivacy() {
+        let coordinator = WebscreenCoordinator(navigationController: self.navigationController, contentType: .privacy)
+        coordinator.start()
+    }
+    
+    func displayTerms() {
+        let coordinator = WebscreenCoordinator(navigationController: self.navigationController, contentType: .terms)
         coordinator.start()
     }
 

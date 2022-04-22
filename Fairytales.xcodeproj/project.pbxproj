@@ -144,6 +144,8 @@
 		79B955E8281286630019209A /* MiscSettingsModulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B955E4281286630019209A /* MiscSettingsModulesViewController.swift */; };
 		79B955E9281286630019209A /* MiscSettingsModulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B955E5281286630019209A /* MiscSettingsModulesViewModel.swift */; };
 		79B955EA281286630019209A /* MiscSettingsModulesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B955E6281286630019209A /* MiscSettingsModulesCoordinator.swift */; };
+		79BE051C28133EF00017F6F5 /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = 79BE051A28133EF00017F6F5 /* terms.html */; };
+		79BE051D28133EF00017F6F5 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 79BE051B28133EF00017F6F5 /* privacy.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -288,6 +290,8 @@
 		79B955E4281286630019209A /* MiscSettingsModulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSettingsModulesViewController.swift; sourceTree = "<group>"; };
 		79B955E5281286630019209A /* MiscSettingsModulesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSettingsModulesViewModel.swift; sourceTree = "<group>"; };
 		79B955E6281286630019209A /* MiscSettingsModulesCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSettingsModulesCoordinator.swift; sourceTree = "<group>"; };
+		79BE051A28133EF00017F6F5 /* terms.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms.html; sourceTree = "<group>"; };
+		79BE051B28133EF00017F6F5 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,6 +415,8 @@
 		7985DC38279EC6F8005459E0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				79BE051B28133EF00017F6F5 /* privacy.html */,
+				79BE051A28133EF00017F6F5 /* terms.html */,
 				792CDFA727BAF14D00EF21D6 /* LaunchVideo */,
 				79958D2E27A7A73300A32E5A /* Fonts */,
 				7985DC2C279EC6F8005459E0 /* Assets.xcassets */,
@@ -855,6 +861,7 @@
 				7985DC7B279EC6F8005459E0 /* CustomAlert.xib in Resources */,
 				79B955E7281286630019209A /* MiscSettingsModulesViewController.xib in Resources */,
 				7919539327F99484006B60A3 /* ManageSubscriptionsViewController.xib in Resources */,
+				79BE051D28133EF00017F6F5 /* privacy.html in Resources */,
 				790A49DE27F464BA00B9E7CE /* SubscriptionsViewController.xib in Resources */,
 				792CDFAA27BAF16B00EF21D6 /* video-iphone.mp4 in Resources */,
 				79958D4927A7AAC000A32E5A /* Lato-Bold.ttf in Resources */,
@@ -869,6 +876,7 @@
 				79958D4B27A7AAC000A32E5A /* Lato-ExtraBold.ttf in Resources */,
 				799E809B27AC38F600ABE0C8 /* CarouselItemView.xib in Resources */,
 				79958D4C27A7AAC000A32E5A /* COPYRIGHT.txt in Resources */,
+				79BE051C28133EF00017F6F5 /* terms.html in Resources */,
 				79958D5927A7AAC000A32E5A /* Lato-ExtraLight.ttf in Resources */,
 				79958D4827A7AAC000A32E5A /* Lato-Thin.ttf in Resources */,
 				79958D5127A7AAC000A32E5A /* Lato-SemiBold.ttf in Resources */,
@@ -1125,7 +1133,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
@@ -1164,7 +1172,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;

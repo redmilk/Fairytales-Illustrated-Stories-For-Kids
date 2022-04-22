@@ -20,9 +20,11 @@ final class WebscreenViewController: UIViewController {
         case configure(contentType: WebscreenViewController.Content)
     }
         
-    @IBOutlet weak var privacyPolicyContainer: UIView!
+    @IBOutlet weak var topBarContainer: UIView!
     @IBOutlet weak var webView: WKWebView!
-
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     private let viewModel: WebscreenViewModel
     private var bag = Set<AnyCancellable>()
     
@@ -48,29 +50,26 @@ private extension WebscreenViewController {
     
     func handleActions() {
         viewModel.output.sink(receiveValue: { [weak self] state in
+            guard let self = self else { return }
             switch state {
             case .configure(let contentType):
-                self?.title = contentType != .terms ? "Privacy Policy" : "Terms of Use"
-                let terms = URLRequest(url: URL(string: "https://")!)
-                let privacy = URLRequest(url: URL(string: "https://")!)
-                self?.webView.load(contentType != .terms ? privacy : terms)
+                self.titleLabel.text = contentType != .terms ? "Политика конфиденциальности" : "Условия использования"
+                let url = Bundle.main.url(forResource: contentType != .terms ? "privacy" : "terms", withExtension: "html")!
+                //let termsURL = Bundle.main.url(forResource: "terms", withExtension: "html")!
+                self.webView.loadFileURL(url, allowingReadAccessTo: url)
+                let request = URLRequest(url: url)
+                self.webView.load(request)
             }
         })
         .store(in: &bag)
-    }
-    
-    func configureView() {
-        let backButton = UIBarButtonItem(
-            image: UIImage(named: "")!,
-            style: .plain,
-            target: navigationController,
-            action: nil)
+        
         backButton.publisher().sink(receiveValue: { [weak self] _ in
             self?.navigationController?.popViewController(animated: true)
         }).store(in: &bag)
-        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    func configureView() {
         navigationController?.interactivePopGestureRecognizer?.delegate = self
-        
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationController?.navigationBar.tintColor = .white

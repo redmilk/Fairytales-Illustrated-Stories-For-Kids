@@ -164,15 +164,18 @@ final class PurchesService: AnalyticServiceProvider {
                 guard let self = self else { return }
                 let errorText = self.handleErrorAsErrorText(purchaseError)
                 self.output.send(.displayAlert(text: errorText, title: "Ошибка платежа", action: nil, buttonTitle: nil))
-            case _: break
+            case .finished: break
             }
         }, receiveValue: { [weak self] in
-            if self?.isUserHasActiveSubscription ?? false {
-                self?.output.send(.displayAlert(text: "Новый тарифный план установлен", title: "Оплата прошла успешно", action: nil, buttonTitle: nil))
-                Logger.log("Successfully purchased annual subscription", type: .purchase)
+            self?.output.send(.displayAlert(text: "Новый тарифный план установлен", title: "Оплата прошла успешно", action: nil, buttonTitle: nil))
+            Logger.log("Successfully purchased annual subscription", type: .purchase)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 self?.output.send(.successfullyPurchased)
-            }
-            Logger.log("Purchase is not detected", type: .purchase)
+            })
+//            if self?.isUserHasActiveSubscription ?? false {
+//
+//            }
+//            Logger.log("Purchase is not detected", type: .purchase)
         }).store(in: &bag)
     }
     
@@ -189,11 +192,13 @@ final class PurchesService: AnalyticServiceProvider {
                 Logger.logError(error)
             case _: break
             }
+                
         }, receiveValue: { [weak self] isSuccess in
-            if isSuccess && self?.isUserHasActiveSubscription ?? false {
+            if isSuccess {
                 self?.output.send(.displayAlert(text: "Ваш предыдущий тарифный план восстановлен", title: "Оплата прошла успешно", action: nil, buttonTitle: nil))
-                Logger.log("Restore subscription: Purchase is not detected", type: .purchase)
-                self?.output.send(.successfullyPurchased)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    self?.output.send(.successfullyPurchased)
+                })
             } else {
                 self?.output.send(.displayAlert(text: "Информация о предыдущем тарифном плане не найдена", title: "Ошибка восстановления", action: nil, buttonTitle: nil))
             }
@@ -310,10 +315,12 @@ final class PurchesService: AnalyticServiceProvider {
                         return promise(.failure(error))
                         /// attempt to fetch subscription model from purchaseResult and check it isActive state
                     } else if let subscription = purchaseResultModel.subscription, subscription.isActive() {
+                        self?.output.send(.successfullyPurchased)
                         promise(.success(()))
                         self?.refreshUserPurchasesStatus()
                     /// attempt to fetch nonRenewingPurchase model from purchaseResult and check it isActive state
                     } else if let purchase = purchaseResultModel.nonRenewingPurchase, purchase.isActive() {
+                        self?.output.send(.successfullyPurchased)
                         promise(.success(()))
                         self?.refreshUserPurchasesStatus()
                     }

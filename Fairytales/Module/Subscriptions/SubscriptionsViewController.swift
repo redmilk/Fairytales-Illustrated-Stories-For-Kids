@@ -38,7 +38,7 @@ extension SubscriptionsViewController {
 final class SubscriptionsViewController: BaseViewController, PurchesServiceProvidable {
   
     enum Button {
-        case monthly, yearly, purchase, close, rightsOfUsage, renewSubscription, politics, plans, giftPurchase, giftClose
+        case monthly, yearly, purchase, close, renewSubscription, politics, plans, giftPurchase, giftClose
     }
     
     @IBOutlet weak var specialGiftContainer: UIView!
@@ -137,7 +137,6 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
             yearlyButton.publisher().map { _ in Button.yearly },
             continueButton.publisher().map { _ in Button.purchase },
             closeButton.publisher().map { _ in Button.close },
-            rightsOfUsageButton.publisher().map { _ in Button.rightsOfUsage },
             renewSubscriptionButton.publisher().map { _ in Button.renewSubscription },
             politicsButton.publisher().map { _ in Button.politics },
             plansButton.publisher().map { _ in Button.plans },
@@ -169,7 +168,6 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
                 case .yearly:
                     self.toggleState()
                     self.stateValue.selectedPurchase = .yearly
-                case .rightsOfUsage: break
                 case .renewSubscription:
                     self.purchases.restoreLastSubscription()
                 case .politics: break

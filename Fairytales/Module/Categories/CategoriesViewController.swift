@@ -12,7 +12,7 @@ import Combine
 
 // MARK: - CategoriesViewController
 
-final class CategoriesViewController: BaseViewController, UserSessionServiceProvidable {
+final class CategoriesViewController: BaseViewController, UserSessionServiceProvidable, PurchesServiceProvidable {
     enum Button {
         case settings, favorites, gift
     }
@@ -52,9 +52,12 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
         pageControl.currentPage = 1
         pageControl.preferredIndicatorImage = UIImage(named: "page-control-indicator")!
         
-        giftButton.dropShadow(color: .yellow, opacity: 0.0, offSet: .zero, radius: 10, scale: true)
-        giftButtonAnimCancelable?.cancel()
-        giftButtonAnimCancelable = giftButton.animateShakeRepeatedly()
+        giftButton.isHidden = purchases.isUserHasActiveSubscription
+        if purchases.isUserHasActiveSubscription {
+            giftButton.dropShadow(color: .yellow, opacity: 0.0, offSet: .zero, radius: 10, scale: true)
+            giftButtonAnimCancelable?.cancel()
+            giftButtonAnimCancelable = giftButton.animateShakeRepeatedly()
+        }
     }
     override func applyStyling() {
         let emitter = ParticleEmitterView()
@@ -86,6 +89,15 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
                 self.navigationController?.setNavigationBarHidden(true, animated: false)
                 self.favoritesCounterLabel.text = self.userSession.favoritesCounter.description
                 self.favoritesCounterLabel.isHidden = (self.favoritesCounterLabel.text ?? "0") == "0"
+            case _: break
+            }
+        }).store(in: &bag)
+        
+        purchases.output.receive(on: DispatchQueue.main, options: nil)
+            .sink(receiveValue: { [weak self] event in
+            switch event {
+            case .successfullyPurchased:
+                self?.giftButton.isHidden = true
             case _: break
             }
         }).store(in: &bag)

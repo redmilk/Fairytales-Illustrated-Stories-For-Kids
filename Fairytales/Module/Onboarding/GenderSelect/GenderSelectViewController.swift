@@ -114,9 +114,11 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
     }
     
     @IBAction func textDidChange(_ sender: UITextField) {
-        sender.text = sender.text?.capitalized
-        if (sender.text?.count ?? 0) > 2 {
-            stateValue.name = (sender.text ?? "").capitalized
+        guard let txt = sender.text else { return }
+        let text = txt.replacingOccurrences(of: "  ", with: "").replacingOccurrences(of: ".", with: "")
+        sender.text = text.capitalized
+        if text.count > 2 {
+            stateValue.name = text.capitalized
             continueButton.isEnabled = true
         } else {
             continueButton.isEnabled = false

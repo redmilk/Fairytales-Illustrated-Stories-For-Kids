@@ -135,12 +135,15 @@ final class CarouselItemView: UIView {
     }
     
     @IBAction func didPressHandle(_ sender: Any) {
+        generateInteractionFeedback()
         openButtonCallback?()
     }
     @IBAction func didPressHeart(_ sender: Any) {
+        generateInteractionFeedback()
         heartButtonCallback?()
     }
     @IBAction func didPressInfo(_ sender: Any) {
+        generateInteractionFeedback()
         infoButtonCallback?()
     }
 }
