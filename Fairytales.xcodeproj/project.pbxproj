@@ -139,6 +139,11 @@
 		79B2A6C927B9F41D00188BC1 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B2A6C827B9F41D00188BC1 /* Scheduler.swift */; };
 		79B2A6CE27B9F69000188BC1 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B2A6CB27B9F69000188BC1 /* ImageLoader.swift */; };
 		79B2A6CF27B9F69000188BC1 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B2A6CC27B9F69000188BC1 /* RequestError.swift */; };
+		79B955E1281283AA0019209A /* FacebookProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B955E0281283AA0019209A /* FacebookProvider.swift */; };
+		79B955E7281286630019209A /* MiscSettingsModulesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79B955E3281286630019209A /* MiscSettingsModulesViewController.xib */; };
+		79B955E8281286630019209A /* MiscSettingsModulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B955E4281286630019209A /* MiscSettingsModulesViewController.swift */; };
+		79B955E9281286630019209A /* MiscSettingsModulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B955E5281286630019209A /* MiscSettingsModulesViewModel.swift */; };
+		79B955EA281286630019209A /* MiscSettingsModulesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B955E6281286630019209A /* MiscSettingsModulesCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -278,6 +283,11 @@
 		79B2A6CA27B9F69000188BC1 /* ImageCacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
 		79B2A6CB27B9F69000188BC1 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		79B2A6CC27B9F69000188BC1 /* RequestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		79B955E0281283AA0019209A /* FacebookProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookProvider.swift; sourceTree = "<group>"; };
+		79B955E3281286630019209A /* MiscSettingsModulesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiscSettingsModulesViewController.xib; sourceTree = "<group>"; };
+		79B955E4281286630019209A /* MiscSettingsModulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSettingsModulesViewController.swift; sourceTree = "<group>"; };
+		79B955E5281286630019209A /* MiscSettingsModulesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSettingsModulesViewModel.swift; sourceTree = "<group>"; };
+		79B955E6281286630019209A /* MiscSettingsModulesCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscSettingsModulesCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -469,6 +479,7 @@
 				7985DC52279EC6F8005459E0 /* SettingsViewController.xib */,
 				7919538C27F993FC006B60A3 /* ManageSubscriptions */,
 				7985DCEC27A15129005459E0 /* Webscreen */,
+				79B955E2281286630019209A /* MiscSettingsModules */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -606,6 +617,7 @@
 				7985DCC9279EC6F8005459E0 /* AnalyticsService.swift */,
 				79878EF327C53B50008DBD86 /* StoryTextFormatter.swift */,
 				79878EF527C550CF008DBD86 /* UserDefaultsWrapper.swift */,
+				79B955E0281283AA0019209A /* FacebookProvider.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -745,6 +757,17 @@
 			path = ImageDownloader;
 			sourceTree = "<group>";
 		};
+		79B955E2281286630019209A /* MiscSettingsModules */ = {
+			isa = PBXGroup;
+			children = (
+				79B955E3281286630019209A /* MiscSettingsModulesViewController.xib */,
+				79B955E4281286630019209A /* MiscSettingsModulesViewController.swift */,
+				79B955E5281286630019209A /* MiscSettingsModulesViewModel.swift */,
+				79B955E6281286630019209A /* MiscSettingsModulesCoordinator.swift */,
+			);
+			path = MiscSettingsModules;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -830,6 +853,7 @@
 				79958D5627A7AAC000A32E5A /* Lato-Medium.ttf in Resources */,
 				79878EF227C3AEA0008DBD86 /* GenderSelectViewController.xib in Resources */,
 				7985DC7B279EC6F8005459E0 /* CustomAlert.xib in Resources */,
+				79B955E7281286630019209A /* MiscSettingsModulesViewController.xib in Resources */,
 				7919539327F99484006B60A3 /* ManageSubscriptionsViewController.xib in Resources */,
 				790A49DE27F464BA00B9E7CE /* SubscriptionsViewController.xib in Resources */,
 				792CDFAA27BAF16B00EF21D6 /* video-iphone.mp4 in Resources */,
@@ -876,6 +900,7 @@
 				7985DC5B279EC6F8005459E0 /* OnboardingCoordinator.swift in Sources */,
 				7985DCCC279EC6F8005459E0 /* InteractionFeedbackService.swift in Sources */,
 				7985DCB5279EC6F8005459E0 /* UIImage+Extensions.swift in Sources */,
+				79B955E1281283AA0019209A /* FacebookProvider.swift in Sources */,
 				79B2A6CF27B9F69000188BC1 /* RequestError.swift in Sources */,
 				7985DCE4279EC6F8005459E0 /* CategorySection.swift in Sources */,
 				79878EF027C3AEA0008DBD86 /* GenderSelectViewController.swift in Sources */,
@@ -884,6 +909,7 @@
 				79958D5B27A7C31200A32E5A /* UIButton+Extensions.swift in Sources */,
 				790A49DC27F464BA00B9E7CE /* SubscriptionsViewController.swift in Sources */,
 				795EA56A27A80A5F0016C417 /* Obfuscator.swift in Sources */,
+				79B955E8281286630019209A /* MiscSettingsModulesViewController.swift in Sources */,
 				79958CFF27A75B2200A32E5A /* StorySelectCoordinator.swift in Sources */,
 				79AFD3CB27FEEC7300084DA0 /* CoverImages.swift in Sources */,
 				79958D2327A76B3B00A32E5A /* EventRepresentable.swift in Sources */,
@@ -902,6 +928,7 @@
 				7985DCB7279EC6F8005459E0 /* Publisher+Extensions.swift in Sources */,
 				79958D6027A7C40A00A32E5A /* LocalizedStringID.swift in Sources */,
 				79958D0027A75B2200A32E5A /* StorySelectViewController.swift in Sources */,
+				79B955E9281286630019209A /* MiscSettingsModulesViewModel.swift in Sources */,
 				7985DC8D279EC6F8005459E0 /* ColorPalette.swift in Sources */,
 				79958D2727A76FFA00A32E5A /* LifecycleTransmittable.swift in Sources */,
 				7985DCBD279EC6F8005459E0 /* UICollectionView+Extensions.swift in Sources */,
@@ -930,6 +957,7 @@
 				790A49DB27F464BA00B9E7CE /* SubscriptionsCoordinator.swift in Sources */,
 				79878EF427C53B50008DBD86 /* StoryTextFormatter.swift in Sources */,
 				7919539227F99484006B60A3 /* ManageSubscriptionsCoordinator.swift in Sources */,
+				79B955EA281286630019209A /* MiscSettingsModulesCoordinator.swift in Sources */,
 				79958D1F27A76A1200A32E5A /* StateHandable.swift in Sources */,
 				793CA39627AFEFCB005D0B77 /* LaunchAnimationViewController.swift in Sources */,
 				79B2A6CE27B9F69000188BC1 /* ImageLoader.swift in Sources */,
@@ -1097,7 +1125,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
@@ -1106,7 +1134,7 @@
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This lets us connect to Facebook and improves our marketing. We will never show any ads inside of Fairytales.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeRight;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1136,7 +1164,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
@@ -1145,7 +1173,7 @@
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This lets us connect to Facebook and improves our marketing. We will never show any ads inside of Fairytales.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationLandscapeRight;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationLandscapeRight;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

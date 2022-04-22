@@ -26,6 +26,7 @@ final class CarouselItemView: UIView {
     var openButtonCallback: VoidClosure?
     var heartButtonCallback: VoidClosure?
     var infoButtonCallback: VoidClosure?
+    var indicator: UIView?
     
     var isLoading: Bool = false
     
@@ -50,7 +51,7 @@ final class CarouselItemView: UIView {
             case .idle:
                 containerBottomConstraint.constant = 40
                 contentView.layer.removeAllAnimations()
-                UIView.animate(withDuration: 0.35, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: {
+                UIView.animate(withDuration: 0.25, delay: 0, options: [.allowUserInteraction, .curveLinear], animations: {
                     self.primaryButton.isHidden = true
                     self.activitySpinnerContainer.isHidden = true
                     self.contentView.layoutIfNeeded()
@@ -60,7 +61,7 @@ final class CarouselItemView: UIView {
                 containerBottomConstraint.constant = 15
                 primaryButton.transform = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
                 contentView.layer.removeAllAnimations()
-                UIView.animate(withDuration: 0.35, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: {
+                UIView.animate(withDuration: 0.25, delay: 0, options: [.allowUserInteraction, .curveLinear], animations: {
                     self.contentView.layoutIfNeeded()
                     self.primaryButton.transform = .identity
                     self.activitySpinnerContainer.isHidden = !self.isLoading
@@ -92,13 +93,20 @@ final class CarouselItemView: UIView {
         pageCountLabelButton.isHidden = false
         pageCountLabelButton.setTitle("\(model.pages.count) стр", for: .normal)
         progressView.isHidden = true
-        //stackviewCenterY.isActive = true
-        let indicator = CirclesActivityIndicator().makeActivityIndicator(height: activitySpinnerContainer.bounds.height - 14, color: .white)
-        activitySpinnerContainer.addAndFill(indicator, padding: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 0))
+        progressView.layer.cornerRadius = 2
+        progressView.clipsToBounds = true
+        progressView.layer.sublayers![1].cornerRadius = 2
+        progressView.subviews[1].clipsToBounds = true
         activitySpinnerContainer.isHidden = true
     }
     
     func startAnimateDownloading() {
+        indicator = CirclesActivityIndicator().makeActivityIndicator(height: primaryButton.bounds.height * 0.8, color: .white)
+        activitySpinnerContainer.addAndFill(
+            indicator!,
+            padding: UIEdgeInsets(top: primaryButton.bounds.height * 0.1, left: primaryButton.bounds.height * 0.1, bottom: 0, right: 0)
+        )
+
         progressView.isHidden = false
         activitySpinnerContainer.isHidden = false
         primaryButton.setTitle("", for: .normal)
@@ -107,21 +115,11 @@ final class CarouselItemView: UIView {
     func stopAnimateDownloading() {
         progressView.isHidden = true
         primaryButton.setTitle("Открыть", for: .normal)
+        indicator?.removeFromSuperview()
+        indicator = nil
         activitySpinnerContainer.isHidden = true
     }
-    
-    func setOpenLayoutStateWithoutAnimation() {
-        primaryButton.isHidden = false
-        containerBottomConstraint.constant = 15
-        primaryButton.transform = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
-        contentView.layer.removeAllAnimations()
-        UIView.animate(withDuration: 0, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: {
-            self.contentView.layoutIfNeeded()
-            self.primaryButton.transform = .identity
-            self.activitySpinnerContainer.isHidden = !self.isLoading
-        }, completion: nil)
-    }
-    
+ 
     func updateProgress(_ value: CGFloat) {
         progressView.isHidden = false
         progressView.progress = Float(value)

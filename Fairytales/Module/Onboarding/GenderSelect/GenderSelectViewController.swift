@@ -54,9 +54,12 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
         nameTextfield.delegate = self
         continueButton.isEnabled = false
         nameTextfield.text = userSession.kidName
+        backButton.isHidden = !isFromSettings
         if isFromSettings {
             continueButton.setTitle("Изменить", for: .normal)
             continueButton.isEnabled = true
+            girlButton.isSelected = !userSession.isBoy
+            boyButton.isSelected = userSession.isBoy
         }
     }
     

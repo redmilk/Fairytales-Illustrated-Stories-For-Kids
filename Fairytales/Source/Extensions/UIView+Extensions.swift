@@ -84,6 +84,17 @@ extension UIView {
             NSLayoutConstraint(item: subview, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: padding.right)
         ])
     }
+    
+    func addToCenterWithDimensions(_ subview: UIView, width: CGFloat, height: CGFloat, padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(subview)
+        self.addConstraints([
+            NSLayoutConstraint(item: subview, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: padding.top),
+            NSLayoutConstraint(item: subview, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: padding.left),
+            widthAnchor.constraint(equalToConstant: width),
+            heightAnchor.constraint(equalToConstant: height)
+        ])
+    }
 }
 
 // MARK: - Styling

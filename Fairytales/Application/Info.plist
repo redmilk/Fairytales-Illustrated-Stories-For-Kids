@@ -2,10 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<true/>
 	<key>FacebookAppID</key>
-	<string>surf.devip.fairytale</string>
+	<string>5101209056576625</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<true/>
 	<key>FacebookClientToken</key>
-	<string>666</string>
+	<string>4feffe58714f088c4bf608bbbe3603f7</string>
 	<key>FacebookDisplayName</key>
 	<string>Fairytale</string>
 	<key>LSApplicationQueriesSchemes</key>

@@ -23,7 +23,7 @@ final class UserSession {
     
     @UD(.locale, "ru")
     var locale: String
-    @UD(.kidName, "<Имя малыша>")
+    @UD(.kidName, "")
     var kidName: String
     @UD(.kidGender, .boy)
     var kidActor: KidActor

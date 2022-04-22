@@ -86,7 +86,7 @@ final class FirebaseClient: ImageDownloaderProvidable, UserSessionServiceProvida
     func makeFavoritesCategory() -> CategorySection {
         let favoritesSection = CategorySection(
             title: "Favorites", description: "Your favorite fairytales",
-            color: ColorPalette.categoryDarkRed, thumbnail: UIImage(named: "categorie-thumbnail-2")!,
+            color: ColorPalette.categoryFavorites, thumbnail: UIImage(named: "categorie-thumbnail-2")!,
             items: [], category: .healing)
 
         if let categories = categoriesInternalType.value {

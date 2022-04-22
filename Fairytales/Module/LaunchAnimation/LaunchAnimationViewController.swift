@@ -17,6 +17,10 @@ final class VideoPlayerController: AVPlayerViewController {
         super.viewDidLoad()
         videoGravity = .resizeAspectFill
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeRight
+    }
 }
 
 // MARK: - LaunchAnimationViewController
@@ -43,21 +47,10 @@ final class LaunchAnimationViewController: BaseViewController {
     override func applyStyling() {
         view.insertSubview(emitter, at: 1)
     }
-    override func configure() {
-        //setupVideoPlayer(videoName: "video-iphone")
-        
-    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        animatableView.clipsToBounds = true
-//        view.subviews.first?.bringSubviewToFront(imageView)
-//        emitter.center = view.center
         
-//        player?.play()
-//        playerView.isHidden = false
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            (self.coordinator as? LaunchAnimationCoordinator)?.startAppFlow()
-//        }
         guard let path = Bundle.main.path(forResource: UIDevice.current.isIPad ? "video-ipad" : "video-iphone", ofType:"mp4") else {
             return debugPrint("video.m4v not found")
         }
@@ -78,22 +71,10 @@ final class LaunchAnimationViewController: BaseViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        animatableView.layer.cornerRadius = animatableView.bounds.height / 2
-//
-//        let finalTransform = CGAffineTransform.identity.scaledBy(x: 10, y: 10)
-//        UIView.animate(withDuration: 1, delay: 0.0, options: [], animations: {
-//            self.animatableView.transform = finalTransform
-//            self.emitter.frame = self.animatableView.frame
-//            self.emitter.center = self.animatableView.center
-//        }, completion: { [weak self] _ in
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                (self?.coordinator as? LaunchAnimationCoordinator)?.startAppFlow()
-//            }
-//        })
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeRight
     }
-    
+
     private func setupVideoPlayer(videoName: String) {
         guard let videoUrl = Bundle.main.url(forResource: videoName, withExtension: "mp4") else { return }
 

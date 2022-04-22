@@ -26,10 +26,10 @@ extension OnboardingViewController {
                                      "Обучайтесь и развивайтесь вместе с ребенком",
                                      "Возможность чтения онлайн"]
         
-        var descriptionList: [String] = ["1Lorem ipsum dolor sit amet, consectetur adipiscing elit1",
-                                     "2Lorem ipsum dolor sit amet, consectetur adipiscing elit2",
-                                     "3Lorem ipsum dolor sit amet, 2Lorem ipsum dolor sit amet, consectetur adipiscing elit2 2Lorem ipsum dolor sit amet, consectetur adipiscing elit2 2Lorem ipsum dolor sit amet, consectetur adipiscing elit2consectetur adipiscing elit3",
-                                     "4Lorem ipsum dolor sit amet, consectetur adipiscing elit4",
+        var descriptionList: [String] = ["Погружение в сказочный мир позволит легко и безопасно получить новый опыт и знания",
+                                     "Удобно читать в дороге, не отвлекают уведомления и телефон работает дольше",
+                                     "Яркие иллюстрации формируют вкус и дополняют восприятие сказочных сюжетов",
+                                     "Совместное чтение и обсуждение сказок увеличит словарный запас ребенка и усилит его стремление к познанию нового",
                                      "5Lorem ipsum dolor sit amet"]
 
         lazy var currentImage: UIImage = self.imageList[currentImageIndex]
@@ -105,7 +105,7 @@ final class OnboardingViewController: BaseViewController {
                     OnboardingManager.shared = nil
                     return
                 }
-                UIView.transition(with: self.view, duration: 0.7, options: [.transitionCrossDissolve], animations: {
+                UIView.transition(with: self.view, duration: 0.4, options: [.transitionCrossDissolve], animations: {
                     self.image.image = state.currentImage
                 }, completion: nil)
                 self.headingLabel.text = state.currentHeading

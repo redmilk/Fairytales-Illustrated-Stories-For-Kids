@@ -24,10 +24,12 @@
                 <outlet property="emptyFavoritesBackgroundImageView" destination="3nS-UT-GLT" id="lsy-KC-vhH"/>
                 <outlet property="emptyFavoritesButton" destination="157-Wf-kLh" id="HOe-vx-meq"/>
                 <outlet property="emptyFavoritesContainer" destination="oHY-uc-PgW" id="I2W-nm-rKC"/>
+                <outlet property="favoritesBackgroundView" destination="RWR-MJ-GPY" id="yL7-qf-OHc"/>
                 <outlet property="favoritesButton" destination="Gq9-jh-HvN" id="0Iv-7B-0QH"/>
                 <outlet property="favoritesCounterLabel" destination="5gq-8n-fMj" id="qn7-lT-zGk"/>
                 <outlet property="giftButton" destination="ISb-9T-c36" id="s3m-6c-e32"/>
                 <outlet property="layoutButton" destination="bm0-uQ-zUd" id="Oe7-VV-kXH"/>
+                <outlet property="menuBackground" destination="Ocl-wn-9Nn" id="vkG-WI-WuV"/>
                 <outlet property="pageControl" destination="pe2-os-pO5" id="5xv-oN-gLr"/>
                 <outlet property="sotryDescriptionImage" destination="gGx-Jk-m5s" id="Eer-nt-3Fb"/>
                 <outlet property="storyDescriptionButton" destination="phC-F0-NrE" id="szW-3e-nzg"/>
@@ -42,12 +44,16 @@
             <rect key="frame" x="0.0" y="0.0" width="865" height="375"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu-background-dark-blue" translatesAutoresizingMaskIntoConstraints="NO" id="Ocl-wn-9Nn">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="story-bg" translatesAutoresizingMaskIntoConstraints="NO" id="Ocl-wn-9Nn">
                     <rect key="frame" x="0.0" y="0.0" width="865" height="375"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RWR-MJ-GPY">
+                    <rect key="frame" x="0.0" y="0.0" width="865" height="375"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.74818259063444104" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKO-cG-7fk" customClass="iCarousel">
-                    <rect key="frame" x="0.0" y="80" width="865" height="215"/>
+                    <rect key="frame" x="0.0" y="124" width="865" height="137"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ncO-Lc-e5Y">
@@ -61,7 +67,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QdV-8L-DlB">
-                    <rect key="frame" x="0.0" y="0.0" width="865" height="80"/>
+                    <rect key="frame" x="0.0" y="44" width="865" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uay-MF-peD" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
                             <rect key="frame" x="30" y="25" width="30" height="30"/>
@@ -132,10 +138,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jyn-61-Czo">
-                    <rect key="frame" x="0.0" y="295" width="865" height="80"/>
+                    <rect key="frame" x="0.0" y="261" width="865" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISb-9T-c36" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                            <rect key="frame" x="30" y="9" width="30" height="30"/>
+                            <rect key="frame" x="30" y="25" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="ISb-9T-c36" secondAttribute="height" multiplier="1:1" id="eKZ-N7-tHl"/>
                             </constraints>
@@ -146,7 +152,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="14" translatesAutoresizingMaskIntoConstraints="NO" id="pe2-os-pO5">
-                            <rect key="frame" x="238" y="11" width="389" height="26"/>
+                            <rect key="frame" x="238" y="27" width="389" height="26"/>
                             <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                             <color key="pageIndicatorTintColor" red="0.45519328120000002" green="0.41392958159999999" blue="0.49020493030000001" alpha="0.54805712129999995" colorSpace="custom" customColorSpace="displayP3"/>
                             <color key="currentPageIndicatorTintColor" red="0.99719864130000002" green="0.59852820630000003" blue="0.48231929540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -167,10 +173,13 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="pe2-os-pO5" firstAttribute="centerY" secondItem="jyn-61-Czo" secondAttribute="centerY" multiplier="0.6" id="01t-Oq-iJY"/>
+                        <constraint firstItem="pe2-os-pO5" firstAttribute="centerY" secondItem="jyn-61-Czo" secondAttribute="centerY" id="01t-Oq-iJY"/>
                         <constraint firstItem="bm0-uQ-zUd" firstAttribute="centerY" secondItem="jyn-61-Czo" secondAttribute="centerY" multiplier="0.6" id="0Kt-3J-ah9"/>
                         <constraint firstAttribute="trailing" secondItem="bm0-uQ-zUd" secondAttribute="trailing" constant="30" id="5Ti-mk-YvD"/>
-                        <constraint firstItem="ISb-9T-c36" firstAttribute="centerY" secondItem="jyn-61-Czo" secondAttribute="centerY" multiplier="0.6" id="Esi-vp-N6y"/>
+                        <constraint firstItem="ISb-9T-c36" firstAttribute="centerY" secondItem="jyn-61-Czo" secondAttribute="centerY" id="Esi-vp-N6y">
+                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                        </constraint>
                         <constraint firstItem="pe2-os-pO5" firstAttribute="centerX" secondItem="jyn-61-Czo" secondAttribute="centerX" id="cJr-MR-TBf"/>
                         <constraint firstItem="ISb-9T-c36" firstAttribute="leading" secondItem="jyn-61-Czo" secondAttribute="leading" constant="30" id="dvl-9M-FH6"/>
                         <constraint firstItem="pe2-os-pO5" firstAttribute="width" secondItem="jyn-61-Czo" secondAttribute="width" multiplier="0.45" id="jtr-5J-yUN"/>
@@ -345,32 +354,36 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ncO-Lc-e5Y" firstAttribute="top" secondItem="I0s-kK-36i" secondAttribute="top" id="12k-Bj-Gvc"/>
-                <constraint firstItem="QdV-8L-DlB" firstAttribute="top" secondItem="j6b-mQ-gXg" secondAttribute="top" id="1fp-VM-sA0"/>
+                <constraint firstItem="QdV-8L-DlB" firstAttribute="top" secondItem="I0s-kK-36i" secondAttribute="top" id="1fp-VM-sA0"/>
                 <constraint firstItem="oHY-uc-PgW" firstAttribute="width" secondItem="oHY-uc-PgW" secondAttribute="height" multiplier="2:1" id="3XF-2n-hD6"/>
-                <constraint firstItem="Ocl-wn-9Nn" firstAttribute="leading" secondItem="j6b-mQ-gXg" secondAttribute="leading" id="4yM-Ku-Sgd"/>
                 <constraint firstItem="oHY-uc-PgW" firstAttribute="centerY" secondItem="I0s-kK-36i" secondAttribute="centerY" id="5Iz-zI-bA7"/>
+                <constraint firstItem="Ocl-wn-9Nn" firstAttribute="centerX" secondItem="RWR-MJ-GPY" secondAttribute="centerX" id="5ZS-kc-lYG"/>
                 <constraint firstAttribute="trailing" secondItem="jyn-61-Czo" secondAttribute="trailing" id="6mA-Et-SZ5"/>
+                <constraint firstItem="jyn-61-Czo" firstAttribute="top" secondItem="HKO-cG-7fk" secondAttribute="bottom" id="DJJ-C5-N2u"/>
+                <constraint firstItem="Ocl-wn-9Nn" firstAttribute="height" secondItem="RWR-MJ-GPY" secondAttribute="height" id="Dgy-fY-peC"/>
                 <constraint firstItem="vJU-A9-20v" firstAttribute="top" secondItem="j6b-mQ-gXg" secondAttribute="top" id="DoP-Ux-yd4"/>
                 <constraint firstItem="QdV-8L-DlB" firstAttribute="leading" secondItem="j6b-mQ-gXg" secondAttribute="leading" id="FX2-G5-FnN"/>
                 <constraint firstItem="HKO-cG-7fk" firstAttribute="trailing" secondItem="I0s-kK-36i" secondAttribute="trailing" id="Fur-31-xcl"/>
                 <constraint firstItem="ncO-Lc-e5Y" firstAttribute="trailing" secondItem="I0s-kK-36i" secondAttribute="trailing" id="Go3-gt-DeG"/>
+                <constraint firstItem="jyn-61-Czo" firstAttribute="bottom" secondItem="I0s-kK-36i" secondAttribute="bottom" id="OA2-NI-gdb"/>
                 <constraint firstItem="vJU-A9-20v" firstAttribute="leading" secondItem="j6b-mQ-gXg" secondAttribute="leading" id="Ouv-xN-hTa"/>
+                <constraint firstItem="RWR-MJ-GPY" firstAttribute="width" secondItem="j6b-mQ-gXg" secondAttribute="width" id="Ptj-sw-7bq"/>
                 <constraint firstItem="ISb-9T-c36" firstAttribute="width" secondItem="j6b-mQ-gXg" secondAttribute="width" multiplier="0.0346821" id="QYv-xu-JJu"/>
-                <constraint firstItem="Ocl-wn-9Nn" firstAttribute="top" secondItem="j6b-mQ-gXg" secondAttribute="top" id="U7s-5L-4Qx"/>
-                <constraint firstAttribute="bottom" secondItem="jyn-61-Czo" secondAttribute="bottom" id="U8a-fx-Pcb"/>
                 <constraint firstAttribute="trailing" secondItem="vJU-A9-20v" secondAttribute="trailing" id="Un2-xy-gwm"/>
                 <constraint firstItem="jyn-61-Czo" firstAttribute="leading" secondItem="j6b-mQ-gXg" secondAttribute="leading" id="Xfa-pF-AgP"/>
                 <constraint firstItem="h6e-Fa-w2x" firstAttribute="width" secondItem="j6b-mQ-gXg" secondAttribute="width" multiplier="0.0346821" id="XpJ-xj-4EW"/>
+                <constraint firstItem="Ocl-wn-9Nn" firstAttribute="width" secondItem="RWR-MJ-GPY" secondAttribute="width" id="Z4K-in-6HM"/>
                 <constraint firstItem="oHY-uc-PgW" firstAttribute="width" secondItem="j6b-mQ-gXg" secondAttribute="width" multiplier="0.4" id="Z4b-DY-qgp"/>
-                <constraint firstAttribute="trailing" secondItem="Ocl-wn-9Nn" secondAttribute="trailing" id="bN8-JX-rzw"/>
+                <constraint firstItem="Ocl-wn-9Nn" firstAttribute="centerY" secondItem="RWR-MJ-GPY" secondAttribute="centerY" id="aid-ZT-nxf"/>
+                <constraint firstItem="RWR-MJ-GPY" firstAttribute="centerX" secondItem="I0s-kK-36i" secondAttribute="centerX" id="bxR-Zt-DkX"/>
                 <constraint firstItem="HKO-cG-7fk" firstAttribute="leading" secondItem="I0s-kK-36i" secondAttribute="leading" id="cbm-0a-wID"/>
                 <constraint firstItem="uay-MF-peD" firstAttribute="width" secondItem="j6b-mQ-gXg" secondAttribute="width" multiplier="0.0346821" id="ci9-fc-2et"/>
+                <constraint firstItem="RWR-MJ-GPY" firstAttribute="top" secondItem="j6b-mQ-gXg" secondAttribute="top" id="dJk-3V-fr8"/>
                 <constraint firstItem="bm0-uQ-zUd" firstAttribute="width" secondItem="j6b-mQ-gXg" secondAttribute="width" multiplier="0.0346821" id="ecw-In-4dq"/>
-                <constraint firstAttribute="bottom" secondItem="Ocl-wn-9Nn" secondAttribute="bottom" id="eue-er-vgA"/>
                 <constraint firstItem="ncO-Lc-e5Y" firstAttribute="leading" secondItem="I0s-kK-36i" secondAttribute="leading" id="ex4-Yj-cfZ"/>
                 <constraint firstAttribute="bottom" secondItem="ncO-Lc-e5Y" secondAttribute="bottom" id="g3O-rp-s0Q"/>
+                <constraint firstItem="RWR-MJ-GPY" firstAttribute="bottom" secondItem="j6b-mQ-gXg" secondAttribute="bottom" id="gKn-kn-RhA"/>
                 <constraint firstItem="oHY-uc-PgW" firstAttribute="centerX" secondItem="I0s-kK-36i" secondAttribute="centerX" id="hi7-CY-jeE"/>
-                <constraint firstItem="jyn-61-Czo" firstAttribute="top" secondItem="HKO-cG-7fk" secondAttribute="bottom" id="nlk-d4-QFk"/>
                 <constraint firstAttribute="trailing" secondItem="QdV-8L-DlB" secondAttribute="trailing" id="pDn-A9-nTn"/>
                 <constraint firstItem="HKO-cG-7fk" firstAttribute="top" secondItem="QdV-8L-DlB" secondAttribute="bottom" id="s1N-rU-AAg"/>
                 <constraint firstAttribute="bottom" secondItem="vJU-A9-20v" secondAttribute="bottom" id="vh5-da-Pzd"/>
@@ -387,7 +400,7 @@
         <image name="gift-button" width="30" height="30"/>
         <image name="grid-layout-button" width="30" height="30"/>
         <image name="heart-button" width="31" height="30"/>
-        <image name="menu-background-dark-blue" width="812" height="375"/>
+        <image name="story-bg" width="812" height="375"/>
         <image name="story-info-background" width="488" height="261"/>
         <image name="subscriptions-close-white" width="13" height="13"/>
     </resources>

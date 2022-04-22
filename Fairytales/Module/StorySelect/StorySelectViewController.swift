@@ -24,6 +24,7 @@ extension StorySelectViewController {
         var isFirstSetup: Bool = true
         var isCarouselBlocked: Bool = false
         var isFavorites: Bool = false
+        var isFirstOpen: Bool = true
     }
 }
 
@@ -34,6 +35,8 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         case back, heart, gift, layout, closeDescription, startReadFromDescription, emptyFavoritesOk
     }
             
+    @IBOutlet weak var favoritesBackgroundView: UIView!
+    @IBOutlet weak var menuBackground: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var carousel: iCarousel!
     @IBOutlet weak var backButton: BaseButton!
@@ -93,6 +96,8 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         
         giftButton.dropShadow(color: .yellow, opacity: 0.0, offSet: .zero, radius: 10, scale: true)
         giftButton.animateShakeRepeatedly()?.store(in: &bag)
+        menuBackground.isHidden = !stateValue.isFavorites
+        favoritesBackgroundView.isHidden = !stateValue.isFavorites
     }
     
     override func applyStyling() {
@@ -100,7 +105,9 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         emitter.tag = 1
         emitter.alpha = 1
         emitter.isUserInteractionEnabled = false
-        view.insertSubview(emitter, at: 1)
+        view.insertSubview(emitter, aboveSubview: favoritesBackgroundView)
+
+        //view.insertSubview(emitter, at: 1)
         emitter.constraintToSides(inside: view)
     }
     
@@ -134,11 +141,17 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 self.favoritesCounterLabel.text = self.userSession.favoritesCounter.description
                 self.favoritesCounterLabel.isHidden = (self.favoritesCounterLabel.text ?? "0") == "0"
                 //if self.stateValue.isFavorites {
+                if !self.stateValue.isFirstOpen {
                     self.carousel.reloadData()
+                }
                 //}
             case .viewDidAppear:
                 //if self.stateValue.isFavorites {
+                self.stateValue.previousItem = (self.carousel.currentItemView as? CarouselItemView)
+                if !self.stateValue.isFirstOpen {
                     (self.carousel.currentItemView as? CarouselItemView)?.layoutState = .selected
+                }
+                self.stateValue.isFirstOpen = false
                 //}
             case _: break
             }
@@ -156,7 +169,8 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 switch button {
                 case .back: self.coordinator.end()
                 case .heart: (self.coordinator as? StorySelectCoordinator)?.displayFavorites()
-                case .gift: (self.coordinator as? StorySelectCoordinator)?.displaySpecialGift()
+                case .gift:
+                    (self.coordinator as? StorySelectCoordinator)?.displaySpecialGift()
                 case .layout:
                     let currentState = self.stateValue
                     currentState.layout = currentState.layout == .line ? .grid : .line
@@ -361,6 +375,7 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
             stateValue.previousItem = node
             userSession.selectedStory = stateValue.selectedCategory.items[safe: carousel.currentItemIndex]
         }
+        
     }
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
         guard index != carousel.currentItemIndex else { return }

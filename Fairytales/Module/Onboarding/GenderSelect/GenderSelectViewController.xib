@@ -71,10 +71,10 @@
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qi3-cm-Wz9">
-                    <rect key="frame" x="202.5" y="76.5" width="460" height="260"/>
+                    <rect key="frame" x="202.5" y="66.5" width="460" height="280"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qLO-jL-tT6">
-                            <rect key="frame" x="60" y="12" width="340" height="236"/>
+                            <rect key="frame" x="60" y="12" width="340" height="256"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="760" text="Введите имя ребенка" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GpF-TP-m84">
                                     <rect key="frame" x="0.0" y="0.0" width="340" height="17"/>
@@ -89,11 +89,14 @@
                                     </variation>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="waJ-dp-alv">
-                                    <rect key="frame" x="0.0" y="17" width="340" height="66"/>
+                                    <rect key="frame" x="0.0" y="17" width="340" height="72"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OFd-zY-2sh">
-                                            <rect key="frame" x="60" y="16" width="220" height="34"/>
+                                            <rect key="frame" x="60" y="16" width="220" height="40"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="CUW-aC-G6C"/>
+                                            </constraints>
                                             <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="8"/>
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
@@ -123,18 +126,18 @@
                                     </constraints>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pQn-z2-TSM">
-                                    <rect key="frame" x="0.0" y="83" width="340" height="60"/>
+                                    <rect key="frame" x="0.0" y="89" width="340" height="55"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gender-select-boy" translatesAutoresizingMaskIntoConstraints="NO" id="7wx-69-Eip">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170" height="55"/>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gender-select-girl" translatesAutoresizingMaskIntoConstraints="NO" id="nqn-xb-6QF">
-                                            <rect key="frame" x="170" y="0.0" width="170" height="60"/>
+                                            <rect key="frame" x="170" y="0.0" width="170" height="55"/>
                                         </imageView>
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gOR-r6-5k5">
-                                    <rect key="frame" x="0.0" y="143" width="340" height="24"/>
+                                    <rect key="frame" x="0.0" y="144" width="340" height="24"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P1e-5b-qAV" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="24"/>
@@ -176,12 +179,12 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBc-GN-WNY">
-                                    <rect key="frame" x="0.0" y="167" width="340" height="69"/>
+                                    <rect key="frame" x="0.0" y="168" width="340" height="88"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3D-gr-H43" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                                            <rect key="frame" x="36" y="16.5" width="268" height="35.5"/>
+                                            <rect key="frame" x="37.5" y="21" width="265" height="45.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="L3D-gr-H43" secondAttribute="height" multiplier="53:7" id="KSK-QN-KoX"/>
+                                                <constraint firstAttribute="width" secondItem="L3D-gr-H43" secondAttribute="height" multiplier="53:9" id="KSK-QN-KoX"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -204,6 +207,10 @@
                                     </constraints>
                                 </view>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="gOR-r6-5k5" secondAttribute="bottom" constant="88" id="eRe-Pd-CXF"/>
+                                <constraint firstItem="gOR-r6-5k5" firstAttribute="top" secondItem="qLO-jL-tT6" secondAttribute="top" constant="144" id="pgT-1a-SKh"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -213,7 +220,7 @@
                         <constraint firstItem="qLO-jL-tT6" firstAttribute="top" secondItem="Qi3-cm-Wz9" secondAttribute="top" constant="12" id="CH6-9t-pwD"/>
                         <constraint firstAttribute="width" constant="460" id="Yb8-Ad-2KI"/>
                         <constraint firstAttribute="bottom" secondItem="qLO-jL-tT6" secondAttribute="bottom" constant="12" id="eZa-ST-iox"/>
-                        <constraint firstAttribute="height" constant="260" id="zfv-Se-48h"/>
+                        <constraint firstAttribute="height" constant="280" id="zfv-Se-48h"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
