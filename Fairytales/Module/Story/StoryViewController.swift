@@ -147,6 +147,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
     }
     
     private func setupPreviousPage() {
+        endStoryContainer.isHidden = true
         guard (stateValue.currentPage - 1) >= 0 && (stateValue.currentPage - 1) < selectedStory.pagePictures.count && (stateValue.currentPage - 1) < selectedStory.pages.count else { return }
         self.stateValue.currentPage -= 1
         let image = userSession.selectedStory.pagePictures[stateValue.currentPage]

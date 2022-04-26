@@ -30,7 +30,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="865" height="70"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjK-Yy-val">
-                            <rect key="frame" x="30" y="30" width="30" height="30"/>
+                            <rect key="frame" x="30" y="27" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="jjK-Yy-val" secondAttribute="height" multiplier="1:1" id="Ooe-CL-cjC"/>
                             </constraints>
@@ -38,7 +38,7 @@
                             <state key="normal" backgroundImage="back-button"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Политика конфиденциальности" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-Ur-34f">
-                            <rect key="frame" x="259.5" y="36.5" width="346" height="17"/>
+                            <rect key="frame" x="259.5" y="33.5" width="346" height="17"/>
                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -53,9 +53,13 @@
                     <color key="backgroundColor" red="0.1294117719" green="0.1019607931" blue="0.41568624970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstItem="8Wt-Ur-34f" firstAttribute="width" secondItem="uID-PD-uqa" secondAttribute="width" multiplier="0.4" id="22H-nx-mcp"/>
+                        <constraint firstItem="jjK-Yy-val" firstAttribute="centerY" secondItem="uID-PD-uqa" secondAttribute="centerY" multiplier="1.2" id="7tb-xe-y2e"/>
                         <constraint firstItem="jjK-Yy-val" firstAttribute="leading" secondItem="uID-PD-uqa" secondAttribute="leading" constant="30" id="RKm-5u-fKM"/>
                         <constraint firstItem="jjK-Yy-val" firstAttribute="width" secondItem="uID-PD-uqa" secondAttribute="width" multiplier="0.0346821" id="cjI-NI-JRb"/>
-                        <constraint firstAttribute="height" constant="70" id="dlG-nI-bfv"/>
+                        <constraint firstAttribute="height" constant="70" id="dlG-nI-bfv">
+                            <variation key="heightClass=regular-widthClass=compact" constant="70"/>
+                            <variation key="heightClass=regular-widthClass=regular" constant="90"/>
+                        </constraint>
                         <constraint firstItem="8Wt-Ur-34f" firstAttribute="centerY" secondItem="jjK-Yy-val" secondAttribute="centerY" id="fIP-n8-9CA"/>
                         <constraint firstItem="8Wt-Ur-34f" firstAttribute="centerX" secondItem="uID-PD-uqa" secondAttribute="centerX" id="vKm-Lx-Lh9"/>
                     </constraints>
@@ -71,7 +75,6 @@
             </subviews>
             <color key="backgroundColor" red="0.1294117719" green="0.1019607931" blue="0.41568624970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstAttribute="top" secondItem="jjK-Yy-val" secondAttribute="top" constant="-30" id="42U-GS-8sn"/>
                 <constraint firstAttribute="bottom" secondItem="KOT-n5-NLB" secondAttribute="bottom" id="68v-jN-QhC"/>
                 <constraint firstAttribute="trailing" secondItem="uID-PD-uqa" secondAttribute="trailing" id="DrD-wg-Fy4"/>
                 <constraint firstAttribute="top" secondItem="uID-PD-uqa" secondAttribute="top" id="E25-6F-XV8"/>

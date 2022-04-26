@@ -93,12 +93,6 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     }
     
     override func configure() {
-
-        continueButton.layer.removeAllAnimations()
-        continueButton.dropShadow(color: .blue, opacity: 0.0, offSet: .zero, radius: 10, scale: true)
-        continueButtonAnimCancellable?.cancel()
-        continueButtonAnimCancellable = continueButton.animateBounceAndShadow()
-        
         stateValue.whatToShow = stateValue.whatToShow
         specialGiftPriceLabel.text = PurchesService.previousYearlyPrice
         weeklyPriceLabel.text = PurchesService.previousWeeklyPrice
@@ -132,6 +126,18 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     }
     
     override func handleEvents() {
+        lifecycle.sink(receiveValue: { [weak self] lyfecycle in
+            guard let self = self else { return }
+            switch lyfecycle {
+            case .viewDidAppear:
+                self.continueButton.layer.removeAllAnimations()
+                self.continueButton.dropShadow(color: .blue, opacity: 0.0, offSet: .zero, radius: 10, scale: true)
+                self.continueButtonAnimCancellable?.cancel()
+                self.continueButtonAnimCancellable = self.continueButton.animateBounceAndShadow()
+            case _: break
+            }
+        }).store(in: &bag)
+        
         Publishers.MergeMany(
             monthlyButton.publisher().map { _ in Button.monthly },
             yearlyButton.publisher().map { _ in Button.yearly },

@@ -843,7 +843,7 @@
                                                 </button>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wO-QK-2lB">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wO-QK-2lB">
                                             <rect key="frame" x="35.5" y="0.0" width="265" height="42"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="1wO-QK-2lB" secondAttribute="height" multiplier="265:42" id="iZw-hH-4HX"/>

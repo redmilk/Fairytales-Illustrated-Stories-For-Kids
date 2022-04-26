@@ -84,7 +84,14 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
                 let isKidBoy = self?.boyButton.isSelected ?? true
                 state.currentKid = isKidBoy ? KidActor.boy : KidActor.girl
                 guard let self = self, state.name.count > 1 else { return }
-                self.userSession.kidName = state.name
+                var name: String = state.name
+                if name.last! == " " {
+                    name = String(name.dropLast())
+                }
+                if name.first! == " " {
+                    name = String(name.dropFirst())
+                }
+                self.userSession.kidName = name
                 self.userSession.kidActor = state.currentKid
                 if !self.isFromSettings {
                     OnboardingManager.shared?.onboardingFinishAction()
@@ -115,7 +122,7 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
     
     @IBAction func textDidChange(_ sender: UITextField) {
         guard let txt = sender.text else { return }
-        let text = txt.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
+        let text = txt.replacingOccurrences(of: "  ", with: "").replacingOccurrences(of: ".", with: "")
         sender.text = text.capitalized
         if text.count > 2 {
             stateValue.name = text.capitalized
