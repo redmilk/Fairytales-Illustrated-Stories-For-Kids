@@ -105,7 +105,7 @@ final class OnboardingViewController: BaseViewController {
                     OnboardingManager.shared = nil
                     return
                 }
-                UIView.transition(with: self.view, duration: 0.4, options: [.transitionCrossDissolve], animations: {
+            UIView.transition(with: self.view, duration: 0.5, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
                     self.image.image = state.currentImage
                 }, completion: nil)
                 self.headingLabel.text = state.currentHeading

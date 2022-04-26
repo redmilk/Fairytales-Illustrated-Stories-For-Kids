@@ -115,7 +115,7 @@ final class GenderSelectViewController: BaseViewController, UserSessionServicePr
     
     @IBAction func textDidChange(_ sender: UITextField) {
         guard let txt = sender.text else { return }
-        let text = txt.replacingOccurrences(of: "  ", with: "").replacingOccurrences(of: ".", with: "")
+        let text = txt.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
         sender.text = text.capitalized
         if text.count > 2 {
             stateValue.name = text.capitalized

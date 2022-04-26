@@ -52,6 +52,8 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
     private var stateValue: State { state.value as! State }
     private var selectedStory: StoryModel { userSession.selectedStory }
     private let storyTextFormatter = StoryTextFormatter()
+    private var startLocation: CGPoint!
+    private var swipeDistance: CGFloat!
 
     init(coordinator: Coordinatable) {
         let initialState = State(pageImage: UIImage(named: "story-thumbnail-2")!, pageText: "Loading the fairytale...")
@@ -69,6 +71,9 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
         favoritesCounterLabel.text = userSession.favoritesCounter.description
         favoritesCounterLabel.isHidden = (favoritesCounterLabel.text ?? "0") == "0"
         setupNextPage()
+   
+        let panRecognizer = UIPanGestureRecognizer(target: self, action:  #selector(panedView))
+        self.view.addGestureRecognizer(panRecognizer)
     }
     override func handleEvents() {
         // lifecycle
@@ -78,6 +83,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
                 guard let self = self else { return }
                 self.navigationController?.setNavigationBarHidden(true, animated: false)
                 self.favoritesButton.isSelected = self.userSession.checkIsStoryFavorite(with: self.userSession.selectedStory.dto.id_internal)
+                self.swipeDistance = self.view.bounds.width * 0.1
             case .viewDidDisappear:
                 self?.navigationController?.setNavigationBarHidden(false, animated: false)
                 if let page = self?.stateValue.currentPage {
@@ -132,7 +138,9 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
         let index = max(0, stateValue.currentPage)
         let image = userSession.selectedStory.pagePictures[index]
         let text = userSession.selectedStory.pages[index].text.getText(boy: userSession.isBoy, locale: userSession.locale)
-        pageImage.kf.base.image = image
+        UIView.transition(with: self.view, duration: 1, options: [.transitionCurlUp, .allowUserInteraction], animations: { [weak self] in
+            self?.pageImage.image = image
+        }, completion: nil)
         pageTextLabel.text = text
         maxPageNumberLabel.text = stateValue.pagesTotal.description
         currentPageNumberLabel.setTitle((index + 1).description, for: .normal)
@@ -143,9 +151,30 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
         self.stateValue.currentPage -= 1
         let image = userSession.selectedStory.pagePictures[stateValue.currentPage]
         let text = userSession.selectedStory.pages[stateValue.currentPage].text.getText(boy: userSession.isBoy, locale: userSession.locale)
-        pageImage.image = image
+        UIView.transition(with: self.view, duration: 1, options: [.transitionCurlDown, .allowUserInteraction], animations: { [weak self] in
+            self?.pageImage.image = image
+        }, completion: nil)
         pageTextLabel.text = text
         maxPageNumberLabel.text = stateValue.pagesTotal.description
         currentPageNumberLabel.setTitle((stateValue.currentPage + 1).description, for: .normal)
+    }
+    
+    @objc func panedView(sender:UIPanGestureRecognizer){
+        if (sender.state == UIGestureRecognizer.State.began) {
+            startLocation = sender.location(in: self.view)
+        } else if (sender.state == UIGestureRecognizer.State.ended) {
+            let stopLocation = sender.location(in: self.view)
+            let dx = stopLocation.x - startLocation.x
+            //let dy = stopLocation.y - startLocation.y
+            let distance = sqrt(dx * dx) //dy * dy) to include vertical distance
+            print(stopLocation.x)
+            print(startLocation.x)
+            let isForward = (stopLocation.x - startLocation.x) < 0
+            print("Distance: %f", distance)
+            print("FORWARD " + isForward.description)
+            if distance > swipeDistance {
+                isForward ? setupNextPage() : setupPreviousPage()
+            }
+        }
     }
 }
