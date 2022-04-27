@@ -786,7 +786,7 @@
                                     <rect key="frame" x="0.0" y="240.5" width="346" height="129.5"/>
                                     <subviews>
                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="TOY-CQ-JX2">
-                                            <rect key="frame" x="23" y="62" width="300" height="14"/>
+                                            <rect key="frame" x="23" y="63.5" width="300" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="300" id="CKQ-ON-3ym"/>
                                             </constraints>
@@ -803,7 +803,7 @@
                                             </variation>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cG2-5c-Wsk">
-                                            <rect key="frame" x="62.5" y="76" width="221" height="26"/>
+                                            <rect key="frame" x="62.5" y="77.5" width="221" height="26"/>
                                             <subviews>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ek3-OQ-xXf">
                                                     <rect key="frame" x="0.0" y="0.0" width="0.0" height="26"/>
@@ -844,7 +844,7 @@
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wO-QK-2lB">
-                                            <rect key="frame" x="35.5" y="0.0" width="265" height="42"/>
+                                            <rect key="frame" x="30" y="0.0" width="276" height="43.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="1wO-QK-2lB" secondAttribute="height" multiplier="265:42" id="iZw-hH-4HX"/>
                                             </constraints>
@@ -866,8 +866,6 @@
                                         <constraint firstItem="cG2-5c-Wsk" firstAttribute="top" secondItem="TOY-CQ-JX2" secondAttribute="bottom" id="9sY-tr-EIc"/>
                                         <constraint firstItem="cG2-5c-Wsk" firstAttribute="centerX" secondItem="mQG-7R-rqd" secondAttribute="centerX" id="CSF-ej-1rp"/>
                                         <constraint firstItem="TOY-CQ-JX2" firstAttribute="top" secondItem="1wO-QK-2lB" secondAttribute="bottom" constant="20" id="Xu1-v1-VA1"/>
-                                        <constraint firstItem="1wO-QK-2lB" firstAttribute="centerX" secondItem="mQG-7R-rqd" secondAttribute="centerX" constant="-5" id="bhO-sL-Qzc"/>
-                                        <constraint firstItem="1wO-QK-2lB" firstAttribute="width" secondItem="mQG-7R-rqd" secondAttribute="width" multiplier="0.765896" id="dFc-4W-HPR"/>
                                         <constraint firstItem="TOY-CQ-JX2" firstAttribute="centerX" secondItem="mQG-7R-rqd" secondAttribute="centerX" id="pyP-Kq-4sH"/>
                                         <constraint firstItem="1wO-QK-2lB" firstAttribute="top" secondItem="mQG-7R-rqd" secondAttribute="top" id="shm-BX-wwz"/>
                                     </constraints>
@@ -883,7 +881,9 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="1wO-QK-2lB" firstAttribute="trailing" secondItem="Leu-WK-BuE" secondAttribute="trailing" id="02h-t6-OuC"/>
                                 <constraint firstAttribute="trailing" secondItem="mQG-7R-rqd" secondAttribute="trailing" id="575-2o-Kb0"/>
+                                <constraint firstItem="1wO-QK-2lB" firstAttribute="leading" secondItem="pcG-z9-Vgg" secondAttribute="leading" id="5xJ-G7-YOa"/>
                                 <constraint firstItem="Eva-ni-k1t" firstAttribute="width" secondItem="F6o-hn-1Jb" secondAttribute="width" id="F3K-hq-LIX"/>
                                 <constraint firstAttribute="trailing" secondItem="ESk-IS-0wC" secondAttribute="trailing" constant="20" id="N5f-do-zO0"/>
                                 <constraint firstItem="F6o-hn-1Jb" firstAttribute="top" secondItem="tSW-zv-kn8" secondAttribute="top" id="ONR-Ld-rUY">

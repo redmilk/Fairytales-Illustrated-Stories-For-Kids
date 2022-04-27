@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,77 +47,6 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="story-bg" translatesAutoresizingMaskIntoConstraints="NO" id="MXF-kW-nkS">
                             <rect key="frame" x="0.0" y="0.0" width="865" height="370"/>
                         </imageView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwc-Lq-xp0">
-                            <rect key="frame" x="0.0" y="0.0" width="865" height="80"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNi-bs-XBO" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                                    <rect key="frame" x="30" y="30" width="30" height="30"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="QNi-bs-XBO" secondAttribute="height" multiplier="1:1" id="Xvt-us-N8c"/>
-                                    </constraints>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <state key="normal" backgroundImage="home-button"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="_identifier" value="back"/>
-                                    </userDefinedRuntimeAttributes>
-                                </button>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khq-tA-7IS">
-                                    <rect key="frame" x="805" y="30" width="30" height="30"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzO-46-wmw" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" backgroundImage="heart-button"/>
-                                            <state key="selected" image="button-add-favorite"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="_identifier" value="heart"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ai9-Qn-O1Q">
-                                            <rect key="frame" x="16" y="-4" width="18" height="18"/>
-                                            <color key="backgroundColor" red="0.8536396329" green="0.0034982283449999999" blue="0.062807715870000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="Ai9-Qn-O1Q" secondAttribute="height" multiplier="1:1" id="8gs-kf-OA7"/>
-                                                <constraint firstAttribute="width" constant="18" id="jxN-Ub-UaD"/>
-                                            </constraints>
-                                            <attributedString key="attributedText">
-                                                <fragment content="99">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="10" name="SFMono-Regular"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                            <nil key="highlightedColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
-                                                    <real key="value" value="9"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstItem="Ai9-Qn-O1Q" firstAttribute="top" secondItem="khq-tA-7IS" secondAttribute="top" constant="-4" id="JK5-Ux-aH9"/>
-                                        <constraint firstAttribute="width" secondItem="khq-tA-7IS" secondAttribute="height" multiplier="1:1" id="M22-HX-kIE"/>
-                                        <constraint firstItem="GzO-46-wmw" firstAttribute="leading" secondItem="khq-tA-7IS" secondAttribute="leading" id="V0X-Vf-Frb"/>
-                                        <constraint firstAttribute="trailing" secondItem="Ai9-Qn-O1Q" secondAttribute="trailing" constant="-4" id="d5E-1v-hGi"/>
-                                        <constraint firstAttribute="trailing" secondItem="GzO-46-wmw" secondAttribute="trailing" id="gcr-CR-tPY"/>
-                                        <constraint firstItem="GzO-46-wmw" firstAttribute="top" secondItem="khq-tA-7IS" secondAttribute="top" id="ivr-De-UYz"/>
-                                        <constraint firstAttribute="bottom" secondItem="GzO-46-wmw" secondAttribute="bottom" id="tWK-wh-f2r"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="QNi-bs-XBO" firstAttribute="leading" secondItem="iwc-Lq-xp0" secondAttribute="leading" constant="30" id="8zQ-tv-QbR"/>
-                                <constraint firstAttribute="trailing" secondItem="khq-tA-7IS" secondAttribute="trailing" constant="30" id="VT8-U6-kcF"/>
-                                <constraint firstAttribute="height" constant="80" id="Yth-Gz-6Oz"/>
-                            </constraints>
-                        </view>
                         <stackView verifyAmbiguity="ignoreSizes" opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="307" placeholderIntrinsicHeight="50" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aKT-P8-Bso">
                             <rect key="frame" x="279" y="290" width="307" height="50"/>
                             <subviews>
@@ -143,7 +73,7 @@
                             </userDefinedRuntimeAttributes>
                         </stackView>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vze-W9-dec" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                            <rect key="frame" x="805" y="300" width="30" height="30"/>
+                            <rect key="frame" x="804.5" y="300" width="30.5" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="vze-W9-dec" secondAttribute="height" multiplier="1:1" id="Nb9-mh-pKV"/>
                             </constraints>
@@ -154,7 +84,7 @@
                             </state>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5LD-1P-BLe" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                            <rect key="frame" x="30" y="300" width="30" height="30"/>
+                            <rect key="frame" x="30" y="300" width="30.5" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="5LD-1P-BLe" secondAttribute="height" multiplier="1:1" id="RT2-xN-cdM"/>
                             </constraints>
@@ -198,7 +128,6 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="iwc-Lq-xp0" firstAttribute="top" secondItem="GIu-E5-1u6" secondAttribute="top" id="0Wh-Vg-URm"/>
                         <constraint firstItem="PJz-v1-pbN" firstAttribute="centerX" secondItem="7Lu-yr-hDj" secondAttribute="centerX" constant="2" id="1NJ-TG-XhS"/>
                         <constraint firstItem="7Lu-yr-hDj" firstAttribute="leading" secondItem="GIu-E5-1u6" secondAttribute="leading" constant="30" id="2Bo-6d-vT5"/>
                         <constraint firstAttribute="trailing" secondItem="MXF-kW-nkS" secondAttribute="trailing" id="5XU-w7-EIV"/>
@@ -209,19 +138,90 @@
                         <constraint firstItem="aKT-P8-Bso" firstAttribute="centerX" secondItem="GIu-E5-1u6" secondAttribute="centerX" id="L7N-TL-4Z2"/>
                         <constraint firstAttribute="trailing" secondItem="vze-W9-dec" secondAttribute="trailing" constant="30" id="LwV-LI-MW0"/>
                         <constraint firstItem="AGF-tz-c1D" firstAttribute="centerY" secondItem="7Lu-yr-hDj" secondAttribute="centerY" id="MPY-7w-UZN"/>
-                        <constraint firstItem="iwc-Lq-xp0" firstAttribute="leading" secondItem="GIu-E5-1u6" secondAttribute="leading" id="MZz-6u-OsF"/>
                         <constraint firstAttribute="bottom" secondItem="aKT-P8-Bso" secondAttribute="bottom" constant="30" id="Mb9-Gf-z5u"/>
                         <constraint firstAttribute="bottom" secondItem="MXF-kW-nkS" secondAttribute="bottom" id="NBi-i6-U7F"/>
-                        <constraint firstItem="QNi-bs-XBO" firstAttribute="top" secondItem="GIu-E5-1u6" secondAttribute="top" constant="30" id="ODK-Iv-C9n"/>
                         <constraint firstItem="7Lu-yr-hDj" firstAttribute="centerY" secondItem="GIu-E5-1u6" secondAttribute="centerY" id="OKz-bN-cml"/>
-                        <constraint firstItem="khq-tA-7IS" firstAttribute="top" secondItem="GIu-E5-1u6" secondAttribute="top" constant="30" id="R3k-fg-EXd"/>
                         <constraint firstItem="PJz-v1-pbN" firstAttribute="centerY" secondItem="7Lu-yr-hDj" secondAttribute="centerY" id="UxH-Bq-S12"/>
                         <constraint firstItem="MXF-kW-nkS" firstAttribute="leading" secondItem="GIu-E5-1u6" secondAttribute="leading" id="dAm-0g-OXO"/>
                         <constraint firstItem="fvw-iF-IlH" firstAttribute="leading" secondItem="7Lu-yr-hDj" secondAttribute="leading" constant="8" id="eW1-hm-Nh3"/>
                         <constraint firstItem="AGF-tz-c1D" firstAttribute="trailing" secondItem="7Lu-yr-hDj" secondAttribute="trailing" constant="-8" id="fI6-Wl-udp"/>
                         <constraint firstItem="fvw-iF-IlH" firstAttribute="centerY" secondItem="7Lu-yr-hDj" secondAttribute="centerY" id="fXh-gp-Pkp"/>
                         <constraint firstItem="vze-W9-dec" firstAttribute="centerY" secondItem="aKT-P8-Bso" secondAttribute="centerY" id="qYr-8v-hO1"/>
-                        <constraint firstAttribute="trailing" secondItem="iwc-Lq-xp0" secondAttribute="trailing" id="r22-os-Y6X"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwc-Lq-xp0">
+                    <rect key="frame" x="0.0" y="44" width="865" height="80"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNi-bs-XBO" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
+                            <rect key="frame" x="30" y="30" width="30.5" height="30.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="QNi-bs-XBO" secondAttribute="height" multiplier="1:1" id="Xvt-us-N8c"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" backgroundImage="home-button"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="_identifier" value="back"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khq-tA-7IS">
+                            <rect key="frame" x="804.5" y="30" width="30.5" height="30.5"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzO-46-wmw" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="30.5" height="30.5"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" backgroundImage="heart-button"/>
+                                    <state key="selected" image="button-add-favorite"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="_identifier" value="heart"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ai9-Qn-O1Q">
+                                    <rect key="frame" x="16.5" y="-4" width="18" height="18"/>
+                                    <color key="backgroundColor" red="0.8536396329" green="0.0034982283449999999" blue="0.062807715870000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="Ai9-Qn-O1Q" secondAttribute="height" multiplier="1:1" id="8gs-kf-OA7"/>
+                                        <constraint firstAttribute="width" constant="18" id="jxN-Ub-UaD"/>
+                                    </constraints>
+                                    <attributedString key="attributedText">
+                                        <fragment content="99">
+                                            <attributes>
+                                                <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="10" name="SFMono-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="_cornerRadius">
+                                            <real key="value" value="9"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Ai9-Qn-O1Q" firstAttribute="top" secondItem="khq-tA-7IS" secondAttribute="top" constant="-4" id="JK5-Ux-aH9"/>
+                                <constraint firstAttribute="width" secondItem="khq-tA-7IS" secondAttribute="height" multiplier="1:1" id="M22-HX-kIE"/>
+                                <constraint firstItem="GzO-46-wmw" firstAttribute="leading" secondItem="khq-tA-7IS" secondAttribute="leading" id="V0X-Vf-Frb"/>
+                                <constraint firstAttribute="trailing" secondItem="Ai9-Qn-O1Q" secondAttribute="trailing" constant="-4" id="d5E-1v-hGi"/>
+                                <constraint firstAttribute="trailing" secondItem="GzO-46-wmw" secondAttribute="trailing" id="gcr-CR-tPY"/>
+                                <constraint firstItem="GzO-46-wmw" firstAttribute="top" secondItem="khq-tA-7IS" secondAttribute="top" id="ivr-De-UYz"/>
+                                <constraint firstAttribute="bottom" secondItem="GzO-46-wmw" secondAttribute="bottom" id="tWK-wh-f2r"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="QNi-bs-XBO" firstAttribute="centerY" secondItem="khq-tA-7IS" secondAttribute="centerY" id="1iM-9B-lvD"/>
+                        <constraint firstAttribute="bottom" secondItem="QNi-bs-XBO" secondAttribute="bottom" constant="19.5" id="5Bk-Sn-cMq"/>
+                        <constraint firstItem="QNi-bs-XBO" firstAttribute="leading" secondItem="iwc-Lq-xp0" secondAttribute="leading" constant="30" id="8zQ-tv-QbR"/>
+                        <constraint firstAttribute="trailing" secondItem="khq-tA-7IS" secondAttribute="trailing" constant="30" id="VT8-U6-kcF"/>
+                        <constraint firstAttribute="height" constant="80" id="Yth-Gz-6Oz"/>
+                        <constraint firstItem="khq-tA-7IS" firstAttribute="width" secondItem="iwc-Lq-xp0" secondAttribute="width" multiplier="0.035" id="pmn-zd-cb4"/>
+                        <constraint firstItem="QNi-bs-XBO" firstAttribute="width" secondItem="iwc-Lq-xp0" secondAttribute="width" multiplier="0.035" id="rJ1-e6-Rc6"/>
                     </constraints>
                 </view>
                 <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sid-pw-Trg">
@@ -330,19 +330,21 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="uas-Ql-QuU"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="QNi-bs-XBO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.0346821" id="4Iq-Lh-FTD"/>
                 <constraint firstAttribute="bottom" secondItem="GIu-E5-1u6" secondAttribute="bottom" id="4Vm-Le-XJ4"/>
                 <constraint firstItem="GIu-E5-1u6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BrC-kC-p8j"/>
                 <constraint firstItem="GIu-E5-1u6" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="MTK-Xr-M6g"/>
+                <constraint firstItem="iwc-Lq-xp0" firstAttribute="leading" secondItem="GIu-E5-1u6" secondAttribute="leading" id="W69-Eg-Euc"/>
+                <constraint firstItem="iwc-Lq-xp0" firstAttribute="trailing" secondItem="GIu-E5-1u6" secondAttribute="trailing" id="aMP-dA-onR"/>
                 <constraint firstItem="Sid-pw-Trg" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.45" id="eed-tt-2xO"/>
+                <constraint firstItem="iwc-Lq-xp0" firstAttribute="top" secondItem="uas-Ql-QuU" secondAttribute="top" id="gh6-Ak-TFU"/>
                 <constraint firstItem="Sid-pw-Trg" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mII-6G-jpy"/>
                 <constraint firstItem="Sid-pw-Trg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qdE-kc-XRp"/>
-                <constraint firstItem="khq-tA-7IS" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.0346821" id="ubA-ik-Ybx"/>
                 <constraint firstItem="GIu-E5-1u6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="upf-OM-I5S"/>
-                <constraint firstItem="vze-W9-dec" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.0346821" id="z1K-Q0-SHi"/>
-                <constraint firstItem="5LD-1P-BLe" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.0346821" id="zlQ-aq-dPa"/>
+                <constraint firstItem="vze-W9-dec" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.035" id="z1K-Q0-SHi"/>
+                <constraint firstItem="5LD-1P-BLe" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.035" id="zlQ-aq-dPa"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="138.40579710144928" y="152.67857142857142"/>

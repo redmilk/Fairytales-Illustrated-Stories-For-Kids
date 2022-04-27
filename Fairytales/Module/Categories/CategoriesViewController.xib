@@ -36,7 +36,7 @@
                     <rect key="frame" x="0.0" y="44" width="865" height="70"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NE7-cv-Fxg" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                            <rect key="frame" x="30" y="20" width="30" height="30"/>
+                            <rect key="frame" x="30" y="24" width="30.5" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="NE7-cv-Fxg" secondAttribute="height" multiplier="1:1" id="mli-wo-pha"/>
                             </constraints>
@@ -56,15 +56,15 @@
                             </variation>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdL-02-Hf7">
-                            <rect key="frame" x="805" y="20" width="30" height="30"/>
+                            <rect key="frame" x="804.5" y="24" width="30.5" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3V-Nx-hQh" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="30.5" height="30"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" backgroundImage="heart-button"/>
                                 </button>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="15" translatesAutoresizingMaskIntoConstraints="NO" id="Rjl-k3-JSa">
-                                    <rect key="frame" x="16" y="-4" width="18" height="18"/>
+                                    <rect key="frame" x="16.5" y="-4" width="18" height="18"/>
                                     <color key="backgroundColor" red="0.8536396329" green="0.0034982283449999999" blue="0.062807715870000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -103,11 +103,11 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="EdL-02-Hf7" firstAttribute="width" secondItem="cnp-NS-MJJ" secondAttribute="width" multiplier="0.0346821" id="3YX-EA-mqX"/>
-                        <constraint firstItem="NE7-cv-Fxg" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" id="6FA-78-pZg"/>
-                        <constraint firstItem="NE7-cv-Fxg" firstAttribute="width" secondItem="cnp-NS-MJJ" secondAttribute="width" multiplier="0.0346821" id="6HH-j3-PEI"/>
+                        <constraint firstItem="EdL-02-Hf7" firstAttribute="width" secondItem="cnp-NS-MJJ" secondAttribute="width" multiplier="0.035" id="3YX-EA-mqX"/>
+                        <constraint firstItem="NE7-cv-Fxg" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" constant="4" id="6FA-78-pZg"/>
+                        <constraint firstItem="NE7-cv-Fxg" firstAttribute="width" secondItem="cnp-NS-MJJ" secondAttribute="width" multiplier="0.035" id="6HH-j3-PEI"/>
                         <constraint firstItem="3SW-L2-WVz" firstAttribute="centerX" secondItem="cnp-NS-MJJ" secondAttribute="centerX" id="Dtu-pi-wxQ"/>
-                        <constraint firstItem="EdL-02-Hf7" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" id="Kbw-eV-z8R"/>
+                        <constraint firstItem="EdL-02-Hf7" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" constant="4" id="Kbw-eV-z8R"/>
                         <constraint firstItem="3SW-L2-WVz" firstAttribute="centerY" secondItem="cnp-NS-MJJ" secondAttribute="centerY" id="Lfh-TR-YWh"/>
                         <constraint firstItem="NE7-cv-Fxg" firstAttribute="leading" secondItem="cnp-NS-MJJ" secondAttribute="leading" constant="30" id="nLT-7d-q59"/>
                         <constraint firstAttribute="height" constant="70" id="qXO-Wk-6au"/>
@@ -131,7 +131,7 @@
                             <color key="currentPageIndicatorTintColor" red="0.99719864130000002" green="0.59852820630000003" blue="0.48231929540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </pageControl>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bg0-KF-jGK" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                            <rect key="frame" x="30" y="3" width="30" height="30"/>
+                            <rect key="frame" x="30" y="26" width="30.5" height="30.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="bg0-KF-jGK" secondAttribute="height" multiplier="1:1" id="1LR-jM-oiX"/>
                             </constraints>
@@ -156,7 +156,6 @@
                         <constraint firstItem="bg0-KF-jGK" firstAttribute="leading" secondItem="U11-By-YLg" secondAttribute="leading" constant="30" id="I9l-ab-bPy"/>
                         <constraint firstItem="bg0-KF-jGK" firstAttribute="baseline" secondItem="qvy-0Z-JPL" secondAttribute="baseline" id="Iq8-13-a11"/>
                         <constraint firstItem="qvy-0Z-JPL" firstAttribute="centerY" secondItem="U11-By-YLg" secondAttribute="centerY" multiplier="0.6" id="dl9-gI-Sd6"/>
-                        <constraint firstItem="bg0-KF-jGK" firstAttribute="centerY" secondItem="U11-By-YLg" secondAttribute="centerY" multiplier="0.6" id="e2d-en-351"/>
                         <constraint firstAttribute="trailing" secondItem="qvy-0Z-JPL" secondAttribute="trailing" constant="30" id="iAL-Ja-LYb"/>
                         <constraint firstItem="bg0-KF-jGK" firstAttribute="firstBaseline" secondItem="qvy-0Z-JPL" secondAttribute="firstBaseline" id="xZ3-va-zFw"/>
                     </constraints>
@@ -175,9 +174,10 @@
                 </constraint>
                 <constraint firstAttribute="trailing" secondItem="BCu-tn-ESa" secondAttribute="trailing" id="Ms3-zo-7nX"/>
                 <constraint firstAttribute="trailing" secondItem="cnp-NS-MJJ" secondAttribute="trailing" id="O5w-BX-gth"/>
-                <constraint firstItem="bg0-KF-jGK" firstAttribute="width" secondItem="cnp-NS-MJJ" secondAttribute="width" multiplier="0.0346821" id="PcA-gv-e1h"/>
+                <constraint firstItem="bg0-KF-jGK" firstAttribute="width" secondItem="cnp-NS-MJJ" secondAttribute="width" multiplier="0.035" id="PcA-gv-e1h"/>
                 <constraint firstItem="cnp-NS-MJJ" firstAttribute="top" secondItem="MWI-31-KWv" secondAttribute="top" id="SW9-OX-2wS"/>
                 <constraint firstItem="BCu-tn-ESa" firstAttribute="top" secondItem="cnp-NS-MJJ" secondAttribute="bottom" constant="10" id="Yg8-hh-bPU"/>
+                <constraint firstItem="bg0-KF-jGK" firstAttribute="centerY" secondItem="MWI-31-KWv" secondAttribute="centerY" multiplier="1.85" id="aI1-0e-Avd"/>
                 <constraint firstItem="BCu-tn-ESa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dev-4z-Jpd"/>
                 <constraint firstItem="axK-Hw-FaJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dtk-7a-z4O"/>
                 <constraint firstAttribute="trailing" secondItem="axK-Hw-FaJ" secondAttribute="trailing" id="hMI-tZ-6Mc"/>

@@ -70,7 +70,7 @@
                     <rect key="frame" x="0.0" y="44" width="865" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uay-MF-peD" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                            <rect key="frame" x="30" y="25" width="30" height="30"/>
+                            <rect key="frame" x="30" y="25.5" width="29.5" height="29"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="uay-MF-peD" secondAttribute="height" multiplier="1:1" id="y3c-K5-1Bm"/>
                             </constraints>
@@ -81,7 +81,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6e-Fa-w2x">
-                            <rect key="frame" x="805" y="25" width="30" height="30"/>
+                            <rect key="frame" x="805" y="28" width="30" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gq9-jh-HvN" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -130,7 +130,7 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="h6e-Fa-w2x" firstAttribute="centerY" secondItem="QdV-8L-DlB" secondAttribute="centerY" id="186-Sl-1EU"/>
+                        <constraint firstItem="h6e-Fa-w2x" firstAttribute="centerY" secondItem="QdV-8L-DlB" secondAttribute="centerY" constant="3" id="186-Sl-1EU"/>
                         <constraint firstAttribute="height" constant="80" id="97D-yS-i4R"/>
                         <constraint firstAttribute="trailing" secondItem="h6e-Fa-w2x" secondAttribute="trailing" constant="30" id="GiZ-eN-3WR"/>
                         <constraint firstItem="uay-MF-peD" firstAttribute="centerY" secondItem="QdV-8L-DlB" secondAttribute="centerY" id="VSv-vN-Puy"/>
@@ -141,7 +141,7 @@
                     <rect key="frame" x="0.0" y="261" width="865" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISb-9T-c36" customClass="BaseButton" customModule="Fairytales" customModuleProvider="target">
-                            <rect key="frame" x="30" y="25" width="30" height="30"/>
+                            <rect key="frame" x="30" y="80" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="ISb-9T-c36" secondAttribute="height" multiplier="1:1" id="eKZ-N7-tHl"/>
                             </constraints>
@@ -176,10 +176,6 @@
                         <constraint firstItem="pe2-os-pO5" firstAttribute="centerY" secondItem="jyn-61-Czo" secondAttribute="centerY" id="01t-Oq-iJY"/>
                         <constraint firstItem="bm0-uQ-zUd" firstAttribute="centerY" secondItem="jyn-61-Czo" secondAttribute="centerY" multiplier="0.6" id="0Kt-3J-ah9"/>
                         <constraint firstAttribute="trailing" secondItem="bm0-uQ-zUd" secondAttribute="trailing" constant="30" id="5Ti-mk-YvD"/>
-                        <constraint firstItem="ISb-9T-c36" firstAttribute="centerY" secondItem="jyn-61-Czo" secondAttribute="centerY" id="Esi-vp-N6y">
-                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
-                            <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
-                        </constraint>
                         <constraint firstItem="pe2-os-pO5" firstAttribute="centerX" secondItem="jyn-61-Czo" secondAttribute="centerX" id="cJr-MR-TBf"/>
                         <constraint firstItem="ISb-9T-c36" firstAttribute="leading" secondItem="jyn-61-Czo" secondAttribute="leading" constant="30" id="dvl-9M-FH6"/>
                         <constraint firstItem="pe2-os-pO5" firstAttribute="width" secondItem="jyn-61-Czo" secondAttribute="width" multiplier="0.45" id="jtr-5J-yUN"/>
@@ -356,6 +352,7 @@
                 <constraint firstItem="ncO-Lc-e5Y" firstAttribute="top" secondItem="I0s-kK-36i" secondAttribute="top" id="12k-Bj-Gvc"/>
                 <constraint firstItem="QdV-8L-DlB" firstAttribute="top" secondItem="I0s-kK-36i" secondAttribute="top" id="1fp-VM-sA0"/>
                 <constraint firstItem="oHY-uc-PgW" firstAttribute="width" secondItem="oHY-uc-PgW" secondAttribute="height" multiplier="2:1" id="3XF-2n-hD6"/>
+                <constraint firstItem="ISb-9T-c36" firstAttribute="centerY" secondItem="I0s-kK-36i" secondAttribute="centerY" multiplier="1.85" id="3mg-wj-uAz"/>
                 <constraint firstItem="oHY-uc-PgW" firstAttribute="centerY" secondItem="I0s-kK-36i" secondAttribute="centerY" id="5Iz-zI-bA7"/>
                 <constraint firstItem="Ocl-wn-9Nn" firstAttribute="centerX" secondItem="RWR-MJ-GPY" secondAttribute="centerX" id="5ZS-kc-lYG"/>
                 <constraint firstAttribute="trailing" secondItem="jyn-61-Czo" secondAttribute="trailing" id="6mA-Et-SZ5"/>
@@ -377,7 +374,7 @@
                 <constraint firstItem="Ocl-wn-9Nn" firstAttribute="centerY" secondItem="RWR-MJ-GPY" secondAttribute="centerY" id="aid-ZT-nxf"/>
                 <constraint firstItem="RWR-MJ-GPY" firstAttribute="centerX" secondItem="I0s-kK-36i" secondAttribute="centerX" id="bxR-Zt-DkX"/>
                 <constraint firstItem="HKO-cG-7fk" firstAttribute="leading" secondItem="I0s-kK-36i" secondAttribute="leading" id="cbm-0a-wID"/>
-                <constraint firstItem="uay-MF-peD" firstAttribute="width" secondItem="j6b-mQ-gXg" secondAttribute="width" multiplier="0.0346821" id="ci9-fc-2et"/>
+                <constraint firstItem="uay-MF-peD" firstAttribute="width" secondItem="j6b-mQ-gXg" secondAttribute="width" multiplier="0.034" id="ci9-fc-2et"/>
                 <constraint firstItem="RWR-MJ-GPY" firstAttribute="top" secondItem="j6b-mQ-gXg" secondAttribute="top" id="dJk-3V-fr8"/>
                 <constraint firstItem="bm0-uQ-zUd" firstAttribute="width" secondItem="j6b-mQ-gXg" secondAttribute="width" multiplier="0.0346821" id="ecw-In-4dq"/>
                 <constraint firstItem="ncO-Lc-e5Y" firstAttribute="leading" secondItem="I0s-kK-36i" secondAttribute="leading" id="ex4-Yj-cfZ"/>

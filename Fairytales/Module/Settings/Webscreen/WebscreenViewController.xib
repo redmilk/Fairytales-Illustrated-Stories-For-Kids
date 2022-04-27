@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -27,10 +28,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uID-PD-uqa">
-                    <rect key="frame" x="0.0" y="0.0" width="865" height="70"/>
+                    <rect key="frame" x="0.0" y="44" width="865" height="70"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjK-Yy-val">
-                            <rect key="frame" x="30" y="27" width="30" height="30"/>
+                            <rect key="frame" x="30" y="20" width="30.5" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="jjK-Yy-val" secondAttribute="height" multiplier="1:1" id="Ooe-CL-cjC"/>
                             </constraints>
@@ -38,7 +39,7 @@
                             <state key="normal" backgroundImage="back-button"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Политика конфиденциальности" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-Ur-34f">
-                            <rect key="frame" x="259.5" y="33.5" width="346" height="17"/>
+                            <rect key="frame" x="259.5" y="26.5" width="346" height="17"/>
                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -53,9 +54,9 @@
                     <color key="backgroundColor" red="0.1294117719" green="0.1019607931" blue="0.41568624970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstItem="8Wt-Ur-34f" firstAttribute="width" secondItem="uID-PD-uqa" secondAttribute="width" multiplier="0.4" id="22H-nx-mcp"/>
-                        <constraint firstItem="jjK-Yy-val" firstAttribute="centerY" secondItem="uID-PD-uqa" secondAttribute="centerY" multiplier="1.2" id="7tb-xe-y2e"/>
+                        <constraint firstItem="jjK-Yy-val" firstAttribute="centerY" secondItem="uID-PD-uqa" secondAttribute="centerY" id="7tb-xe-y2e"/>
                         <constraint firstItem="jjK-Yy-val" firstAttribute="leading" secondItem="uID-PD-uqa" secondAttribute="leading" constant="30" id="RKm-5u-fKM"/>
-                        <constraint firstItem="jjK-Yy-val" firstAttribute="width" secondItem="uID-PD-uqa" secondAttribute="width" multiplier="0.0346821" id="cjI-NI-JRb"/>
+                        <constraint firstItem="jjK-Yy-val" firstAttribute="width" secondItem="uID-PD-uqa" secondAttribute="width" multiplier="0.035" id="cjI-NI-JRb"/>
                         <constraint firstAttribute="height" constant="70" id="dlG-nI-bfv">
                             <variation key="heightClass=regular-widthClass=compact" constant="70"/>
                             <variation key="heightClass=regular-widthClass=regular" constant="90"/>
@@ -65,7 +66,7 @@
                     </constraints>
                 </view>
                 <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOT-n5-NLB">
-                    <rect key="frame" x="0.0" y="70" width="865" height="310"/>
+                    <rect key="frame" x="0.0" y="114" width="865" height="266"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <wkWebViewConfiguration key="configuration">
                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -73,11 +74,12 @@
                     </wkWebViewConfiguration>
                 </wkWebView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="u5F-cO-ex4"/>
             <color key="backgroundColor" red="0.1294117719" green="0.1019607931" blue="0.41568624970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="KOT-n5-NLB" secondAttribute="bottom" id="68v-jN-QhC"/>
                 <constraint firstAttribute="trailing" secondItem="uID-PD-uqa" secondAttribute="trailing" id="DrD-wg-Fy4"/>
-                <constraint firstAttribute="top" secondItem="uID-PD-uqa" secondAttribute="top" id="E25-6F-XV8"/>
+                <constraint firstItem="u5F-cO-ex4" firstAttribute="top" secondItem="uID-PD-uqa" secondAttribute="top" id="E25-6F-XV8"/>
                 <constraint firstItem="KOT-n5-NLB" firstAttribute="top" secondItem="uID-PD-uqa" secondAttribute="bottom" id="Xll-Ec-57i"/>
                 <constraint firstItem="KOT-n5-NLB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nHt-rf-Ax8"/>
                 <constraint firstAttribute="trailing" secondItem="KOT-n5-NLB" secondAttribute="trailing" id="tGb-UU-QXx"/>

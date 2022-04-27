@@ -101,6 +101,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         }
         menuBackground.isHidden = !stateValue.isFavorites
         favoritesBackgroundView.isHidden = !stateValue.isFavorites
+        favoritesButton.isHidden = stateValue.isFavorites
     }
     
     override func applyStyling() {
