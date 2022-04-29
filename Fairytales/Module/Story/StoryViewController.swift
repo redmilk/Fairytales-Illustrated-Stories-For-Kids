@@ -30,7 +30,7 @@ extension StoryViewController {
 
 final class StoryViewController: BaseViewController, UserSessionServiceProvidable, ImageDownloaderProvidable {
     enum Buttons {
-        case heart, home, prevPage, nextPage, readAgain, selectNewStory
+        case heart, home, prevPage, nextPage, readAgain, selectNewStory, closeSharePopup, sharePressed
     }
             
     @IBOutlet weak var currentPageNumberLabel: UIButton!
@@ -48,7 +48,14 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
     @IBOutlet weak var endStoryReadAgainButton: BaseButton!
     @IBOutlet weak var endStorySelectNewStoryButton: BaseButton!
     @IBOutlet weak var favoritesCounterLabel: UILabel!
-
+    @IBOutlet weak var popoverShare: UIView!
+    // end story popup
+    @IBOutlet weak var sharePopupContainerView: UIView!
+    @IBOutlet weak var shareCloseButton: BaseButton!
+    @IBOutlet weak var shareButton: BaseButton!
+    @IBOutlet weak var pageTextContainer: UIStackView!
+    
+    private var panRecognizer: UIPanGestureRecognizer!
     private var stateValue: State { state.value as! State }
     private var selectedStory: StoryModel { userSession.selectedStory }
     private let storyTextFormatter = StoryTextFormatter()
@@ -71,8 +78,7 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
         favoritesCounterLabel.text = userSession.favoritesCounter.description
         favoritesCounterLabel.isHidden = (favoritesCounterLabel.text ?? "0") == "0"
         setupNextPage()
-   
-        let panRecognizer = UIPanGestureRecognizer(target: self, action:  #selector(panedView))
+        panRecognizer = UIPanGestureRecognizer(target: self, action:  #selector(panedView))
         self.view.addGestureRecognizer(panRecognizer)
     }
     override func handleEvents() {
@@ -100,8 +106,10 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
             previousPageButton.publisher().map { _ in Buttons.prevPage },
             nextPageButton.publisher().map { _ in Buttons.nextPage },
             endStoryReadAgainButton.publisher().map { _ in Buttons.readAgain },
-            endStorySelectNewStoryButton.publisher().map { _ in Buttons.selectNewStory })
-            .sink(receiveValue: { [weak self] button in
+            endStorySelectNewStoryButton.publisher().map { _ in Buttons.selectNewStory },
+            shareCloseButton.publisher().map { _ in Buttons.closeSharePopup },
+            shareButton.publisher().map { _ in Buttons.sharePressed }
+        ).sink(receiveValue: { [weak self] button in
                 guard let self = self else { return }
                 switch button {
                 case .home: self.coordinator.end()
@@ -113,22 +121,44 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
                     self.selectedStory.isFavorite.toggle()
                 case .prevPage:
                     self.setupPreviousPage()
+                    self.saveCurrentPage()
                 case .nextPage:
                     self.setupNextPage()
+                    self.saveCurrentPage()
                 case .readAgain:
                     self.stateValue.currentPage = -1
                     self.userSession.saveCurrentPageOfSelectedStory(0)
                     self.setupNextPage()
                     self.endStoryContainer.isHidden = true
+                    self.panRecognizer.isEnabled = true
+                    self.nextPageButton.isHidden = false
+                    self.previousPageButton.isHidden = false
+                    self.pageTextContainer.isHidden = false
+                    self.pageTextLabel.isHidden = false
                 case .selectNewStory:
                     self.coordinator.end()
+                case .closeSharePopup:
+                    self.sharePopupContainerView.isHidden = true
+                case .sharePressed:
+                    self.shareApp()
+                    self.sharePopupContainerView.isHidden = true
                 }
             }).store(in: &bag)
-    } 
+    }
+    
+    private func saveCurrentPage() {
+        userSession.saveCurrentPageOfSelectedStory(stateValue.currentPage)
+    }
     
     private func setupNextPage() {
         guard stateValue.currentPage + 1 < selectedStory.pagePictures.count && stateValue.currentPage + 1 < selectedStory.pages.count else {
             endStoryContainer.isHidden = false
+            sharePopupContainerView.isHidden = false
+            pageTextLabel.isHidden = true
+            pageTextContainer.isHidden = true
+            previousPageButton.isHidden = true
+            nextPageButton.isHidden = true
+            panRecognizer.isEnabled = false
             return
         }
         Logger.log(stateValue.currentPage.description, type: .purchase)
@@ -175,6 +205,27 @@ final class StoryViewController: BaseViewController, UserSessionServiceProvidabl
             print("FORWARD " + isForward.description)
             if distance > swipeDistance {
                 isForward ? setupNextPage() : setupPreviousPage()
+            }
+        }
+    }
+    
+    private func shareApp() {
+        let textToShare = "Check out Fairytale app"
+        if let myWebsite = URL(string: "https://apps.apple.com/app/id1596570780") {
+            let objectsToShare = [textToShare, myWebsite, UIImage(named: "bear-splash-1")!] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            /// Excluded Activities
+            activityVC.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList]
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                popoverShare.isHidden = false
+                activityVC.popoverPresentationController?.sourceView = popoverShare
+                activityVC.popoverPresentationController?.sourceRect = popoverShare.frame
+                activityVC.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+                UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+            } else {
+                self.present(activityVC, animated: true, completion: { [weak self] in
+                    self?.popoverShare.isHidden = true
+                })
             }
         }
     }

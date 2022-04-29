@@ -138,6 +138,9 @@
 		79B2A6C927B9F41D00188BC1 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B2A6C827B9F41D00188BC1 /* Scheduler.swift */; };
 		79B2A6CE27B9F69000188BC1 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B2A6CB27B9F69000188BC1 /* ImageLoader.swift */; };
 		79B2A6CF27B9F69000188BC1 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B2A6CC27B9F69000188BC1 /* RequestError.swift */; };
+		79B7F1E1281BD15D00B33341 /* Onboarding1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 79B7F1DE281BD15D00B33341 /* Onboarding1.mp4 */; };
+		79B7F1E2281BD15D00B33341 /* Onboarding3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 79B7F1DF281BD15D00B33341 /* Onboarding3.mp4 */; };
+		79B7F1E3281BD15D00B33341 /* Onboarding2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 79B7F1E0281BD15D00B33341 /* Onboarding2.mp4 */; };
 		79B955E1281283AA0019209A /* FacebookProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B955E0281283AA0019209A /* FacebookProvider.swift */; };
 		79BE051C28133EF00017F6F5 /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = 79BE051A28133EF00017F6F5 /* terms.html */; };
 		79BE051D28133EF00017F6F5 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 79BE051B28133EF00017F6F5 /* privacy.html */; };
@@ -272,6 +275,9 @@
 		79B2A6CA27B9F69000188BC1 /* ImageCacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacher.swift; sourceTree = "<group>"; };
 		79B2A6CB27B9F69000188BC1 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		79B2A6CC27B9F69000188BC1 /* RequestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		79B7F1DE281BD15D00B33341 /* Onboarding1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Onboarding1.mp4; sourceTree = "<group>"; };
+		79B7F1DF281BD15D00B33341 /* Onboarding3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Onboarding3.mp4; sourceTree = "<group>"; };
+		79B7F1E0281BD15D00B33341 /* Onboarding2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Onboarding2.mp4; sourceTree = "<group>"; };
 		79B955E0281283AA0019209A /* FacebookProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookProvider.swift; sourceTree = "<group>"; };
 		79BE051A28133EF00017F6F5 /* terms.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms.html; sourceTree = "<group>"; };
 		79BE051B28133EF00017F6F5 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
@@ -320,6 +326,9 @@
 		792CDFA727BAF14D00EF21D6 /* LaunchVideo */ = {
 			isa = PBXGroup;
 			children = (
+				79B7F1DF281BD15D00B33341 /* Onboarding3.mp4 */,
+				79B7F1DE281BD15D00B33341 /* Onboarding1.mp4 */,
+				79B7F1E0281BD15D00B33341 /* Onboarding2.mp4 */,
 				792CDFA827BAF16B00EF21D6 /* video-iphone.mp4 */,
 				792CDFA927BAF16B00EF21D6 /* video-ipad.mp4 */,
 			);
@@ -801,6 +810,7 @@
 				79958D5827A7AAC000A32E5A /* LICENSE.txt in Resources */,
 				7985DC82279EC6F8005459E0 /* SubscriptionPlanPopup.xib in Resources */,
 				7985DC68279EC6F8005459E0 /* StoryViewController.xib in Resources */,
+				79B7F1E1281BD15D00B33341 /* Onboarding1.mp4 in Resources */,
 				79958D0227A75B2200A32E5A /* StorySelectViewController.xib in Resources */,
 				7985DC30279EC6F8005459E0 /* LaunchScreen.storyboard in Resources */,
 				79958D5627A7AAC000A32E5A /* Lato-Medium.ttf in Resources */,
@@ -809,6 +819,7 @@
 				7919539327F99484006B60A3 /* ManageSubscriptionsViewController.xib in Resources */,
 				79BE051D28133EF00017F6F5 /* privacy.html in Resources */,
 				790A49DE27F464BA00B9E7CE /* SubscriptionsViewController.xib in Resources */,
+				79B7F1E2281BD15D00B33341 /* Onboarding3.mp4 in Resources */,
 				792CDFAA27BAF16B00EF21D6 /* video-iphone.mp4 in Resources */,
 				79958D4927A7AAC000A32E5A /* Lato-Bold.ttf in Resources */,
 				792CDFAB27BAF16B00EF21D6 /* video-ipad.mp4 in Resources */,
@@ -822,6 +833,7 @@
 				79958D4B27A7AAC000A32E5A /* Lato-ExtraBold.ttf in Resources */,
 				799E809B27AC38F600ABE0C8 /* CarouselItemView.xib in Resources */,
 				79958D4C27A7AAC000A32E5A /* COPYRIGHT.txt in Resources */,
+				79B7F1E3281BD15D00B33341 /* Onboarding2.mp4 in Resources */,
 				79BE051C28133EF00017F6F5 /* terms.html in Resources */,
 				79958D5927A7AAC000A32E5A /* Lato-ExtraLight.ttf in Resources */,
 				79958D4827A7AAC000A32E5A /* Lato-Thin.ttf in Resources */,
@@ -1075,7 +1087,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
@@ -1114,7 +1126,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;

@@ -51,9 +51,14 @@ final class CategoriesCoordinator: Coordinatable, CategoriesCoordinatorProtocol,
     
     func displaySpecialGift() {
         var whatToShow = SubscriptionsViewController.ScreenOptions.howItWorks
-        if purchases.isUserHasActiveSubscription {
-            whatToShow = .speciealGift
+        if !purchases.isUserHasActiveSubscription {
+            whatToShow = PurchesService.currentRandomFlag ? .speciealGift : .howItWorks
+            print(whatToShow)
         }
+//        if purchases.isUserEverHadSubscription && !purchases.isUserHasActiveSubscription {
+//            whatToShow = .weekly
+//        }
+        
         let coordinator = SubscriptionsCoordinator(whatToShow: whatToShow)
         coordinator.start()
     }

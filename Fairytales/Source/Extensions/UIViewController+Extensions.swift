@@ -9,6 +9,24 @@ import UIKit.UIViewController
 import UIKit.UIColor
 import Combine
 
+@nonobjc extension UIViewController {
+    func add(_ child: UIViewController, frame: CGRect? = nil) {
+        addChild(child)
+        if let frame = frame {
+            child.view.frame = frame
+        }
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+    }
+    
+    func remove() {
+        willMove(toParent: nil)
+        view.removeFromSuperview()
+        removeFromParent()
+    }
+}
+
+
 extension UIViewController: UIGestureRecognizerDelegate {
     var sceneDelegate: SceneDelegate? {
         for scene in UIApplication.shared.connectedScenes {

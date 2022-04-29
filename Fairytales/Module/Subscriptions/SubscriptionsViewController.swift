@@ -46,6 +46,7 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     @IBOutlet weak var monthAndYearSubscriptionContainer: UIView!
     //week
     @IBOutlet weak var weeklyPriceLabel: UILabel!
+    @IBOutlet weak var trialDescriptionLabel: UILabel!
     // month
     @IBOutlet weak var monthlyButton: UIButton!
     @IBOutlet weak var monthlyRadioButton: UIButton!
@@ -219,13 +220,7 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
             monthAndYearSubscriptionContainer.isHidden = true
             weekSubscriptionContainer.isHidden = false
             plansButton.isHidden = false
-            if !purchases.isUserEverHadSubscription {
-                howItWorksDescriptions.isHidden = false
-                howItWorksGradientImageView.isHidden = false
-                howItWorksTitleLabel.isHidden = false
-                defaultDescriptions.isHidden = true
-                defaultDescriptionsGradientImageView.isHidden = true
-            }
+            trialDescriptionLabel.isHidden = purchases.isUserEverHadSubscription
         case .monthlyAndYearly:
             stateValue.whatToShow = .monthlyAndYearly
             specialGiftContainer.isHidden = true

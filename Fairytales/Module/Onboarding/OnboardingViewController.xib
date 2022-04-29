@@ -18,8 +18,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingViewController" customModule="Fairytales" customModuleProvider="target">
             <connections>
+                <outlet property="contentView" destination="x8V-hB-kS0" id="O8k-eS-dVC"/>
                 <outlet property="continueButton" destination="eWP-5c-fVD" id="eY6-1Q-EJA"/>
                 <outlet property="descriptionLabel" destination="yu1-c5-dEC" id="ZIM-v0-NWM"/>
+                <outlet property="descriptionsStackView" destination="nGI-sc-Cq2" id="fTY-o2-Exr"/>
                 <outlet property="headingLabel" destination="3Ut-Pb-o5E" id="HxO-Y9-Xhn"/>
                 <outlet property="image" destination="6R6-N7-BDs" id="hCG-zY-zkR"/>
                 <outlet property="pageControl" destination="IiQ-DG-5L1" id="Nh2-WF-T8t"/>

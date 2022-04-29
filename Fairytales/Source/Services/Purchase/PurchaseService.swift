@@ -93,6 +93,7 @@ final class PurchesService: AnalyticServiceProvider {
         print(Apphud.subscriptions()?.isEmpty)
         return !(Apphud.subscriptions()?.isEmpty ?? true)
     }
+    
     /// weekly discaunt prices case: no active subs && no previus subs
     var isWeeklyPlanWithDiscaunt: Bool { !isUserHasActiveSubscription && !isUserEverHadSubscription }
     /// gift section should be visible: no active subs

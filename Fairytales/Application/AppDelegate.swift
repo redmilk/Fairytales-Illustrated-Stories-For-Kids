@@ -42,7 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PurchesServiceProvidable 
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
         UINavigationController.attemptRotationToDeviceOrientation()
 
-        
+        PurchesService.currentRandomFlag.toggle()
+
         return true
     }
     
