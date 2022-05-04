@@ -9,7 +9,7 @@ import Foundation
 import UIKit.UIWindow
 import UIKit.UINavigationController
 
-final class ApplicationCoordinator: Coordinatable, UserSessionServiceProvidable {
+final class ApplicationCoordinator: Coordinatable, UserSessionServiceProvidable, PurchesServiceProvidable {
     
     unowned let window: UIWindow
     var navigationController: UINavigationController?
@@ -35,10 +35,13 @@ final class ApplicationCoordinator: Coordinatable, UserSessionServiceProvidable 
         OnboardingManager.shared?.onboardingFinishAction = { [weak self] in
             self?.childCoordinators.removeAll()
             self?.showContent()
-            self?.showSubscriptions()
             OnboardingManager.shared?.shouldShowOnboarding = false
             PurchesService.shouldDisplaySubscriptionsForCurrentUser = true
             OnboardingManager.shared = nil
+            guard let self = self else { return }
+            if !self.purchases.isUserHasActiveSubscription {
+                self.showSubscriptions()
+            }
         }
         let coordinator = OnboardingCoordinator(window: self.window)
         childCoordinators.append(coordinator)
@@ -51,7 +54,7 @@ final class ApplicationCoordinator: Coordinatable, UserSessionServiceProvidable 
     }
     
     private func showSubscriptions() {
-        let coordinator = SubscriptionsCoordinator(whatToShow: .weekly)
+        let coordinator = SubscriptionsCoordinator(whatToShow: purchases.isUserEverHadSubscription ? .weekly : .howItWorks)
         coordinator.start()
     }
 }
