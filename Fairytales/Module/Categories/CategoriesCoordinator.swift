@@ -54,10 +54,13 @@ final class CategoriesCoordinator: Coordinatable, CategoriesCoordinatorProtocol,
         if !purchases.isUserHasActiveSubscription {
             whatToShow = PurchesService.currentRandomFlag ? .speciealGift : .howItWorks
             print(whatToShow)
+            if purchases.isUserEverHadSubscription {
+                whatToShow = .speciealGift
+            }
         }
-//        if purchases.isUserEverHadSubscription && !purchases.isUserHasActiveSubscription {
-//            whatToShow = .weekly
-//        }
+        if purchases.isUserEverHadSubscription && !purchases.isUserHasActiveSubscription {
+            whatToShow = .weekly
+        }
         
         let coordinator = SubscriptionsCoordinator(whatToShow: whatToShow)
         coordinator.start()

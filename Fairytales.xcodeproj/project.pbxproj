@@ -1087,11 +1087,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 41;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Fairytale;
+				INFOPLIST_KEY_CFBundleDisplayName = "Сказки";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This lets us connect to Facebook and improves our marketing. We will never show any ads inside of Fairytales.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1126,11 +1126,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 41;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Fairytale;
+				INFOPLIST_KEY_CFBundleDisplayName = "Сказки";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This lets us connect to Facebook and improves our marketing. We will never show any ads inside of Fairytales.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

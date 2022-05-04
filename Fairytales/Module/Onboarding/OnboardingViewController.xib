@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -37,7 +36,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8V-hB-kS0">
                     <rect key="frame" x="0.0" y="0.0" width="865" height="375"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding1" translatesAutoresizingMaskIntoConstraints="NO" id="6R6-N7-BDs">
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding1" translatesAutoresizingMaskIntoConstraints="NO" id="6R6-N7-BDs">
                             <rect key="frame" x="0.0" y="0.0" width="865" height="375"/>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nGI-sc-Cq2">
@@ -118,7 +117,7 @@
                             </variation>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="nGI-sc-Cq2" firstAttribute="centerX" secondItem="x8V-hB-kS0" secondAttribute="centerX" id="3Pf-GR-JXk"/>
                         <constraint firstItem="6R6-N7-BDs" firstAttribute="leading" secondItem="x8V-hB-kS0" secondAttribute="leading" id="8Ee-No-k5L"/>
@@ -138,7 +137,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="x8V-hB-kS0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OPV-MU-xw5"/>
                 <constraint firstItem="x8V-hB-kS0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ag5-Gn-fA9"/>
@@ -153,8 +152,5 @@
         <image name="button-filled-1" width="93" height="30"/>
         <image name="button-stroke-1" width="112" height="30"/>
         <image name="onboarding1" width="812" height="375"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

@@ -22,13 +22,13 @@ extension OnboardingViewController {
                                     UIImage(named: "onboarding4")!]
         
         var headingList: [String] = ["Ваш ребенок в главной роли",
-                                     "Возможность чтения оффлайн",
                                      "Картинки на каждой странице",
+                                     "Возможность чтения оффлайн",
                                      "Обучайтесь и развивайтесь вместе с ребенком"]
         
         var descriptionList: [String] = ["Погружение в сказочный мир позволит легко и безопасно получить новый опыт и знания",
+                                         "Яркие иллюстрации формируют вкус и дополняют восприятие сказочных сюжетов",
                                      "Удобно читать в дороге, не отвлекают уведомления и телефон работает дольше",
-                                     "Яркие иллюстрации формируют вкус и дополняют восприятие сказочных сюжетов",
                                      "Совместное чтение и обсуждение сказок увеличит словарный запас ребенка и усилит его стремление к познанию нового"]
 
         lazy var currentImage: UIImage = self.imageList[currentImageIndex]
@@ -63,11 +63,24 @@ final class OnboardingViewController: BaseViewController {
     
     @IBOutlet weak var descriptionsStackView: UIStackView!
     @IBOutlet weak var contentView: UIView!
+    
     private var player: AVQueuePlayer?
     private var playerItem: AVPlayerItem?
     private var playerView: PlayerView?
     private var asset: AVAsset?
     private var playerLooper: AVPlayerLooper?
+    
+    private var player1: AVQueuePlayer?
+    private var playerItem1: AVPlayerItem?
+    private var playerView1: PlayerView?
+    private var asset1: AVAsset?
+    private var playerLooper1: AVPlayerLooper?
+    
+    private var player2: AVQueuePlayer?
+    private var playerItem2: AVPlayerItem?
+    private var playerView2: PlayerView?
+    private var asset2: AVAsset?
+    private var playerLooper2: AVPlayerLooper?
     
     var stateValue: OnboardingViewController.State { state.value as! OnboardingViewController.State }
     
@@ -87,16 +100,17 @@ final class OnboardingViewController: BaseViewController {
         continueButton.publisher().map { _ in }
         .sink(receiveValue: { [weak self] in
             guard let state = self?.stateValue else { return }
-            var videoName: String = ""
             switch state.currentImageIndex {
-            case 0: videoName = "Onboarding1"
-            case 1: videoName = "Onboarding2"
-            case 2: videoName = "Onboarding3"
+            case 0:
+                self?.playerView?.isHidden = true
+                self?.playerView1?.isHidden = false
+                self?.player1?.play()
+            case 1:
+                self?.playerView1?.isHidden = true
+                self?.playerView2?.isHidden = false
+                self?.player2?.play()
             default: break
             }
-            self?.setupVideoPlayer(videoName: videoName)
-            self?.startPlayVideo()
-
             if state.currentImageIndex == 2 {
                 (self?.coordinator as? OnboardingCoordinator)?.displayGenderSettings()
                 return
@@ -117,8 +131,7 @@ final class OnboardingViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupVideoPlayer(videoName: "Onboarding3")
-        startPlayVideo()
+        setupVideoPlayers()
     }
     override func handleState() {
         state.compactMap { $0 as? OnboardingViewController.State }
@@ -163,8 +176,8 @@ final class OnboardingViewController: BaseViewController {
         player?.pause()
     }
 
-    private func setupVideoPlayer(videoName: String) {
-        guard let videoUrl = Bundle.main.url(forResource: videoName, withExtension: "mp4") else { return }
+    private func setupVideoPlayers() {
+        guard let videoUrl = Bundle.main.url(forResource: "Onboarding3", withExtension: "mp4") else { return }
         asset = AVAsset(url: videoUrl)
         playerItem = AVPlayerItem(asset: asset!)
         player = AVQueuePlayer(playerItem: playerItem)
@@ -179,11 +192,58 @@ final class OnboardingViewController: BaseViewController {
         playerView?.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         playerView?.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         playerView?.player = player
+        player?.play()
         
+        guard let videoUrl = Bundle.main.url(forResource: "Onboarding1", withExtension: "mp4") else { return }
+        asset1 = AVAsset(url: videoUrl)
+        playerItem1 = AVPlayerItem(asset: asset1!)
+        player1 = AVQueuePlayer(playerItem: playerItem1)
+        player1!.isMuted = false
+        playerLooper1 = AVPlayerLooper(player: player1!, templateItem: playerItem1!)
+        playerView1 = PlayerView()
+        playerView1?.translatesAutoresizingMaskIntoConstraints = false
+        //view.addSubview(playerView!)
+        contentView.insertSubview(playerView1!, belowSubview: pageControl)
+        playerView1?.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        playerView1?.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        playerView1?.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        playerView1?.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        playerView1?.player = player1
+        playerView1?.isHidden = true
+        //player1?.play()
+
+        guard let videoUrl = Bundle.main.url(forResource: "Onboarding2", withExtension: "mp4") else { return }
+        asset2 = AVAsset(url: videoUrl)
+        playerItem2 = AVPlayerItem(asset: asset2!)
+        player2 = AVQueuePlayer(playerItem: playerItem2)
+        player2!.isMuted = false
+        playerLooper2 = AVPlayerLooper(player: player2!, templateItem: playerItem2!)
+        playerView2 = PlayerView()
+        playerView2?.translatesAutoresizingMaskIntoConstraints = false
+        //view.addSubview(playerView!)
+        contentView.insertSubview(playerView2!, belowSubview: pageControl)
+        playerView2?.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        playerView2?.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        playerView2?.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        playerView2?.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        playerView2?.player = player2
+        playerView2?.isHidden = true
+        //player2?.play()
+                
         contentView.bringSubviewToFront(pageControl)
         contentView.bringSubviewToFront(continueButton)
         contentView.bringSubviewToFront(descriptionLabel)
         contentView.bringSubviewToFront(descriptionsStackView)
+    }
+    
+    private func playNextVideo(_ videoName: String) {
+        guard let videoUrl = Bundle.main.url(forResource: videoName, withExtension: "mp4") else { return }
+        asset = AVAsset(url: videoUrl)
+        let playerItem = AVPlayerItem(asset: asset!)
+        DispatchQueue.main.async {
+            self.player?.replaceCurrentItem(with: playerItem)
+            self.player?.playImmediately(atRate: 1)
+        }
     }
   
 }

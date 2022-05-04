@@ -84,8 +84,6 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
         pageControl.preferredIndicatorImage = UIImage(named: "page-control-indicator")!
         displayDataManager.input.send(.configure(with: userSession.selectedCategory))
         userSession.selectedStory = stateValue.selectedCategory.items[safe: carousel.currentItemIndex]
-        favoritesCounterLabel.text = userSession.favoritesCounter.description
-        favoritesCounterLabel.isHidden = (favoritesCounterLabel.text ?? "0") == "0"
         sotryDescriptionImage.layer.borderColor = UIColor.white.cgColor
         sotryDescriptionImage.layer.borderWidth = 5
         emptyFavoritesBackgroundImageView.layer.borderWidth = 5
@@ -143,6 +141,7 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 self.navigationController?.setNavigationBarHidden(true, animated: false)
                 self.favoritesCounterLabel.text = self.userSession.favoritesCounter.description
                 self.favoritesCounterLabel.isHidden = (self.favoritesCounterLabel.text ?? "0") == "0"
+                self.favoritesCounterLabel.isHidden = self.stateValue.isFavorites
                 //if self.stateValue.isFavorites {
                 if !self.stateValue.isFirstOpen {
                     self.carousel.reloadData()
@@ -274,6 +273,7 @@ private extension StorySelectViewController {
                 self?.userSession.selectedStory.pagePictures = pagesImageList.sorted(by: { $0.1 < $1.1 }).map { $0.0 }
                 self?.favoritesCounterLabel.text = self?.userSession.favoritesCounter.description ?? "0"
                 self?.favoritesCounterLabel.isHidden = (self?.favoritesCounterLabel.text ?? "0") == "0"
+                self?.favoritesCounterLabel.isHidden = self?.stateValue.isFavorites ?? true
                 completion?()
             })
     }
@@ -337,6 +337,7 @@ extension StorySelectViewController: iCarouselDelegate, iCarouselDataSource {
             }
             favoritesCounterLabel?.text = userSession?.favoritesCounter.description
             favoritesCounterLabel?.isHidden = (favoritesCounterLabel?.text ?? "0") == "0"
+            favoritesCounterLabel?.isHidden = self.stateValue.isFavorites
             if self.stateValue.isFavorites, let isFavorite = recycled?.isFavorite, !isFavorite {
                 let index = self.stateValue.selectedCategory.items.firstIndex { story in
                     story.dto.id_internal == item?.dto.id_internal
