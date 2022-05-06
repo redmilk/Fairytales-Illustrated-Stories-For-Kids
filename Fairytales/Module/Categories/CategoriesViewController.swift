@@ -12,7 +12,7 @@ import Combine
 
 // MARK: - CategoriesViewController
 
-final class CategoriesViewController: BaseViewController, UserSessionServiceProvidable, PurchesServiceProvidable {
+final class CategoriesViewController: BaseViewController, UserSessionServiceProvidable, PurchesServiceProvidable, InteractionFeedbackService {
     enum Button {
         case settings, favorites, gift
     }
@@ -76,11 +76,22 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
             .sink(receiveValue: { [weak self] button in
                 guard let self = self else { return }
                 switch button {
-                case .settings: (self.coordinator as? CategoriesCoordinator)?.displaySettings()
+                case .settings:
+                    ParentalGate().displayParentalGate(onSuccess: { [weak self] in
+                        (self?.coordinator as? CategoriesCoordinator)?.displaySettings()
+                    }, onFail: { [weak self] in
+                        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+                        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+                        animation.duration = 0.5
+                        animation.values = [-10.0, 10.0, -10.0, 10.0, -5.0, 5.0, -2.5, 2.5, 0.0 ]
+                        animation.beginTime = CACurrentMediaTime()
+                        self?.view.layer.add(animation, forKey: "shake")
+                    })
                 case .favorites: (self.coordinator as? CategoriesCoordinator)?.displayFavorites()
                 case .gift: (self.coordinator as? CategoriesCoordinator)?.displaySpecialGift()
                 }
             }).store(in: &bag)
+        
         // lifecycle
         lifecycle.sink(receiveValue: { [weak self] lifecycle in
             guard let self = self else { return }
