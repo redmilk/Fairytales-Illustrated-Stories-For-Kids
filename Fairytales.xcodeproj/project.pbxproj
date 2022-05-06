@@ -127,6 +127,7 @@
 		799E809727AC272B00ABE0C8 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 799E809527AC272A00ABE0C8 /* iCarousel.m */; };
 		799E809B27AC38F600ABE0C8 /* CarouselItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799E809A27AC38F600ABE0C8 /* CarouselItemView.xib */; };
 		799E809D27AC391400ABE0C8 /* CarouselItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E809C27AC391400ABE0C8 /* CarouselItemView.swift */; };
+		79A19F1728253F1B00E740FC /* ParentalGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A19F1628253F1B00E740FC /* ParentalGate.swift */; };
 		79A7A31027B4CB9800F547D0 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A7A30F27B4CB9800F547D0 /* FirebaseClient.swift */; };
 		79AFD3C927FEC86A00084DA0 /* CategoriesDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFD3C827FEC86A00084DA0 /* CategoriesDisplayManager.swift */; };
 		79AFD3CB27FEEC7300084DA0 /* CoverImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFD3CA27FEEC7300084DA0 /* CoverImages.swift */; };
@@ -267,6 +268,7 @@
 		799E809527AC272A00ABE0C8 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		799E809A27AC38F600ABE0C8 /* CarouselItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarouselItemView.xib; sourceTree = "<group>"; };
 		799E809C27AC391400ABE0C8 /* CarouselItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselItemView.swift; sourceTree = "<group>"; };
+		79A19F1628253F1B00E740FC /* ParentalGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGate.swift; sourceTree = "<group>"; };
 		79A7A30F27B4CB9800F547D0 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		79AFD3C827FEC86A00084DA0 /* CategoriesDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDisplayManager.swift; sourceTree = "<group>"; };
 		79AFD3CA27FEEC7300084DA0 /* CoverImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImages.swift; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 				79878EF327C53B50008DBD86 /* StoryTextFormatter.swift */,
 				79878EF527C550CF008DBD86 /* UserDefaultsWrapper.swift */,
 				79B955E0281283AA0019209A /* FacebookProvider.swift */,
+				79A19F1628253F1B00E740FC /* ParentalGate.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -933,6 +936,7 @@
 				7985DCFA27A151A9005459E0 /* WebscreenViewController.swift in Sources */,
 				7985DCB1279EC6F8005459E0 /* UIView+Extensions.swift in Sources */,
 				7985DCB9279EC6F8005459E0 /* UIBarButtonItem+Extensions.swift in Sources */,
+				79A19F1728253F1B00E740FC /* ParentalGate.swift in Sources */,
 				7907A47F27B98A370024FBEC /* PageText.swift in Sources */,
 				7985DCB6279EC6F8005459E0 /* UIDevice+Extensions.swift in Sources */,
 				7985DCD7279EC6F8005459E0 /* Logger.swift in Sources */,
@@ -1087,7 +1091,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
@@ -1126,7 +1130,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
