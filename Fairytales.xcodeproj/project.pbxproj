@@ -127,9 +127,6 @@
 		799E809727AC272B00ABE0C8 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 799E809527AC272A00ABE0C8 /* iCarousel.m */; };
 		799E809B27AC38F600ABE0C8 /* CarouselItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 799E809A27AC38F600ABE0C8 /* CarouselItemView.xib */; };
 		799E809D27AC391400ABE0C8 /* CarouselItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E809C27AC391400ABE0C8 /* CarouselItemView.swift */; };
-		79A19F132822F17E00E740FC /* Onboarding1ipad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 79A19F102822F17E00E740FC /* Onboarding1ipad.mp4 */; };
-		79A19F142822F17E00E740FC /* Onboarding2ipad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 79A19F112822F17E00E740FC /* Onboarding2ipad.mp4 */; };
-		79A19F152822F17E00E740FC /* Onboarding3ipad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 79A19F122822F17E00E740FC /* Onboarding3ipad.mp4 */; };
 		79A7A31027B4CB9800F547D0 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A7A30F27B4CB9800F547D0 /* FirebaseClient.swift */; };
 		79AFD3C927FEC86A00084DA0 /* CategoriesDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFD3C827FEC86A00084DA0 /* CategoriesDisplayManager.swift */; };
 		79AFD3CB27FEEC7300084DA0 /* CoverImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFD3CA27FEEC7300084DA0 /* CoverImages.swift */; };
@@ -270,9 +267,6 @@
 		799E809527AC272A00ABE0C8 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		799E809A27AC38F600ABE0C8 /* CarouselItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarouselItemView.xib; sourceTree = "<group>"; };
 		799E809C27AC391400ABE0C8 /* CarouselItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselItemView.swift; sourceTree = "<group>"; };
-		79A19F102822F17E00E740FC /* Onboarding1ipad.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Onboarding1ipad.mp4; sourceTree = "<group>"; };
-		79A19F112822F17E00E740FC /* Onboarding2ipad.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Onboarding2ipad.mp4; sourceTree = "<group>"; };
-		79A19F122822F17E00E740FC /* Onboarding3ipad.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Onboarding3ipad.mp4; sourceTree = "<group>"; };
 		79A7A30F27B4CB9800F547D0 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		79AFD3C827FEC86A00084DA0 /* CategoriesDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDisplayManager.swift; sourceTree = "<group>"; };
 		79AFD3CA27FEEC7300084DA0 /* CoverImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImages.swift; sourceTree = "<group>"; };
@@ -332,9 +326,6 @@
 		792CDFA727BAF14D00EF21D6 /* LaunchVideo */ = {
 			isa = PBXGroup;
 			children = (
-				79A19F102822F17E00E740FC /* Onboarding1ipad.mp4 */,
-				79A19F122822F17E00E740FC /* Onboarding3ipad.mp4 */,
-				79A19F112822F17E00E740FC /* Onboarding2ipad.mp4 */,
 				79B7F1DF281BD15D00B33341 /* Onboarding3.mp4 */,
 				79B7F1DE281BD15D00B33341 /* Onboarding1.mp4 */,
 				79B7F1E0281BD15D00B33341 /* Onboarding2.mp4 */,
@@ -818,7 +809,6 @@
 			files = (
 				79958D5827A7AAC000A32E5A /* LICENSE.txt in Resources */,
 				7985DC82279EC6F8005459E0 /* SubscriptionPlanPopup.xib in Resources */,
-				79A19F132822F17E00E740FC /* Onboarding1ipad.mp4 in Resources */,
 				7985DC68279EC6F8005459E0 /* StoryViewController.xib in Resources */,
 				79B7F1E1281BD15D00B33341 /* Onboarding1.mp4 in Resources */,
 				79958D0227A75B2200A32E5A /* StorySelectViewController.xib in Resources */,
@@ -838,7 +828,6 @@
 				7985DC2D279EC6F8005459E0 /* Assets.xcassets in Resources */,
 				7985DC42279EC6F8005459E0 /* CategoriesViewController.xib in Resources */,
 				79958D4A27A7AAC000A32E5A /* Lato-Black.ttf in Resources */,
-				79A19F152822F17E00E740FC /* Onboarding3ipad.mp4 in Resources */,
 				793CA39827AFEFCB005D0B77 /* LaunchAnimationViewController.xib in Resources */,
 				79958D5527A7AAC000A32E5A /* Lato-Light.ttf in Resources */,
 				79958D4B27A7AAC000A32E5A /* Lato-ExtraBold.ttf in Resources */,
@@ -853,7 +842,6 @@
 				79958D0F27A75C4E00A32E5A /* StorySelectionCell.xib in Resources */,
 				7985DC5E279EC6F8005459E0 /* OnboardingViewController.xib in Resources */,
 				79958D2D27A7846B00A32E5A /* GoogleService-Info.plist in Resources */,
-				79A19F142822F17E00E740FC /* Onboarding2ipad.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

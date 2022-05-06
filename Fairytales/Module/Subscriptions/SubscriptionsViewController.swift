@@ -21,7 +21,8 @@ extension SubscriptionsViewController {
         case weekly
         case weeklyWithDiscount
         case monthlyAndYearly
-        case speciealGift
+        //case speciealGift
+        case specialGiftLux
     }
     
     class State: BaseState {
@@ -66,6 +67,21 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     @IBOutlet weak var renewSubscriptionButton: UIButton!
     @IBOutlet weak var politicsButton: UIButton!
     @IBOutlet weak var plansButton: UIButton!
+    
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    
+    @IBOutlet weak var howItWorksDescriptionsTitleFirst: UILabel!
+    @IBOutlet weak var howItWorksDescriptionsTitleSecond: UILabel!
+    @IBOutlet weak var howItWorksDescriptionsTitleThird: UILabel!
+
+    @IBOutlet weak var howItWorksDescriptionsFirst: UILabel!
+    @IBOutlet weak var howItWorksDescriptionsSecond: UILabel!
+    @IBOutlet weak var howItWorksDescriptionsThird: UILabel!
+
+    @IBOutlet weak var howItWorksIcon1: UIImageView!
+    @IBOutlet weak var howItWorksIcon2: UIImageView!
+    @IBOutlet weak var howItWorksIcon3: UIImageView!
+
     // how it works
     @IBOutlet weak var howItWorksDescriptions: UIStackView!
     @IBOutlet weak var howItWorksGradientImageView: UIImageView!
@@ -78,6 +94,10 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
     @IBOutlet weak var specialGiftTimerLabel: UILabel!
     @IBOutlet weak var specialGiftPurchaseButton: UIButton!
     @IBOutlet weak var specialGiftCloseButton: UIButton!
+    // special gift lux
+    @IBOutlet weak var specialGiftLuxPriceCrossed: UILabel!
+    @IBOutlet weak var specialGiftLuxPriceLabel: UILabel!
+    @IBOutlet weak var specialGiftLuxContainer: UIView!
     
     private var stateValue: State { state.value as! State }
     private var continueButtonAnimCancellable: AnyCancellable?
@@ -99,7 +119,10 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
         weeklyPriceLabel.text = PurchesService.previousWeeklyPrice
         monthlyPriceLabel.text = PurchesService.previousMonthlyPrice
         yearlyPriceLabel.text = PurchesService.previousYearlyPrice
-        yearlyCrossedPriceLabel.attributedText = purchases.getFormattedYearPriceForPurchase(isPurePrice: false, size: 10)
+        yearlyCrossedPriceLabel.attributedText = purchases.getFormattedYearPriceForPurchase(isPurePrice: false, size: UIDevice.current.isIPad ? 24 : 20)
+        specialGiftLuxPriceLabel.text = PurchesService.previousYearlyPrice
+        specialGiftLuxPriceCrossed.attributedText = purchases.getFormattedYearPriceForPurchase(isPurePrice: false, size: UIDevice.current.isIPad ? 24 : 20)
+        specialGiftContainer.isHidden = true
         
         handleWhatToShow(stateValue.whatToShow)
         purchases.output.sink(receiveValue: { [weak self] response in
@@ -209,6 +232,8 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
             howItWorksTitleLabel.isHidden = false
             monthAndYearSubscriptionContainer.isHidden = true
             weekSubscriptionContainer.isHidden = false
+            specialGiftLuxContainer.isHidden = true
+            backgroundImageView.image = UIImage(named: "subscriptions-background")
         case .weekly, .weeklyWithDiscount:
             stateValue.whatToShow = .weekly
             specialGiftContainer.isHidden = true
@@ -221,6 +246,8 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
             weekSubscriptionContainer.isHidden = false
             plansButton.isHidden = false
             trialDescriptionLabel.isHidden = purchases.isUserEverHadSubscription
+            backgroundImageView.image = UIImage(named: "subscriptions-background")
+            specialGiftLuxContainer.isHidden = true
         case .monthlyAndYearly:
             stateValue.whatToShow = .monthlyAndYearly
             specialGiftContainer.isHidden = true
@@ -232,9 +259,36 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
             monthAndYearSubscriptionContainer.isHidden = false
             weekSubscriptionContainer.isHidden = true
             plansButton.isHidden = true
-        case .speciealGift:
-            stateValue.whatToShow = .speciealGift
-            specialGiftContainer.isHidden = false
+            specialGiftLuxContainer.isHidden = true
+            backgroundImageView.image = UIImage(named: "subscriptions-background")
+//        case .speciealGift:
+//            stateValue.whatToShow = .speciealGift
+//            specialGiftContainer.isHidden = false
+        case .specialGiftLux:
+            plansButton.isHidden = true
+            stateValue.whatToShow = .specialGiftLux
+            specialGiftContainer.isHidden = true
+            defaultDescriptions.isHidden = true
+            defaultDescriptionsGradientImageView.isHidden = true
+            howItWorksDescriptions.isHidden = false
+            howItWorksGradientImageView.isHidden = false
+            howItWorksTitleLabel.isHidden = false
+            howItWorksTitleLabel.text = "В нашем специальном\nпредложении вы найдёте:"
+            monthAndYearSubscriptionContainer.isHidden = true
+            weekSubscriptionContainer.isHidden = true
+            specialGiftLuxContainer.isHidden = false
+            howItWorksDescriptionsTitleFirst.isHidden = true
+            howItWorksDescriptionsTitleSecond.isHidden = true
+            howItWorksDescriptionsTitleThird.isHidden = true
+            howItWorksDescriptionsFirst.text = "Поучительные истории для вашего ребёнка, авторские развивающие сказки с интересными иллюстрациями"
+            howItWorksDescriptionsSecond.text = "Ежемесячное обновление библиотеки и доступ к ней"
+            howItWorksDescriptionsThird.text = "Оффлайн режим для чтения любимых сказок"
+
+            backgroundImageView.image = UIImage(named: "special-gift-background")
+            
+            howItWorksIcon1.image = UIImage(named: "special-gift-descriptions-1")
+            howItWorksIcon2.image = UIImage(named: "special-gift-descriptions-2")
+            howItWorksIcon3.image = UIImage(named: "special-gift-descriptions-3")
         }
     }
 }

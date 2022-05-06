@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PurchesServiceProvidable 
         UINavigationController.attemptRotationToDeviceOrientation()
 
         PurchesService.currentRandomFlag.toggle()
-
+        
         return true
     }
     

@@ -272,7 +272,7 @@ final class PurchesService: AnalyticServiceProvider {
         let priceParts = String.makeAttriabutedStringNoFormatting("", size: size)
         var priceDoubled = (Int(truncating: price) * 2).description
         priceDoubled.append(currencyCode)
-        let strikedPrice = String.makeStrikeThroughText(priceDoubled, size: size)
+        let strikedPrice = String.makeStrikeThroughText(priceDoubled, size: size, isBold: true)
         if isPurePrice {
             return strikedPrice
         }

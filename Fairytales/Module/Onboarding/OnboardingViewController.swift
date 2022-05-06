@@ -177,7 +177,7 @@ final class OnboardingViewController: BaseViewController {
     }
 
     private func setupVideoPlayers() {
-        guard let videoUrl = Bundle.main.url(forResource: UIDevice.current.isIPad ? "Onboarding3ipad" : "Onboarding3", withExtension: "mp4") else { return }
+        guard let videoUrl = Bundle.main.url(forResource: "Onboarding3", withExtension: "mp4") else { return }
         asset = AVAsset(url: videoUrl)
         playerItem = AVPlayerItem(asset: asset!)
         player = AVQueuePlayer(playerItem: playerItem)
@@ -194,7 +194,7 @@ final class OnboardingViewController: BaseViewController {
         playerView?.player = player
         player?.play()
         
-        guard let videoUrl = Bundle.main.url(forResource: UIDevice.current.isIPad ? "Onboarding1ipad" : "Onboarding1", withExtension: "mp4") else { return }
+        guard let videoUrl = Bundle.main.url(forResource: "Onboarding1", withExtension: "mp4") else { return }
         asset1 = AVAsset(url: videoUrl)
         playerItem1 = AVPlayerItem(asset: asset1!)
         player1 = AVQueuePlayer(playerItem: playerItem1)
@@ -212,7 +212,7 @@ final class OnboardingViewController: BaseViewController {
         playerView1?.isHidden = true
         //player1?.play()
 
-        guard let videoUrl = Bundle.main.url(forResource: UIDevice.current.isIPad ? "Onboarding2ipad" : "Onboarding2", withExtension: "mp4") else { return }
+        guard let videoUrl = Bundle.main.url(forResource: "Onboarding2", withExtension: "mp4") else { return }
         asset2 = AVAsset(url: videoUrl)
         playerItem2 = AVPlayerItem(asset: asset2!)
         player2 = AVQueuePlayer(playerItem: playerItem2)
