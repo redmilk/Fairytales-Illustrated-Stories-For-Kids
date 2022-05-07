@@ -6,8 +6,36 @@
 //
 
 import Foundation
+import Combine
 
 final class ParentalGate {
+    
+    var currentCorrectAnswer: Int!
+    var bag = Set<AnyCancellable>()
+    
+    func generateTaskContent() -> AnyPublisher<(String, [Int]), Never> {
+        [Int.random(in: 2...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...9), Int.random(in: 1...9), Int.random(in: 1...9), Int.random(in: 1...9), Int.random(in: 1...9), Int.random(in: 1...9), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 2...18), Int.random(in: 2...18), Int.random(in: 2...9), Int.random(in: 2...9), Int.random(in: 2...9), Int.random(in: 2...9), Int.random(in: 2...9), Int.random(in: 2...9)
+        ].publisher
+            .collect()
+            .flatMap({ (arr: [Int]) -> AnyPublisher<Int, Never> in
+            Publishers.Sequence(sequence: arr).eraseToAnyPublisher()
+            }).removeAllDuplicates()
+            .collect(5)
+            .prefix(1)
+            .map({ [weak self] arr -> (String, [Int]) in
+                var answers = arr
+                if answers.count == 4 {
+                    answers.append(Int.random(in: 1...18))
+                }
+                let first = Int.random(in: 1...9)
+                let second = Int.random(in: 1...9)
+                self?.currentCorrectAnswer = first + second
+                let taskText = "\(first) + \(second) ="
+                answers[0] = first + second
+                return (taskText, answers.shuffled())
+            })
+            .eraseToAnyPublisher()
+    }
     
     func displayParentalGate(onSuccess: @escaping VoidClosure, onFail: @escaping VoidClosure) {
         let first = Int.random(in: 11...99)

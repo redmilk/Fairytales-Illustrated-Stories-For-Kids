@@ -77,18 +77,23 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
                 guard let self = self else { return }
                 switch button {
                 case .settings:
-                    ParentalGate().displayParentalGate(onSuccess: { [weak self] in
-                        (self?.coordinator as? CategoriesCoordinator)?.displaySettings()
-                    }, onFail: { [weak self] in
-                        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-                        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-                        animation.duration = 0.5
-                        animation.values = [-10.0, 10.0, -10.0, 10.0, -5.0, 5.0, -2.5, 2.5, 0.0 ]
-                        animation.beginTime = CACurrentMediaTime()
-                        self?.view.layer.add(animation, forKey: "shake")
-                    })
-                case .favorites: (self.coordinator as? CategoriesCoordinator)?.displayFavorites()
-                case .gift: (self.coordinator as? CategoriesCoordinator)?.displaySpecialGift()
+                    let gate = ParentalGateCoordinator(navigationController: self.navigationController)
+                    gate.start()
+                    gate.answerResultPublisher.sink(receiveValue: { result in
+                        gate.end()
+                        result ? (self.coordinator as? CategoriesCoordinator)?.displaySettings() : ()
+                    }).store(in: &self.bag)
+                case .favorites:
+                    (self.coordinator as? CategoriesCoordinator)?.displayFavorites()
+                case .gift:
+                    let gate = ParentalGateCoordinator(navigationController: self.navigationController)
+                    gate.start()
+                    gate.answerResultPublisher.sink(receiveValue: { result in
+                        gate.end()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            result ? (self.coordinator as? CategoriesCoordinator)?.displaySpecialGift() : ()
+                        })
+                    }).store(in: &self.bag)
                 }
             }).store(in: &bag)
         
