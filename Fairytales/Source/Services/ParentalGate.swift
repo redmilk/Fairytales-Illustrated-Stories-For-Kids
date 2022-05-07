@@ -14,7 +14,7 @@ final class ParentalGate {
     var bag = Set<AnyCancellable>()
     
     func generateTaskContent() -> AnyPublisher<(String, [Int]), Never> {
-        [Int.random(in: 2...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...9), Int.random(in: 1...9), Int.random(in: 1...9), Int.random(in: 1...9), Int.random(in: 1...9), Int.random(in: 1...9), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 1...18), Int.random(in: 2...18), Int.random(in: 2...18), Int.random(in: 2...9), Int.random(in: 2...9), Int.random(in: 2...9), Int.random(in: 2...9), Int.random(in: 2...9), Int.random(in: 2...9)
+        [Int.random(in: 11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in:  11...99), Int.random(in: 11...99), Int.random(in:  11...99), Int.random(in:  11...99)
         ].publisher
             .collect()
             .flatMap({ (arr: [Int]) -> AnyPublisher<Int, Never> in
@@ -25,10 +25,10 @@ final class ParentalGate {
             .map({ [weak self] arr -> (String, [Int]) in
                 var answers = arr
                 if answers.count == 4 {
-                    answers.append(Int.random(in: 1...18))
+                    answers.append(Int.random(in:  11...99))
                 }
-                let first = Int.random(in: 1...9)
-                let second = Int.random(in: 1...9)
+                let first = Int.random(in:  11...49)
+                let second = Int.random(in:  11...49)
                 self?.currentCorrectAnswer = first + second
                 let taskText = "\(first) + \(second) ="
                 answers[0] = first + second
