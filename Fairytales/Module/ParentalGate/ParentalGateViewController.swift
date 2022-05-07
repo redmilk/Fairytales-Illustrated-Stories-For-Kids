@@ -63,12 +63,15 @@ final class ParentalGateViewController: BaseViewController {
         }).store(in: &bag)
     }
     override func applyStyling() {
+        if UIDevice.current.isIPad {
+            view.addCornerRadius(30)
+        }
         taskAnswerLabel.addCornerRadius(6)
         taskAnswerLabel.addBorder(2, .lightGray)
         emitter.tag = 1
         emitter.alpha = 1
         emitter.isUserInteractionEnabled = false
-        view.insertSubview(emitter, at: 1)
+        view.insertSubview(emitter, at: 0)
         emitter.constraintToSides(inside: view)
     }
     
