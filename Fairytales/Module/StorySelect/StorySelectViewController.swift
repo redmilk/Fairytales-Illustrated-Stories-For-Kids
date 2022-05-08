@@ -172,7 +172,14 @@ final class StorySelectViewController: BaseViewController, UserSessionServicePro
                 case .back: self.coordinator.end()
                 case .heart: (self.coordinator as? StorySelectCoordinator)?.displayFavorites()
                 case .gift:
-                    (self.coordinator as? StorySelectCoordinator)?.displaySpecialGift()
+                    let gate = ParentalGateCoordinator(navigationController: self.navigationController)
+                    gate.start()
+                    gate.answerResultPublisher.sink(receiveValue: { result in
+                        gate.end()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            result ? (self.coordinator as? StorySelectCoordinator)?.displaySpecialGift() : ()
+                        })
+                    }).store(in: &self.bag)
                 case .layout:
                     let currentState = self.stateValue
                     currentState.layout = currentState.layout == .line ? .grid : .line

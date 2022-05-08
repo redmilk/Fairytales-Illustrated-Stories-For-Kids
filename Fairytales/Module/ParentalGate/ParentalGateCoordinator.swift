@@ -17,10 +17,12 @@ protocol ParentalGateCoordinatable {
 
 final class ParentalGateCoordinator: Coordinatable, ParentalGateCoordinatable {
     var navigationController: UINavigationController?
+    var viewController: UIViewController?
     var answerResultPublisher = PassthroughSubject<Bool, Never>()
     
-    init(navigationController: UINavigationController?) {
+    init(navigationController: UINavigationController?, viewController: UIViewController? = nil) {
         self.navigationController = navigationController
+        self.viewController = viewController
     }
     deinit {
         Logger.log(String(describing: self), type: .deinited)
@@ -28,11 +30,19 @@ final class ParentalGateCoordinator: Coordinatable, ParentalGateCoordinatable {
     
     func start() {
         let controller = ParentalGateViewController(coordinator: self)
-        navigationController?.present(controller, animated: true, completion: nil)//.pushViewController(controller, animated: true)
+        if let viewController = viewController {
+            viewController.present(controller, animated: true, completion: nil)
+        } else {
+            navigationController?.present(controller, animated: true, completion: nil)//.pushViewController(controller, animated: true)
+        }
     }
     
     func end() {
-        navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
+        if let viewController = viewController {
+            viewController.dismiss(animated: true, completion: nil)
+        } else {
+            navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
+        }
     }
     
     func endWithAnswer(_ answer: Bool) {

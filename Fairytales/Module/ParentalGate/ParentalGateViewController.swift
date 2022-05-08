@@ -103,6 +103,7 @@ final class ParentalGateViewController: BaseViewController {
             fifthButton.publisher().map { _ in Buttons.fifth }
         ).sink(receiveValue: { [weak self] button in
                 guard let self = self else { return }
+                self.view.isUserInteractionEnabled = false
                 switch button {
                 case .back: self.coordinator.end()
                 case .first: self.answer(with: self.firstButton.titleLabel!.text!)
