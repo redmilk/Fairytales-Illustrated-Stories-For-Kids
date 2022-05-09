@@ -193,7 +193,11 @@ extension CategoriesViewController: iCarouselDelegate, iCarouselDataSource {
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
         //userSession.selectedCategory = userSession.categories.toSortedArray[carousel.currentItemIndex]
-        guard index != carousel.currentItemIndex else { return }
+        guard index != carousel.currentItemIndex else {
+            let coordinator = StorySelectCoordinator(navigationController: navigationController)
+            coordinator.start()
+            return
+        }
         if let node = carousel.currentItemView as? CarouselItemView {
             node.layoutState = .idle
         }
