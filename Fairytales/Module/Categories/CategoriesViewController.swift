@@ -77,23 +77,11 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
                 guard let self = self else { return }
                 switch button {
                 case .settings:
-                    let gate = ParentalGateCoordinator(navigationController: self.navigationController)
-                    gate.start()
-                    gate.answerResultPublisher.sink(receiveValue: { result in
-                        gate.end()
-                        result ? (self.coordinator as? CategoriesCoordinator)?.displaySettings() : ()
-                    }).store(in: &self.bag)
+                    (self.coordinator as? CategoriesCoordinator)?.displaySettings()
                 case .favorites:
                     (self.coordinator as? CategoriesCoordinator)?.displayFavorites()
                 case .gift:
-                    let gate = ParentalGateCoordinator(navigationController: self.navigationController)
-                    gate.start()
-                    gate.answerResultPublisher.sink(receiveValue: { result in
-                        gate.end()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                            result ? (self.coordinator as? CategoriesCoordinator)?.displaySpecialGift() : ()
-                        })
-                    }).store(in: &self.bag)
+                    (self.coordinator as? CategoriesCoordinator)?.displaySpecialGift()
                 }
             }).store(in: &bag)
         

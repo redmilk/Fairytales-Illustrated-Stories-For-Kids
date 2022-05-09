@@ -64,7 +64,14 @@ final class SettingsViewController: BaseViewController {
                 case .back: self.coordinator.end()
                 case .heart: break
                 case .manageSubscription:
-                    (self.coordinator as? SettingsCoordinator)?.displayManageSubscription()
+                    let gate = ParentalGateCoordinator(navigationController: self.navigationController)
+                    gate.start()
+                    gate.answerResultPublisher.sink(receiveValue: { result in
+                        gate.end()
+                        if result {
+                            (self.coordinator as? SettingsCoordinator)?.displayManageSubscription()
+                        }
+                    }).store(in: &self.bag)
                 case .changeName:
                     (self.coordinator as? SettingsCoordinator)?.displayChangeName()
                 case .policy:

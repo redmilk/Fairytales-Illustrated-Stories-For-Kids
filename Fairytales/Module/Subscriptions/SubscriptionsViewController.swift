@@ -185,11 +185,18 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
                         (self.coordinator as? SubscriptionsCoordinator)?.end()
                     }
                 case .purchase:
-                    switch self.stateValue.selectedPurchase {
-                    case .monthly: self.purchases.purchaseSubscriptionPlan(.monthly)
-                    case .weekly: self.purchases.purchaseSubscriptionPlan(.weekly)
-                    case .yearly: self.purchases.purchaseSubscriptionPlan(.annual)
-                    }
+                    let gate = ParentalGateCoordinator(navigationController: nil, viewController: self)
+                    gate.start()
+                    gate.answerResultPublisher.sink(receiveValue: { result in
+                        gate.end()
+                        if result {
+                            switch self.stateValue.selectedPurchase {
+                            case .monthly: self.purchases.purchaseSubscriptionPlan(.monthly)
+                            case .weekly: self.purchases.purchaseSubscriptionPlan(.weekly)
+                            case .yearly: self.purchases.purchaseSubscriptionPlan(.annual)
+                            }
+                        }
+                    }).store(in: &self.bag)
                 case .giftPurchase:
                     self.purchases.purchaseSubscriptionPlan(.annual)
                 case .monthly:
@@ -199,7 +206,14 @@ final class SubscriptionsViewController: BaseViewController, PurchesServiceProvi
                     self.toggleState()
                     self.stateValue.selectedPurchase = .yearly
                 case .renewSubscription:
-                    self.purchases.restoreLastSubscription()
+                    let gate = ParentalGateCoordinator(navigationController: nil, viewController: self)
+                    gate.start()
+                    gate.answerResultPublisher.sink(receiveValue: { result in
+                        gate.end()
+                        if result {
+                            self.purchases.restoreLastSubscription()
+                        }
+                    }).store(in: &self.bag)
                 case .politics: break
                 case .plans:
                     let state = self.stateValue
