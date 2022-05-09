@@ -79,7 +79,14 @@ final class SettingsViewController: BaseViewController {
                 case .terms:
                     (self.coordinator as? SettingsCoordinator)?.displayTerms()
                 case .share:
-                    self.shareApp()
+                    let gate = ParentalGateCoordinator(navigationController: self.navigationController)
+                    gate.start()
+                    gate.answerResultPublisher.sink(receiveValue: { result in
+                        gate.end()
+                        if result {
+                            self.shareApp()
+                        }
+                    }).store(in: &self.bag)
                 }
             }).store(in: &bag)
     }

@@ -42,14 +42,7 @@ final class ApplicationCoordinator: Coordinatable, UserSessionServiceProvidable,
             OnboardingManager.shared = nil
             guard let self = self else { return }
             if !self.purchases.isUserHasActiveSubscription {
-                let gate = ParentalGateCoordinator(navigationController: nil, viewController: UIViewController.topViewController)
-                gate.start()
-                gate.answerResultPublisher.sink(receiveValue: { result in
-                    gate.end()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                        result ? self.showSubscriptions() : ()
-                    })
-                }).store(in: &self.bag)
+                self.showSubscriptions()
             }
         }
         let coordinator = OnboardingCoordinator(window: self.window)
