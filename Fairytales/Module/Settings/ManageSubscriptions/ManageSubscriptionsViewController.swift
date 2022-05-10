@@ -18,8 +18,7 @@ final class ManageSubscriptionsViewController: UIViewController,
                                                ActivityIndicatorPresentable,
                                                SubscriptionsMultiPopupProvidable,
                                                AlertPresentable,
-                                               PurchesServiceProvidable,
-                                               AnalyticServiceProvider {
+                                               PurchesServiceProvidable {
     
     enum State {
         case currentSubscriptionPlan(Purchase)
@@ -73,7 +72,6 @@ final class ManageSubscriptionsViewController: UIViewController,
         super.viewWillAppear(animated)
         viewModel.input.send(.checkCurrentSubscriptionPlan)
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        analytics.eventVisitScreen(screen: "manage_subscriptions")
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -151,13 +149,11 @@ private extension ManageSubscriptionsViewController {
                     })
                     return
                 }
-                self.analytics.eventPurchaseDidPressed(plan: "weekly")
                 self.viewModel.input.send(.subscription(.weekly))
         }).store(in: &bag)
         monthlyPlanButton.publisher().receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] button in
                 guard let self = self else { return }
-                self.analytics.eventPurchaseDidPressed(plan: "monthly")
                 guard let weeklyPrice = self.weeklyPriceLabel.text, !weeklyPrice.isEmpty,
                         let monthlyPrice = self.monthlyPriceLabel.text, !monthlyPrice.isEmpty else {
                     self.displayAlert(fromParentView: self.view, with: "Make sure your device is connected to the internet",
@@ -179,7 +175,6 @@ private extension ManageSubscriptionsViewController {
                     })
                     return
                 }
-                self.analytics.eventPurchaseDidPressed(plan: "annual")
                 self.viewModel.input.send(.subscription(.annual))
         }).store(in: &bag)
         howItWorksButton.publisher()

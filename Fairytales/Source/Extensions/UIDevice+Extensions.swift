@@ -14,26 +14,6 @@ public extension UIDevice {
     static var currentLocale: String { String(Locale.preferredLanguages.first?.prefix(2) ?? "") }
     static var deviceCountry: String { Locale.current.regionCode ?? "" }
     
-    static func requestAppTrackingPermission() {
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                switch status {
-                case .authorized:
-                    print("Authorized")
-                    print(ASIdentifierManager.shared().advertisingIdentifier)
-                case .denied:
-                    print("Denied")
-                case .notDetermined:
-                    print("Not Determined")
-                case .restricted:
-                    print("Restricted")
-                @unknown default:
-                    print("Unknown")
-                }
-            }
-        }
-    }
-    
     static func gotoAppSettings() {
         guard let url = URL(string: UIApplication.openSettingsURLString),
             UIApplication.shared.canOpenURL(url) else {

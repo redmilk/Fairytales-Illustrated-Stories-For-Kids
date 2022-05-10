@@ -23,8 +23,6 @@ private extension AppDelegate {
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, PurchesServiceProvidable {
     
-    var analytics: AnalyticsService!
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupAnalyticsServices(application, launchOptions)
         ApplicationGlobalConfig().configure()
@@ -35,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PurchesServiceProvidable 
         Settings.shared.isAdvertiserIDCollectionEnabled = true
         
         // Firebase
-        analytics = AnalyticsService(application, launchOptions)
         FirebaseApp.configure()
         
         // orientation

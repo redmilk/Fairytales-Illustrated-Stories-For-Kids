@@ -31,7 +31,7 @@ extension SKProduct {
     }
 }
 
-final class PurchesService: AnalyticServiceProvider {
+final class PurchesService {
     
     enum Action {
         case congifure

@@ -81,7 +81,6 @@
 		7985DCCF279EC6F8005459E0 /* Purchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985DCC5279EC6F8005459E0 /* Purchase.swift */; };
 		7985DCD0279EC6F8005459E0 /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985DCC6279EC6F8005459E0 /* PurchaseService.swift */; };
 		7985DCD2279EC6F8005459E0 /* ServicesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985DCC8279EC6F8005459E0 /* ServicesContainer.swift */; };
-		7985DCD3279EC6F8005459E0 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985DCC9279EC6F8005459E0 /* AnalyticsService.swift */; };
 		7985DCD7279EC6F8005459E0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985DCD5279EC6F8005459E0 /* Logger.swift */; };
 		7985DCDB279EC6F8005459E0 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985DCDA279EC6F8005459E0 /* Coordinatable.swift */; };
 		7985DCDD279EC6F8005459E0 /* StorySelectDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7985DCDC279EC6F8005459E0 /* StorySelectDisplayManager.swift */; };
@@ -223,7 +222,6 @@
 		7985DCC5279EC6F8005459E0 /* Purchase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Purchase.swift; sourceTree = "<group>"; };
 		7985DCC6279EC6F8005459E0 /* PurchaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
 		7985DCC8279EC6F8005459E0 /* ServicesContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesContainer.swift; sourceTree = "<group>"; };
-		7985DCC9279EC6F8005459E0 /* AnalyticsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		7985DCD5279EC6F8005459E0 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		7985DCDA279EC6F8005459E0 /* Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		7985DCDC279EC6F8005459E0 /* StorySelectDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorySelectDisplayManager.swift; sourceTree = "<group>"; };
@@ -597,7 +595,6 @@
 				7985DCC3279EC6F8005459E0 /* OnboardingManager.swift */,
 				7985DCC4279EC6F8005459E0 /* Purchase */,
 				7985DCC8279EC6F8005459E0 /* ServicesContainer.swift */,
-				7985DCC9279EC6F8005459E0 /* AnalyticsService.swift */,
 				79878EF327C53B50008DBD86 /* StoryTextFormatter.swift */,
 				79878EF527C550CF008DBD86 /* UserDefaultsWrapper.swift */,
 				79B955E0281283AA0019209A /* FacebookProvider.swift */,
@@ -919,7 +916,6 @@
 				79958D2727A76FFA00A32E5A /* LifecycleTransmittable.swift in Sources */,
 				7985DCBD279EC6F8005459E0 /* UICollectionView+Extensions.swift in Sources */,
 				7985DCB4279EC6F8005459E0 /* UIColor+Extensions.swift in Sources */,
-				7985DCD3279EC6F8005459E0 /* AnalyticsService.swift in Sources */,
 				7985DC23279EC6F8005459E0 /* SceneDelegate.swift in Sources */,
 				7907A47D27B98A260024FBEC /* PageImages.swift in Sources */,
 				79878EF627C550CF008DBD86 /* UserDefaultsWrapper.swift in Sources */,
@@ -1111,7 +1107,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
@@ -1150,7 +1146,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 51;
+				CURRENT_PROJECT_VERSION = 52;
 				DEVELOPMENT_TEAM = GU282P75T9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Fairytales/Application/Info.plist;
