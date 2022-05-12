@@ -6,8 +6,6 @@
 //
 
 import UIKit.UIDevice
-import AppTrackingTransparency
-import AdSupport
 
 public extension UIDevice {
     
