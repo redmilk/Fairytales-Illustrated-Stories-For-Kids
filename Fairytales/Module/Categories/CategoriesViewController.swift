@@ -58,6 +58,7 @@ final class CategoriesViewController: BaseViewController, UserSessionServiceProv
             giftButtonAnimCancelable?.cancel()
             giftButtonAnimCancelable = giftButton.animateShakeRepeatedly()
         }
+        UIDevice.requestAppTrackingPermission()
     }
     override func applyStyling() {
         let emitter = ParticleEmitterView()

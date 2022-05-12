@@ -6,6 +6,8 @@
 //
 
 import UIKit.UIDevice
+import AppTrackingTransparency
+import AdSupport
 
 public extension UIDevice {
     
@@ -18,6 +20,26 @@ public extension UIDevice {
                 return
         }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    static func requestAppTrackingPermission() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                    print("Authorized")
+                    print(ASIdentifierManager.shared().advertisingIdentifier)
+                case .denied:
+                    print("Denied")
+                case .notDetermined:
+                    print("Not Determined")
+                case .restricted:
+                    print("Restricted")
+                @unknown default:
+                    print("Unknown")
+                }
+            }
+        }
     }
     
     static var hasNotch: Bool {

@@ -12,6 +12,8 @@
 	<string>4feffe58714f088c4bf608bbbe3603f7</string>
 	<key>FacebookDisplayName</key>
 	<string>Сказки</string>
+    <key>NSUserTrackingUsageDescription</key>
+    <string>Это позволяет нам подключаться к Facebook и улучшает наш маркетинг. Мы никогда не будем показывать рекламу внутри сказок.</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>googlegmail</string>
